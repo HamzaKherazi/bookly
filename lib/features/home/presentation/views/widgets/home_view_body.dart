@@ -10,27 +10,59 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const CustomAppBar(),
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 30),
+                  child: const CustomAppBar(),
+                ),
 
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.3,
 
-            child: BooksListView(),
+                  child: BooksListView(),
+                ),
+                const SizedBox(height: 40),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30),
+                  child: const Text('Best Seller', style: Styles.textStyle18),
+                ),
+                const SizedBox(height: 15),
+              ],
+            ),
           ),
-          SizedBox(height: 60),
-          Text('Best Seller', style: Styles.textStyle18),
-          SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.only(right: 24),
-            child: BestSellerItem(),
+        ),
+        SliverFillRemaining(child: BestSellerListView()),
+      ],
+    );
+  }
+}
+
+class BestSellerListView extends StatelessWidget {
+  const BestSellerListView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      padding: EdgeInsets.zero,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.only(
+            top: 10,
+            bottom: 10,
+            right: 20,
+            left: 20,
           ),
-        ],
-      ),
+          child: BestSellerItem(),
+        );
+      },
     );
   }
 }

@@ -5,6 +5,7 @@
         <!-- Show a splash screen on the activity. Automatically removed when
              the Flutter engine draws its first frame -->
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowFullscreen">true</item>
+        <!-- Remove fullscreen to show status bar -->
+        <item name="android:windowFullscreen">false</item>
     </style>
 </resources>

@@ -67,7 +67,7 @@ class BestSellerItem extends StatelessWidget {
 }
 
 class BookRating extends StatelessWidget {
-  const BookRating({Key? key}) : super(key: key);
+  const BookRating({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,8 @@ import 'package:google_fonts/google_fonts.dart';
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      statusBarColor: kPrimaryColor, // Background color
+      statusBarColor: kPrimaryColor,
+      statusBarIconBrightness: Brightness.light,
     ),
   );
   runApp(const Bookly());
@@ -22,6 +23,7 @@ class Bookly extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: kPrimaryColor,
+        brightness: Brightness.dark,
         textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
       ),
 
