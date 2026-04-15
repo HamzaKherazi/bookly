@@ -2,7 +2,7 @@ import 'package:bookly/features/home/presentation/views/widgets/book_details_vie
 import 'package:flutter/material.dart';
 
 class BookDetailsView extends StatelessWidget {
-  const BookDetailsView({Key? key}) : super(key: key);
+  const BookDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
