@@ -1,6 +1,7 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/home/presentation/views/widgets/book_rating.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -73,23 +74,3 @@ class BestSellerItem extends StatelessWidget {
   }
 }
 
-class BookRating extends StatelessWidget {
-  const BookRating({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.star, color: const Color.fromARGB(255, 255, 221, 0)),
-        ),
-        Text('4.8', style: Styles.textStyle16),
-        Padding(
-          padding: const EdgeInsets.only(left: 8),
-          child: Text('(2390)', style: Styles.textStyle14),
-        ),
-      ],
-    );
-  }
-}
