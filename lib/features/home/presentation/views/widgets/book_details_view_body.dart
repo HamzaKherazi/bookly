@@ -10,8 +10,9 @@ class BookDetailsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: width * 0.24),
+      padding: EdgeInsets.symmetric(horizontal: width * 0.26),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const CustomBookImage(),
           const SizedBox(height: 43),
@@ -21,15 +22,18 @@ class BookDetailsViewBody extends StatelessWidget {
             style: Styles.textStyle30,
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 6),
+          const SizedBox(height: 2),
           Text(
             'Al-Mubarakfuri',
             style: Styles.textStyle18.copyWith(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w500,
             ),
+            textAlign: TextAlign.center,
           ),
-          const BookRating(),
+          const SizedBox(height: 8),
+
+          const BookRating(mainAxisAlignment: MainAxisAlignment.center),
         ],
       ),
     );
