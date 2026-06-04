@@ -1,8 +1,7 @@
-import 'dart:math';
-
 import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/core/widgets/custom_button.dart';
+import 'package:bookly/features/home/presentation/views/widgets/also_like_books_listview.dart';
 import 'package:bookly/features/home/presentation/views/widgets/books_action.dart';
+import 'package:bookly/features/home/presentation/views/widgets/books_list_view.dart';
 import 'package:bookly/features/home/presentation/views/widgets/custom_book_image.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_rating.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +43,14 @@ class BookDetailsViewBody extends StatelessWidget {
           const SizedBox(height: 37),
 
           BooksAction(onPressed: () {}, price: '19.99'),
+          const SizedBox(height: 50),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text('You can also like', style: Styles.textStyle18),
+          ),
+          const SizedBox(height: 14),
+
+          AlsoLikeBooksListView(),
         ],
       ),
     );

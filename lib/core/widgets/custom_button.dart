@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
-    Key? key,
+    super.key,
     required this.backgroundColor,
     required this.textColor,
     this.borderRadius,
     required this.text,
     this.fontSize,
-  }) : super(key: key);
+  });
   final Color backgroundColor;
   final Color textColor;
   final BorderRadius? borderRadius;
