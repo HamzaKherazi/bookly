@@ -9,7 +9,8 @@ class BookDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kPrimaryColor,
+        foregroundColor: kPrimaryColor,
+        backgroundColor: kBackgroundColor,
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart)),
         ],

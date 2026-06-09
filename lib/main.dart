@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      statusBarColor: kPrimaryColor,
+      statusBarColor: kBackgroundColor,
       statusBarIconBrightness: Brightness.light,
     ),
   );
@@ -22,15 +22,12 @@ class Bookly extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: AppRouter.router,
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: kPrimaryColor,
-        brightness: Brightness.dark,
-        textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
+        scaffoldBackgroundColor: kBackgroundColor,
+        brightness: Brightness.light,
+        textTheme: GoogleFonts.montserratTextTheme(ThemeData.light().textTheme),
       ),
 
       debugShowCheckedModeBanner: false,
     );
   }
 }
-
-
-

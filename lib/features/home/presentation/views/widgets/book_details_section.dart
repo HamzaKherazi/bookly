@@ -5,7 +5,7 @@ import 'package:bookly/features/home/presentation/views/widgets/custom_book_imag
 import 'package:flutter/material.dart';
 
 class BookDetailsSection extends StatelessWidget {
-  const BookDetailsSection({Key? key}) : super(key: key);
+  const BookDetailsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class BookDetailsSection extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: width * 0.2),
+          padding: EdgeInsets.symmetric(horizontal: width * 0.23),
           child: const CustomBookImage(),
         ),
         const SizedBox(height: 43),
@@ -29,7 +29,7 @@ class BookDetailsSection extends StatelessWidget {
           'Al-Mubarakfuri',
           style: Styles.textStyle18.copyWith(
             fontStyle: FontStyle.italic,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
           ),
           textAlign: TextAlign.center,
         ),

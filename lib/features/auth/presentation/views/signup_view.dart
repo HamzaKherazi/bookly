@@ -1,0 +1,89 @@
+import 'package:bookly/constants.dart';
+import 'package:bookly/core/utils/app_router.dart';
+import 'package:bookly/core/widgets/custom_button.dart';
+import 'package:bookly/features/auth/presentation/views/widgets/auth_redirect_section.dart';
+import 'package:bookly/features/auth/presentation/views/widgets/logo_section.dart';
+import 'package:bookly/features/auth/presentation/views/widgets/or_divider.dart';
+import 'package:bookly/features/auth/presentation/views/widgets/signup_input_section.dart';
+import 'package:bookly/features/auth/presentation/views/widgets/social_media_section.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+class SignupView extends StatelessWidget {
+  const SignupView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              // Header
+              LogoSection(),
+
+              // Card
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 140,
+                  left: 24,
+                  right: 24,
+                  bottom: 24,
+                ),
+                child: Container(
+                  padding: const EdgeInsets.all(24),
+                  decoration: BoxDecoration(
+                    color: kWhite,
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(.08),
+                        blurRadius: 25,
+                        offset: const Offset(0, 10),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 8),
+
+                      SignupInputSection(),
+
+                      const SizedBox(height: 12),
+
+                      // SignUp Button
+                      CustomButton(
+                        onPressed: () {
+                          GoRouter.of(context).push(AppRouter.mainView);
+                        },
+                        title: 'Sign Up',
+                      ),
+                      const SizedBox(height: 30),
+
+                      OrDivider(),
+
+                      const SizedBox(height: 24),
+
+                      // Social Buttons
+                      SocialMediaSection(),
+
+                      const SizedBox(height: 30),
+                      AuthRedirectSection(
+                        questionText: "Already have an account?",
+                        actionText: 'Log in',
+                        onPressed: () {
+                          GoRouter.of(context).push(AppRouter.loginView);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

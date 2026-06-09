@@ -8,7 +8,7 @@ class BookRating extends StatelessWidget {
   });
 
   final MainAxisAlignment mainAxisAlignment;
-  @override 
+  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: mainAxisAlignment,
@@ -17,9 +17,12 @@ class BookRating extends StatelessWidget {
           onPressed: () {},
           icon: Icon(Icons.star, color: const Color.fromARGB(255, 255, 221, 0)),
         ),
-        Text('4.8', style: Styles.textStyle16,),
+        Text(
+          '4.8',
+          style: Styles.textStyle14.copyWith(fontWeight: FontWeight.w400),
+        ),
         Padding(
-          padding: const EdgeInsets.only(left: 8),
+          padding: const EdgeInsets.only(left: 4, right: 8),
           child: Text('(2390)', style: Styles.textStyle14),
         ),
       ],

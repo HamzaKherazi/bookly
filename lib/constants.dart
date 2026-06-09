@@ -1,5 +1,10 @@
 import 'package:flutter/widgets.dart';
 
-const kPrimaryColor = Color(0xff100B20);
+const kBackgroundColor = Color(0xffF5F2EC);
+const kWhite = Color(0xffFAF6F3);
+const kPrimaryColor = Color(0xff7B3F2F);
+const kTextColor1 = Color(0xff39342F);
+const kTextColor2 = Color(0xff635F5C);
+
 const kAnimationDuration = Duration(milliseconds: 250);
 const kgTSectraFine = 'GT-Sectra-Fine';

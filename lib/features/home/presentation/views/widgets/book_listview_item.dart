@@ -5,8 +5,8 @@ import 'package:bookly/features/home/presentation/views/widgets/book_rating.dart
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class BestSellerItem extends StatelessWidget {
-  const BestSellerItem({super.key});
+class BookListViewItem extends StatelessWidget {
+  const BookListViewItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,20 @@ class BestSellerItem extends StatelessWidget {
       onTap: () {
         GoRouter.of(context).push(AppRouter.bookDetailsView);
       },
-      child: SizedBox(
+      child: Container(
+        decoration: BoxDecoration(
+          color: kWhite,
+          borderRadius: BorderRadius.circular(12),
+
+          boxShadow: [
+            BoxShadow(
+              color: const Color.fromARGB(255, 79, 45, 0).withOpacity(0.2),
+              blurRadius: 16,
+              offset: Offset(0, 6), // 👈 bottom shadow
+            ),
+          ],
+        ),
+
         height: 135,
         child: Row(
           children: [
@@ -25,7 +38,7 @@ class BestSellerItem extends StatelessWidget {
                   image: DecorationImage(
                     fit: BoxFit.fill,
                     image: Image.network(
-                      'https://m.media-amazon.com/images/I/71bmxf4xUsL._AC_UF894,1000_QL80_.jpg',
+                      'https://www.leadstartcorp.com/leadstart/wp-content/uploads/2024/12/How-To-Win-Friends-Influence-People-Front-Cover-768x1234.jpg',
                     ).image,
                   ),
                   borderRadius: BorderRadius.circular(8),
@@ -38,11 +51,13 @@ class BestSellerItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const SizedBox(height: 8),
+
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(
                       'The Sealed Nectar FJF FOJF OFJ FPFGKP¨GK PFIK F',
-                      style: Styles.textStyle20.copyWith(
+                      style: Styles.textStyle18.copyWith(
                         fontFamily: kgTSectraFine,
                       ),
                       maxLines: 2,
@@ -50,16 +65,11 @@ class BestSellerItem extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 3),
-                  Text('Mubarakfuri', style: Styles.textStyle14),
-      
+                  Text('Mubarakfuri', style: Styles.textStyle16),
+
                   Row(
                     children: [
-                      Text(
-                        '19.99 \$',
-                        style: Styles.textStyle20.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      Text('19.99 \$', style: Styles.textStyle16),
                       Spacer(),
                       BookRating(),
                     ],
@@ -73,4 +83,3 @@ class BestSellerItem extends StatelessWidget {
     );
   }
 }
-

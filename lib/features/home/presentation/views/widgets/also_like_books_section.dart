@@ -3,7 +3,7 @@ import 'package:bookly/features/home/presentation/views/widgets/also_like_books_
 import 'package:flutter/material.dart';
 
 class AlsoLikeBooksSection extends StatelessWidget {
-  const AlsoLikeBooksSection({Key? key}) : super(key: key);
+  const AlsoLikeBooksSection({super.key});
 
   @override
   Widget build(BuildContext context) {
