@@ -8,3 +8,4 @@ const kTextColor2 = Color(0xff635F5C);
 
 const kAnimationDuration = Duration(milliseconds: 250);
 const kgTSectraFine = 'GT-Sectra-Fine';
+  

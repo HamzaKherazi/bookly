@@ -8,29 +8,30 @@ import 'package:bookly/features/shop/presentation/views/cart_view.dart';
 import 'package:flutter/material.dart';
 
 class MainViewBody extends StatefulWidget {
-  const MainViewBody({super.key});
+  const MainViewBody({super.key, this.initialIndex = 0});
+  final int initialIndex;
 
   @override
   State<MainViewBody> createState() => _MainViewBodyState();
 }
 
 class _MainViewBodyState extends State<MainViewBody> {
-  int _currentIndex = 0;
+  late int _currentIndex;
+  late final NotchBottomBarController _controller;
 
   final List<Widget> _pages = [
     const HomeView(),
     const FavoritesView(),
-    const LibraryView(),
+    const ExploreView(),
     const CartView(),
     const ProfileView(),
   ];
 
-  late final NotchBottomBarController _controller;
-
   @override
   void initState() {
     super.initState();
-    _controller = NotchBottomBarController(index: 0);
+    _currentIndex = widget.initialIndex;
+    _controller = NotchBottomBarController(index: widget.initialIndex);
   }
 
   @override

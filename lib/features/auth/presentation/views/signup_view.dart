@@ -1,6 +1,7 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/widgets/custom_button.dart';
+import 'package:bookly/core/widgets/status_bar_wrapper.dart';
 import 'package:bookly/features/auth/presentation/views/widgets/auth_redirect_section.dart';
 import 'package:bookly/features/auth/presentation/views/widgets/logo_section.dart';
 import 'package:bookly/features/auth/presentation/views/widgets/or_divider.dart';
@@ -14,73 +15,77 @@ class SignupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              // Header
-              LogoSection(),
+    return StatusBarWrapper(
+      color: kPrimaryColor,
+      child: Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                // Header
+                LogoSection(),
 
-              // Card
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 140,
-                  left: 24,
-                  right: 24,
-                  bottom: 24,
-                ),
-                child: Container(
-                  padding: const EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                    color: kWhite,
-                    borderRadius: BorderRadius.circular(30),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(.08),
-                        blurRadius: 25,
-                        offset: const Offset(0, 10),
-                      ),
-                    ],
+                // Card
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 140,
+                    left: 24,
+                    right: 24,
+                    bottom: 24,
                   ),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 8),
+                  child: Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: kWhite,
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(.08),
+                          blurRadius: 25,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 16),
 
-                      SignupInputSection(),
+                        SignupInputSection(),
 
-                      const SizedBox(height: 12),
+                        const SizedBox(height: 12),
 
-                      // SignUp Button
-                      CustomButton(
-                        onPressed: () {
-                          GoRouter.of(context).push(AppRouter.mainView);
-                        },
-                        title: 'Sign Up',
-                      ),
-                      const SizedBox(height: 30),
+                        //Login Button
+                        CustomButton(
+                          title: 'Sign Up',
+                          onPressed: () {
+                            GoRouter.of(context).push(AppRouter.mainView);
+                          },
+                        ),
 
-                      OrDivider(),
+                        const SizedBox(height: 24),
 
-                      const SizedBox(height: 24),
+                        OrDivider(),
 
-                      // Social Buttons
-                      SocialMediaSection(),
+                        const SizedBox(height: 24),
 
-                      const SizedBox(height: 30),
-                      AuthRedirectSection(
-                        questionText: "Already have an account?",
-                        actionText: 'Log in',
-                        onPressed: () {
-                          GoRouter.of(context).push(AppRouter.loginView);
-                        },
-                      ),
-                    ],
+                        // Social Buttons
+                        SocialMediaSection(),
+
+                        const SizedBox(height: 24),
+                        AuthRedirectSection(
+                          questionText: "Already have an account?",
+                          actionText: 'Log in',
+                          onPressed: () {
+                            GoRouter.of(context).push(AppRouter.loginView);
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -3,7 +3,7 @@ import 'package:bookly/features/auth/presentation/views/widgets/custom_text_fiel
 import 'package:flutter/material.dart';
 
 class LoginInputSection extends StatelessWidget {
-  const LoginInputSection({Key? key}) : super(key: key);
+  const LoginInputSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,29 +56,43 @@ class LoginInputSection extends StatelessWidget {
         const CustomTextField(hintText: "Enter your password"),
 
         const SizedBox(height: 8),
-
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Checkbox(
-                  value: true,
-                  checkColor: kWhite,
-                  activeColor: kPrimaryColor,
-                  side: const BorderSide(color: kPrimaryColor, width: 1.5),
-                  onChanged: (value) {},
-                ),
-                const Text("Remember Me", style: TextStyle(color: kTextColor1)),
-              ],
+            Expanded(
+              child: Row(
+                children: [
+                  Transform.scale(
+                    scale: 0.85,
+                    child: Checkbox(
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      visualDensity: VisualDensity.compact,
+                      value: true,
+                      checkColor: kWhite,
+                      activeColor: kPrimaryColor,
+                      side: const BorderSide(color: kPrimaryColor, width: 1.5),
+                      onChanged: (value) {},
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  const Text(
+                    "Remember Me",
+                    style: TextStyle(fontSize: 11, color: kTextColor1),
+                  ),
+                ],
+              ),
             ),
             TextButton(
               onPressed: () {},
-              style: TextButton.styleFrom(overlayColor: Colors.transparent),
+              style: TextButton.styleFrom(
+                overlayColor: Colors.transparent,
+                padding: EdgeInsets.zero,
+                minimumSize: Size.zero,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
               child: const Text(
                 "Forgot Password?",
                 style: TextStyle(
+                  fontSize: 11,
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w600,
                 ),
