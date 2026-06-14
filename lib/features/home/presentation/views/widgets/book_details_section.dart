@@ -1,7 +1,9 @@
+import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_rating.dart';
-import 'package:bookly/features/home/presentation/views/widgets/books_action.dart';
 import 'package:bookly/features/home/presentation/views/widgets/custom_book_image.dart';
+import 'package:bookly/features/home/presentation/views/widgets/custom_button_with_icon.dart';
+import 'package:bookly/features/home/presentation/views/widgets/expandable_text.dart';
 import 'package:flutter/material.dart';
 
 class BookDetailsSection extends StatelessWidget {
@@ -12,33 +14,94 @@ class BookDetailsSection extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * 0.23),
           child: const CustomBookImage(),
         ),
         const SizedBox(height: 43),
-        Text(
-          'Al-Raheeq Al-Makhtoum',
-          maxLines: 2,
-          style: Styles.textStyle30,
-          textAlign: TextAlign.center,
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'Al-Raheeq Al-Makhtoum',
+            maxLines: 2,
+            style: Styles.textStyle24,
+            textAlign: TextAlign.center,
+          ),
         ),
         const SizedBox(height: 2),
-        Text(
-          'Al-Mubarakfuri',
-          style: Styles.textStyle18.copyWith(
-            fontStyle: FontStyle.italic,
-            fontWeight: FontWeight.w600,
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'By Al-Mubarakfuri',
+
+            style: Styles.textStyle18.copyWith(
+              fontWeight: FontWeight.w600,
+              color: kTextColor1,
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 2),
 
-        const BookRating(mainAxisAlignment: MainAxisAlignment.center),
-        const SizedBox(height: 37),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'Religion',
 
-        BooksAction(onPressed: () {}, price: '19.99'),
+            style: Styles.textStyle14.copyWith(
+              fontWeight: FontWeight.w600,
+              color: kTextColor1,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+
+        const SizedBox(height: 2),
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Transform.translate(
+              offset: const Offset(-16, 0),
+
+              child: const BookRating(
+                mainAxisAlignment: MainAxisAlignment.start,
+              ),
+            ),
+            Text(
+              '19.99 \$',
+
+              style: Styles.textStyle18.copyWith(
+                fontWeight: FontWeight.w600,
+                color: kTextColor1,
+              ),
+            ),
+          ],
+        ),
+
+        const SizedBox(height: 2),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'Description',
+
+            style: Styles.textStyle16.copyWith(
+              fontWeight: FontWeight.w600,
+              color: kTextColor1,
+            ),
+          ),
+        ),
+        const SizedBox(height: 2),
+
+        Align(
+          alignment: Alignment.centerLeft,
+          child: ExpandableText(
+            text:
+                "The Sealed Nectar (Ar-Raheeq Al-Makhtum) by Safi-ur-Rahman al-Mubarakpuri is a well-known and highly respected biography of the Prophet Muhammad ﷺ. It presents a detailed and authentic account of his life, from his noble lineage and early childhood to his prophethood, struggles in Makkah, migration to Madinah, and the establishment of the Muslim community. The book is written in a clear, chronological style and is based on authentic historical sources. It highlights key events such as the revelation of the Qur’an, major battles, treaties, and the moral and spiritual character of the Prophet ﷺ. It won first prize in a worldwide biography competition organized by the Muslim World League, which helped it gain global recognition. Overall, it is considered one of the most comprehensive and accessible seerah (biography of the Prophet ﷺ) books for readers who want to understand Islamic history in depth.",
+          ),
+        ),
       ],
     );
   }

@@ -1,5 +1,6 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_details_view_body.dart';
+import 'package:bookly/features/home/presentation/views/widgets/favorite_button.dart';
 import 'package:flutter/material.dart';
 
 class BookDetailsView extends StatelessWidget {
@@ -11,9 +12,7 @@ class BookDetailsView extends StatelessWidget {
       appBar: AppBar(
         foregroundColor: kPrimaryColor,
         backgroundColor: kBackgroundColor,
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart)),
-        ],
+        actions: [FavoriteButton()],
       ),
       body: BookDetailsViewBody(),
     );

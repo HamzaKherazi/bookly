@@ -1,13 +1,12 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_listview_item.dart';
-import 'package:bookly/features/home/presentation/views/widgets/books_list_view.dart';
+import 'package:bookly/features/home/presentation/views/widgets/recommended_section.dart';
 import 'package:bookly/features/promo/presentation/views/widgets/promo_slider.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key, });
-
+  const HomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,20 +22,7 @@ class HomeViewBody extends StatelessWidget {
                 children: [
                   const SizedBox(height: 40),
 
-                  Text(
-                    'Recommended',
-                    style: TextStyle(
-                      color: kTextColor1,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.24,
-
-                    child: BooksListView(),
-                  ),
+                  RecommendedSection(),
 
                   const SizedBox(height: 40),
 

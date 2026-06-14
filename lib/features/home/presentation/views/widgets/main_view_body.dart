@@ -38,7 +38,7 @@ class _MainViewBodyState extends State<MainViewBody> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        _pages[_currentIndex],
+        IndexedStack(index: _currentIndex, children: _pages),
 
         Positioned(
           left: 0,

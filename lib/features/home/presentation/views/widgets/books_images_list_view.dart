@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'custom_book_image.dart';
 
-class BooksListView extends StatelessWidget {
-  const BooksListView({super.key});
+class BooksImagesListView extends StatelessWidget {
+  const BooksImagesListView({super.key});
 
   @override
   Widget build(BuildContext context) {
