@@ -38,7 +38,7 @@ class BookListViewItem extends StatelessWidget {
                   image: DecorationImage(
                     fit: BoxFit.fill,
                     image: Image.network(
-                      'https://www.leadstartcorp.com/leadstart/wp-content/uploads/2024/12/How-To-Win-Friends-Influence-People-Front-Cover-768x1234.jpg',
+                      'https://booksondemand.ma/cdn/shop/files/Atomic.png?v=1727078355&width=1100',
                     ).image,
                   ),
                   borderRadius: BorderRadius.circular(8),

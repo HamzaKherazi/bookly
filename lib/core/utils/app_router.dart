@@ -15,13 +15,20 @@ abstract class AppRouter {
 
   static final router = GoRouter(
     routes: [
-      GoRoute(path: '/', builder: (context, state) => const SplashView()),
-      GoRoute(path: loginView, builder: (context, state) => const LoginView()),
-      GoRoute(
-        path: signupView,
-        builder: (context, state) => const SignupView(),
-      ),
-      GoRoute(path: mainView, builder: (context, state) => const MainView()),
+
+        // Just for testing, delete it after, then activate other comments
+
+      GoRoute(path: '/', builder: (context, state) => const MainView()),
+
+
+
+      // GoRoute(path: '/', builder: (context, state) => const SplashView()),
+      // GoRoute(path: loginView, builder: (context, state) => const LoginView()),
+      // GoRoute(
+      //   path: signupView,
+      //   builder: (context, state) => const SignupView(),
+      // ),
+      // GoRoute(path: mainView, builder: (context, state) => const MainView()),
       GoRoute(
         path: searchBookView,
         builder: (context, state) => const SearchBookView(),

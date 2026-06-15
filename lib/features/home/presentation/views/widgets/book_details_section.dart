@@ -2,7 +2,6 @@ import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_rating.dart';
 import 'package:bookly/features/home/presentation/views/widgets/custom_book_image.dart';
-import 'package:bookly/features/home/presentation/views/widgets/custom_button_with_icon.dart';
 import 'package:bookly/features/home/presentation/views/widgets/expandable_text.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +20,8 @@ class BookDetailsSection extends StatelessWidget {
           child: const CustomBookImage(),
         ),
         const SizedBox(height: 43),
+
+        //Book title
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
@@ -31,6 +32,8 @@ class BookDetailsSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 2),
+
+        //Book author
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
@@ -45,6 +48,7 @@ class BookDetailsSection extends StatelessWidget {
         ),
         const SizedBox(height: 2),
 
+        //Book Category
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
@@ -57,9 +61,9 @@ class BookDetailsSection extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-
         const SizedBox(height: 2),
 
+        //Rating and Price
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -80,8 +84,9 @@ class BookDetailsSection extends StatelessWidget {
             ),
           ],
         ),
-
         const SizedBox(height: 2),
+
+        //Description
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
@@ -94,7 +99,6 @@ class BookDetailsSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 2),
-
         Align(
           alignment: Alignment.centerLeft,
           child: ExpandableText(

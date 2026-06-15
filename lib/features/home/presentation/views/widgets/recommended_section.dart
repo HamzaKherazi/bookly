@@ -4,7 +4,7 @@ import 'package:bookly/features/home/presentation/views/widgets/books_images_lis
 import 'package:flutter/material.dart';
 
 class RecommendedSection extends StatelessWidget {
-  const RecommendedSection({Key? key}) : super(key: key);
+  const RecommendedSection({super.key});
 
   @override
   Widget build(BuildContext context) {
