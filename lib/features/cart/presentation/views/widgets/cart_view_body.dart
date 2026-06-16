@@ -1,5 +1,6 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/widgets/custom_button.dart';
+import 'package:bookly/features/cart/presentation/views/widgets/cart_item.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_listview_item.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +38,10 @@ class _CartViewBodyState extends State<CartViewBody> {
                   child: ListView.builder(
                     itemCount: 20,
                     itemBuilder: (context, index) {
-                      return const BookListViewItem();
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: const CartItem(),
+                      );
                     },
                   ),
                 ),

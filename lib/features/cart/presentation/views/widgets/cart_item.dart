@@ -1,12 +1,11 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/home/presentation/views/widgets/book_rating.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class BookListViewItem extends StatelessWidget {
-  const BookListViewItem({super.key});
+class CartItem extends StatelessWidget {
+  const CartItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -66,14 +65,9 @@ class BookListViewItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 3),
                   Text('Mubarakfuri', style: Styles.textStyle16),
+                  const SizedBox(height: 3),
 
-                  Row(
-                    children: [
-                      Text('19.99 \$', style: Styles.textStyle16),
-                      Spacer(),
-                      BookRating(),
-                    ],
-                  ),
+                  Text('19.99 \$', style: Styles.textStyle16),
                 ],
               ),
             ),
