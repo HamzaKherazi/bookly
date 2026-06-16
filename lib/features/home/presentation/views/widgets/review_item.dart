@@ -9,7 +9,7 @@ class ReviewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
         color: kBackgroundColor,
         borderRadius: BorderRadius.circular(12),

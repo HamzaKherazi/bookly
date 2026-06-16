@@ -838,9 +838,13 @@ class _CustomNavigationBottomBarState extends State<CustomNavigationBottomBar>
                               label: widget.bottomBarItems[i].itemLabel,
 
                               onTap: (selectedIndex) {
-                                widget.notchBottomBarController.jumpTo(
-                                  selectedIndex,
-                                );
+                                if(selectedIndex!=3)
+                                {
+                                  widget.notchBottomBarController.jumpTo(
+                                    selectedIndex,
+                                  );
+                                }
+                                
 
                                 widget.onTap.call(selectedIndex);
                               },

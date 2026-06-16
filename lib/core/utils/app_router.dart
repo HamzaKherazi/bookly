@@ -1,9 +1,7 @@
-import 'package:bookly/features/auth/presentation/views/login_view.dart';
-import 'package:bookly/features/auth/presentation/views/signup_view.dart';
+import 'package:bookly/features/cart/presentation/views/cart_view.dart';
 import 'package:bookly/features/home/presentation/views/book_details_view.dart';
 import 'package:bookly/features/home/presentation/views/main_view.dart';
 import 'package:bookly/features/searchBook/presentation/views/search_book_view.dart';
-import 'package:bookly/features/splash/presentation/views/splash_view.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
@@ -12,6 +10,7 @@ abstract class AppRouter {
   static const searchBookView = '/searchBookView';
   static const loginView = '/loginView';
   static const signupView = '/signupView';
+  static const cartView = '/cartView';
 
   static final router = GoRouter(
     routes: [
@@ -37,6 +36,10 @@ abstract class AppRouter {
       GoRoute(
         path: bookDetailsView,
         builder: (context, state) => const BookDetailsView(),
+      ),
+      GoRoute(
+        path: cartView,
+        builder: (context, state) => const CartView(),
       ),
     ],
   );

@@ -12,7 +12,7 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.only(left: 24),
+        padding: const EdgeInsets.only(left: 16),
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(child: PromoSlider()),
@@ -37,7 +37,7 @@ class HomeViewBody extends StatelessWidget {
             SliverList(
               delegate: SliverChildBuilderDelegate((context, index) {
                 return Padding(
-                  padding: const EdgeInsets.only(bottom: 10, right: 20),
+                  padding: const EdgeInsets.only(bottom: 10, right: 16),
                   child: BookListViewItem(),
                 );
               }, childCount: 10),

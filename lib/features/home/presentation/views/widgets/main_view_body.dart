@@ -1,11 +1,13 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/utils/app_router.dart';
+import 'package:bookly/features/cart/presentation/views/cart_view.dart';
 import 'package:bookly/features/home/presentation/views/favorites_view.dart';
 import 'package:bookly/features/home/presentation/views/library_view.dart';
 import 'package:bookly/features/home/presentation/views/widgets/custom_bottom_navigation_bar.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_view.dart';
 import 'package:bookly/features/profile/presentation/views/profile_view.dart';
-import 'package:bookly/features/shop/presentation/views/cart_view.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MainViewBody extends StatefulWidget {
   const MainViewBody({super.key, this.initialIndex = 0});
@@ -97,6 +99,10 @@ class _MainViewBodyState extends State<MainViewBody> {
             ],
 
             onTap: (index) {
+               if (index == 3) {
+                GoRouter.of(context).push(AppRouter.cartView);
+                return;
+              }
               setState(() {
                 _currentIndex = index;
               });
