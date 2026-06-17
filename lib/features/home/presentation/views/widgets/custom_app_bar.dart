@@ -16,19 +16,30 @@ class CustomAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Image.asset(Assets.booklyLogo, height: 25),
-          IconButton(
-            highlightColor: Colors.transparent,
-            onPressed: () {
-              GoRouter.of(context).push(AppRouter.searchBookView);
-            },
-            icon: Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: const Icon(
-                FontAwesomeIcons.magnifyingGlass,
-                color: kPrimaryColor,
-                size: 20,
+          Row(
+            children: [
+              IconButton(
+                highlightColor: Colors.transparent,
+                onPressed: () {
+                  GoRouter.of(context).push(AppRouter.searchBookView);
+                },
+                icon: const Icon(
+                  FontAwesomeIcons.magnifyingGlass,
+                  color: kPrimaryColor,
+                  size: 20,
+                ),
               ),
-            ),
+              IconButton(
+                highlightColor: Colors.transparent,
+                onPressed: () {
+                  GoRouter.of(context).push(AppRouter.notificationsView);
+                },
+                icon: Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: Icon(Icons.notifications, color: kPrimaryColor),
+                ),
+              ),
+            ],
           ),
         ],
       ),

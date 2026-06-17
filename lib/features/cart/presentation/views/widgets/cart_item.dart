@@ -1,6 +1,7 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/cart/presentation/views/widgets/counter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,6 +29,7 @@ class CartItem extends StatelessWidget {
         ),
 
         height: 135,
+
         child: Row(
           children: [
             AspectRatio(
@@ -44,32 +46,48 @@ class CartItem extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 30),
+
+            const SizedBox(width: 30),
+
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 8),
-
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    child: Text(
-                      'The Sealed Nectar FJF FOJF OFJ FPFGKP¨GK PFIK F',
-                      style: Styles.textStyle18.copyWith(
-                        fontFamily: kgTSectraFine,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+                  Text(
+                    'The Sealed Nectar',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: Styles.textStyle18.copyWith(
+                      fontFamily: kgTSectraFine,
                     ),
                   ),
-                  const SizedBox(height: 3),
-                  Text('Mubarakfuri', style: Styles.textStyle16),
-                  const SizedBox(height: 3),
 
-                  Text('19.99 \$', style: Styles.textStyle16),
+                  const SizedBox(height: 2),
+
+                  Text('Mubarakfuri', style: Styles.textStyle16),
+
+                  const SizedBox(height: 16),
+                  Text(
+                    '19.99 \$',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
+            ),
+
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.close, size: 20, color: Colors.black54),
+                ),
+
+                SizedBox(height: 10),
+
+                Counter(),
+              ],
             ),
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/helpers/show_snack_bar.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/home/presentation/views/widgets/also_like_books_section.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_details_section.dart';
@@ -24,36 +25,10 @@ class BookDetailsViewBody extends StatelessWidget {
 
                 CustomButtonWithIcon(
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        backgroundColor: const Color.fromARGB(
-                          255,
-                          195,
-                          113,
-                          12,
-                        ),
-                        behavior: SnackBarBehavior.floating,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        duration: const Duration(seconds: 2),
-                        content: const Row(
-                          children: [
-                            Icon(
-                              Icons.check_circle_outline,
-                              color: Colors.white,
-                            ),
-                            SizedBox(width: 8),
-                            Text(
-                              'Added successfully to cart',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                    showSnackBar(
+                      context,
+                      title: 'Added succesfully to cart',
+                      icon: Icons.check_circle_outline,
                     );
                   },
                   title: 'Add to cart',

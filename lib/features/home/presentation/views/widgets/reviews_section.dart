@@ -1,7 +1,3 @@
-import 'package:bookly/constants.dart';
-import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/home/presentation/views/widgets/customer_rating.dart';
-import 'package:bookly/features/home/presentation/views/widgets/expandable_text.dart';
 import 'package:bookly/features/home/presentation/views/widgets/review_item.dart';
 import 'package:flutter/material.dart';
 
