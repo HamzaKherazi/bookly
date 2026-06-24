@@ -19,11 +19,20 @@ class BookRating extends StatelessWidget {
         ),
         Text(
           '4.8',
-          style: Styles.textStyle14.copyWith(fontWeight: FontWeight.w400),
+          style: Styles.textStyle14.copyWith(
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w400,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 4, right: 8),
-          child: Text('(2390)', style: Styles.textStyle14),
+          child: Text(
+            '(2390)',
+            style: Styles.textStyle14.copyWith(
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w400,
+            ),
+          ),
         ),
       ],
     );

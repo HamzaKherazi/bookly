@@ -1,4 +1,5 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomButtonWithIcon extends StatelessWidget {
@@ -13,14 +14,13 @@ class CustomButtonWithIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
       height: 56,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.all(kPrimaryColor),
 
-          elevation: WidgetStateProperty.all(5), 
+          elevation: WidgetStateProperty.all(5),
 
           shadowColor: WidgetStateProperty.all(kPrimaryColor.withOpacity(.4)),
 
@@ -34,11 +34,9 @@ class CustomButtonWithIcon extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+              style: Styles.textStyle18.copyWith(
+                color: kWhite,
                 letterSpacing: .5,
-                color: Colors.white,
               ),
             ),
             SizedBox(width: 30),

@@ -38,9 +38,7 @@ class CartItem extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: Image.network(
-                      'https://booksondemand.ma/cdn/shop/files/Atomic.png?v=1727078355&width=1100',
-                    ).image,
+                    image: Image.network(ktestBook1).image,
                   ),
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -58,19 +56,26 @@ class CartItem extends StatelessWidget {
                     'The Sealed Nectar',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: Styles.textStyle18.copyWith(
-                      fontFamily: kgTSectraFine,
-                    ),
+                    style: Styles.textStyle16,
                   ),
 
                   const SizedBox(height: 2),
 
-                  Text('Mubarakfuri', style: Styles.textStyle16),
+                  Text(
+                    'Mubarakfuri',
+                    style: Styles.textStyle14.copyWith(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
 
                   const SizedBox(height: 16),
                   Text(
                     '19.99 \$',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: Styles.textStyle16.copyWith(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),

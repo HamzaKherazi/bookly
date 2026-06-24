@@ -27,7 +27,7 @@ class BookDetailsSection extends StatelessWidget {
           child: Text(
             'Al-Raheeq Al-Makhtoum',
             maxLines: 2,
-            style: Styles.textStyle24,
+            style: Styles.textStyle24.copyWith(fontFamily: 'Inter'),
             textAlign: TextAlign.center,
           ),
         ),
@@ -40,6 +40,7 @@ class BookDetailsSection extends StatelessWidget {
             'By Al-Mubarakfuri',
 
             style: Styles.textStyle18.copyWith(
+              fontFamily: 'Inter',
               fontWeight: FontWeight.w600,
               color: kTextColor1,
             ),
@@ -55,7 +56,9 @@ class BookDetailsSection extends StatelessWidget {
             'Religion',
 
             style: Styles.textStyle14.copyWith(
-              fontWeight: FontWeight.w600,
+              fontFamily: 'Inter',
+
+              fontWeight: FontWeight.w500,
               color: kTextColor1,
             ),
             textAlign: TextAlign.center,
@@ -78,6 +81,7 @@ class BookDetailsSection extends StatelessWidget {
               '19.99 \$',
 
               style: Styles.textStyle18.copyWith(
+                fontFamily: 'Inter',
                 fontWeight: FontWeight.w600,
                 color: kTextColor1,
               ),
@@ -94,6 +98,7 @@ class BookDetailsSection extends StatelessWidget {
 
             style: Styles.textStyle16.copyWith(
               fontWeight: FontWeight.w600,
+              fontFamily: 'Inter',
               color: kTextColor1,
             ),
           ),

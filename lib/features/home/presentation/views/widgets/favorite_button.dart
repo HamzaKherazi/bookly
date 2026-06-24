@@ -1,3 +1,4 @@
+import 'package:bookly/core/helpers/show_snack_bar.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteButton extends StatefulWidget {
@@ -18,6 +19,9 @@ class _FavoriteButtonState extends State<FavoriteButton> {
         setState(() {
           isFavorite = !isFavorite;
         });
+        if (isFavorite) {
+          showSnackBar(context, title: 'Added successfully to favorites');
+        }
       },
       icon: isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
     );

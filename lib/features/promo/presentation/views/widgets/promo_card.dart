@@ -5,10 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PromoCard extends StatelessWidget {
-  
-
-  const PromoCard({super.key, required this.promo, });
-final Promo promo;
+  const PromoCard({super.key, required this.promo});
+  final Promo promo;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,14 +39,15 @@ final Promo promo;
                     promo.title,
                     style: const TextStyle(
                       fontSize: 18,
-                      fontWeight: FontWeight.w800,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Inter',
                       color: kTextColor1,
                     ),
                   ),
                   const SizedBox(height: 16),
 
                   ElevatedButton(
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -65,7 +64,7 @@ final Promo promo;
                     ),
                     child: Text(
                       promo.buttonText,
-                      style: TextStyle(fontSize: 14),
+                      style: TextStyle(fontFamily: 'Inter', fontSize: 14),
                     ),
                   ),
                 ],

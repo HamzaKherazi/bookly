@@ -1,5 +1,4 @@
 import 'package:bookly/constants.dart';
-import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/home/presentation/views/widgets/books_images_list_view.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +13,12 @@ class RecommendedSection extends StatelessWidget {
       children: [
         Text(
           'Recommended',
-          style: Styles.textStyle18.copyWith(color: kTextColor1),
+          style: TextStyle(
+            fontSize: 18,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w600,
+            color: kTextColor1,
+          ),
         ),
         const SizedBox(height: 15),
         SizedBox(

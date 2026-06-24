@@ -58,18 +58,31 @@ class BookListViewItem extends StatelessWidget {
                     child: Text(
                       'The Sealed Nectar FJF FOJF OFJ FPFGKP¨GK PFIK F',
                       style: Styles.textStyle18.copyWith(
-                        fontFamily: kgTSectraFine,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   const SizedBox(height: 3),
-                  Text('Mubarakfuri', style: Styles.textStyle16),
+                  Text(
+                    'Mubarakfuri',
+                    style: Styles.textStyle16.copyWith(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
 
                   Row(
                     children: [
-                      Text('19.99 \$', style: Styles.textStyle16),
+                      Text(
+                        '19.99 \$',
+                        style: Styles.textStyle16.copyWith(
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                       Spacer(),
                       BookRating(),
                     ],

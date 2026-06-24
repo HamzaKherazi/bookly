@@ -17,7 +17,10 @@ class _ExpandableTextState extends State<ExpandableText> {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = Styles.textStyle14.copyWith(color: kTextColor1);
+    final textStyle = Styles.textStyle14.copyWith(
+      fontFamily: 'Inter',
+      color: kTextColor1,
+    );
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -55,6 +58,7 @@ class _ExpandableTextState extends State<ExpandableText> {
                   isExpanded ? 'Read less' : 'Read more',
                   style: Styles.textStyle14.copyWith(
                     color: kPrimaryColor,
+                    fontFamily: 'Inter',
                     fontWeight: FontWeight.w600,
                   ),
                 ),

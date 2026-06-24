@@ -1,4 +1,5 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/notifications/presentation/views/widgets/notifications_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -11,10 +12,7 @@ class NotificationsView extends StatelessWidget {
       appBar: AppBar(
         foregroundColor: kPrimaryColor,
         backgroundColor: kBackgroundColor,
-        title: Text(
-          'Notifications',
-          style: TextStyle(fontWeight: FontWeight.w800),
-        ),
+        title: Text('Notifications', style: Styles.textStyle22),
         centerTitle: true,
       ),
       body: NotificationsViewBody(),

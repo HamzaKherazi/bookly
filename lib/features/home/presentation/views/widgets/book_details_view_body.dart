@@ -42,7 +42,6 @@ class BookDetailsViewBody extends StatelessWidget {
 
                     style: Styles.textStyle16.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: kTextColor1,
                     ),
                   ),
                 ),

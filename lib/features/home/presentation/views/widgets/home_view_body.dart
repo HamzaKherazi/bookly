@@ -1,5 +1,4 @@
 import 'package:bookly/constants.dart';
-import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_listview_item.dart';
 import 'package:bookly/features/home/presentation/views/widgets/recommended_section.dart';
 import 'package:bookly/features/promo/presentation/views/widgets/promo_slider.dart';
@@ -28,7 +27,12 @@ class HomeViewBody extends StatelessWidget {
 
                   Text(
                     'New Arrivals',
-                    style: Styles.textStyle18.copyWith(color: kTextColor1),
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                      color: kTextColor1,
+                    ),
                   ),
                   const SizedBox(height: 15),
                 ],

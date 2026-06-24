@@ -9,3 +9,6 @@ const kEmpty = Color.fromARGB(255, 227, 203, 175);
 
 const kAnimationDuration = Duration(milliseconds: 250);
 const kgTSectraFine = 'GT-Sectra-Fine';
+
+
+const ktestBook1 = 'https://d2sofvawe08yqg.cloudfront.net/cleancodeprinciplesandpatterns2ndedition/s_hero2x?1712998004&1712998004';

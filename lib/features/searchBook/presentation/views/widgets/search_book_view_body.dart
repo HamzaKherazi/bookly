@@ -20,7 +20,13 @@ class SearchBookViewBody extends StatelessWidget {
           padding: const EdgeInsets.only(left: 24),
           child: Align(
             alignment: Alignment.centerLeft,
-            child: Text('Search results', style: Styles.textStyle18),
+            child: Text(
+              'Search results',
+              style: Styles.textStyle18.copyWith(
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ),
         ),
         SizedBox(height: 16),

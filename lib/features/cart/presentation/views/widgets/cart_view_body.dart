@@ -13,10 +13,10 @@ class CartViewBody extends StatefulWidget {
 }
 
 class _CartViewBodyState extends State<CartViewBody> {
-  bool isEmpty = false;
+  bool hasItems = true;
   @override
   Widget build(BuildContext context) {
-    return isEmpty
+    return !hasItems
         ? Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -37,7 +37,7 @@ class _CartViewBodyState extends State<CartViewBody> {
               children: [
                 Expanded(
                   child: ListView.builder(
-                    itemCount: 20,
+                    itemCount: 10,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 10),
@@ -46,14 +46,15 @@ class _CartViewBodyState extends State<CartViewBody> {
                     },
                   ),
                 ),
-                SizedBox(height: 24),
+                SizedBox(height: 16),
+
                 CustomButton(
                   onPressed: () {
                     GoRouter.of(context).push(AppRouter.orderSummaryView);
                   },
-                  title: 'Confirm Order',
+                  title: 'Proceed to Checkout',
                 ),
-                SizedBox(height: 24),
+                SizedBox(height: 16),
               ],
             ),
           );

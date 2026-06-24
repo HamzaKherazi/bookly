@@ -9,10 +9,13 @@ class CustomSearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: const TextStyle(fontSize: 16),
+      style: const TextStyle(fontFamily: 'Inter', fontSize: 16),
       decoration: InputDecoration(
         hintText: 'Search for books...',
-        hintStyle: const TextStyle(color: Color.fromARGB(255, 123, 123, 123)),
+        hintStyle: const TextStyle(
+          fontFamily: 'Inter',
+          color: Color.fromARGB(255, 123, 123, 123),
+        ),
 
         contentPadding: const EdgeInsets.symmetric(
           vertical: 14,

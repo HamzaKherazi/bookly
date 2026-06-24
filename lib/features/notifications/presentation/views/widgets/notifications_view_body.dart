@@ -1,4 +1,5 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class NotificationsViewBody extends StatefulWidget {
@@ -12,6 +13,7 @@ class _NotificationsViewBodyState extends State<NotificationsViewBody> {
   @override
   bool notificationExist = false;
 
+  @override
   Widget build(BuildContext context) {
     return notificationExist
         ? Text('Notifications')
@@ -25,7 +27,13 @@ class _NotificationsViewBodyState extends State<NotificationsViewBody> {
 
                   size: MediaQuery.of(context).size.width * .5,
                 ),
-                Text('Notifications here'),
+                Text(
+                  'Notifications here',
+                  style: Styles.textStyle16.copyWith(
+                    fontWeight: FontWeight.normal,
+                    color: const Color.fromARGB(255, 105, 105, 105),
+                  ),
+                ),
               ],
             ),
           );
