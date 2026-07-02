@@ -6,11 +6,12 @@ class CustomButtonWithIcon extends StatelessWidget {
   const CustomButtonWithIcon({
     super.key,
     required this.onPressed,
-    required this.title,
+    required this.title, required this.icon,
   });
 
   final void Function()? onPressed;
   final String title;
+  final IconData icon;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -40,7 +41,7 @@ class CustomButtonWithIcon extends StatelessWidget {
               ),
             ),
             SizedBox(width: 30),
-            Icon(Icons.shopping_cart, size: 24, color: kWhite),
+            Icon(icon, size: 24, color: kWhite),
           ],
         ),
       ),

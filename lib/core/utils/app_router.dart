@@ -3,6 +3,7 @@ import 'package:bookly/features/home/presentation/views/book_details_view.dart';
 import 'package:bookly/features/home/presentation/views/main_view.dart';
 import 'package:bookly/features/notifications/presentation/views/notifications_view.dart';
 import 'package:bookly/features/order/presentation/views/order_summary_view.dart';
+import 'package:bookly/features/payment/presentation/views/payment_view.dart';
 import 'package:bookly/features/searchBook/presentation/views/search_book_view.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,6 +16,7 @@ abstract class AppRouter {
   static const cartView = '/cartView';
   static const notificationsView = '/notificationsView';
   static const orderSummaryView = '/orderSummaryView';
+  static const paymentView = '/paymentView';
 
   static final router = GoRouter(
     routes: [
@@ -45,6 +47,10 @@ abstract class AppRouter {
       GoRoute(
         path: orderSummaryView,
         builder: (context, state) => const OrderSummaryView(),
+      ),
+      GoRoute(
+        path: paymentView,
+        builder: (context, state) => const PaymentView(),
       ),
     ],
   );

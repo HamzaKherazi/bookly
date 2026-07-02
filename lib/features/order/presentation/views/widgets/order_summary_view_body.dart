@@ -1,6 +1,6 @@
-import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/home/presentation/views/widgets/custom_button_with_icon.dart';
-import 'package:bookly/features/order/presentation/views/widgets/order_item.dart';
+import 'package:bookly/features/order/presentation/views/widgets/checkout_section.dart';
+import 'package:bookly/features/order/presentation/views/widgets/header_section.dart';
+import 'package:bookly/features/order/presentation/views/widgets/order_items_section.dart';
 import 'package:flutter/material.dart';
 
 class OrderSummaryViewBody extends StatefulWidget {
@@ -13,37 +13,17 @@ class OrderSummaryViewBody extends StatefulWidget {
 class _OrderSummaryViewBodyState extends State<OrderSummaryViewBody> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: const OrderItem(),
-                );
-              },
-            ),
-          ),
-          SizedBox(height: 24),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  Text('Total Amount', style: Styles.textStyle18),
-                  Text('24 \$', style: Styles.textStyle24),
-                ],
-              ),
-              CustomButtonWithIcon(onPressed: () {}, title: 'Checkout'),
-            ],
-          ),
-          SizedBox(height: 16),
-        ],
-      ),
+    return Column(
+      children: [
+        // Clean, Minimal Header
+        HeaderSection(),
+
+        // Order Items with Delivery Info
+        OrderItemsSection(),
+
+        // Clean Checkout Section
+        CheckoutSection(),
+      ],
     );
   }
 }

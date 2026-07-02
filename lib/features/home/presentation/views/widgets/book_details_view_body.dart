@@ -1,4 +1,3 @@
-import 'package:bookly/constants.dart';
 import 'package:bookly/core/helpers/show_snack_bar.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/home/presentation/views/widgets/also_like_books_section.dart';
@@ -32,6 +31,7 @@ class BookDetailsViewBody extends StatelessWidget {
                     );
                   },
                   title: 'Add to cart',
+                  icon: Icons.shopping_cart,
                 ),
 
                 const SizedBox(height: 30),
