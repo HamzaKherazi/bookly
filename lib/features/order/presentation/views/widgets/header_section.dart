@@ -1,4 +1,5 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class HeaderSection extends StatelessWidget {
@@ -28,14 +29,15 @@ class HeaderSection extends StatelessWidget {
             children: [
               Text(
                 'Review Order',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: -0.5,
+                style: Styles.textStyle18.copyWith(
+                  color: Colors.grey.shade800,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
               Text(
                 'Please verify your items before placing order',
-                style: TextStyle(
+                style: Styles.textStyle14.copyWith(
                   color: Colors.grey.shade500,
                   fontSize: 13,
                   fontWeight: FontWeight.w400,

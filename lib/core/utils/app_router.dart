@@ -50,7 +50,8 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: paymentView,
-        builder: (context, state) => const PaymentView(),
+        builder: (context, state) =>
+            const PaymentView(),
       ),
     ],
   );

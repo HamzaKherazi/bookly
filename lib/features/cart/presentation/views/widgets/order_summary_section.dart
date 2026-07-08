@@ -1,4 +1,3 @@
-import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +9,7 @@ class OrderSummarySection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 238, 229, 211),
+        color: const Color.fromARGB(255, 248, 241, 227),
         borderRadius: BorderRadius.circular(14),
       ),
       child: Column(

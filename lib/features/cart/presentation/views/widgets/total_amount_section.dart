@@ -26,7 +26,7 @@ class TotalAmountSection extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 237, 222, 193),
+                  color: const Color.fromARGB(255, 248, 241, 227),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),

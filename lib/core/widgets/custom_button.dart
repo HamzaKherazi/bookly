@@ -8,10 +8,12 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     required this.title,
     this.backgroundColor,
+    this.foregroundColor,
   });
 
   final void Function()? onPressed;
   final String title;
+  final Color? foregroundColor;
   final Color? backgroundColor;
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class CustomButton extends StatelessWidget {
         child: Text(
           title,
           style: Styles.textStyle18.copyWith(
-            color: Colors.white,
+            color: foregroundColor ?? Colors.white,
             letterSpacing: .5,
           ),
         ),

@@ -48,7 +48,7 @@ class CartCheckoutSection extends StatelessWidget {
                     GoRouter.of(context).push(AppRouter.orderSummaryView);
                   },
                   title: 'Checkout',
-                  icon: Icons.navigate_next,
+                  icon: Icons.payments,
                 ),
               ),
             ],
