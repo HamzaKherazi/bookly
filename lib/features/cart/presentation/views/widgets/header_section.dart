@@ -2,7 +2,7 @@ import 'package:bookly/constants.dart';
 import 'package:flutter/material.dart';
 
 class HeaderSection extends StatelessWidget {
-  const HeaderSection({super.key});
+  const HeaderSection(String s, {super.key});
 
   @override
   Widget build(BuildContext context) {

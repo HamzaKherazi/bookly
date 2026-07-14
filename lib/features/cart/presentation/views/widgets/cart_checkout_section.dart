@@ -32,7 +32,7 @@ class CartCheckoutSection extends StatelessWidget {
       child: Column(
         children: [
           // Order Summary
-          OrderSummarySection(),
+          OrderSummarySection(orderId: 'P87Yh'),
           const SizedBox(height: 14),
           // Total - Responsive
           Row(

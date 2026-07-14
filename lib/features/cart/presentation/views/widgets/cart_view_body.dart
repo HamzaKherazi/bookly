@@ -60,7 +60,7 @@ class _CartViewBodyState extends State<CartViewBody> {
             // ← REMOVED the Padding wrapper
             children: [
               // Modern Header - with padding
-              HeaderSection(),
+              HeaderSection('P87Yh'),
               // Cart Items List - with padding
               CartItemsSection(),
               // Premium Checkout Section - FULL WIDTH (no padding wrapper)
