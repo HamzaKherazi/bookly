@@ -149,7 +149,7 @@ class PaymentOptionsWidget extends StatelessWidget {
             Expanded(
               child: PaymentButton(
                 icon: FontAwesomeIcons.paypal,
-                iconColor: const Color(0xFF00457C),
+                iconColor: kPrimaryColor,
                 label: 'PayPal',
                 onTap: () {},
               ),
@@ -158,8 +158,8 @@ class PaymentOptionsWidget extends StatelessWidget {
             Expanded(
               child: PaymentButton(
                 icon: FontAwesomeIcons.google,
-                iconColor: const Color(0xFF4285F4),
-                label: 'G Pay',
+                iconColor: kPrimaryColor,
+                label: 'Google Pay',
                 onTap: () {},
               ),
             ),
@@ -167,7 +167,7 @@ class PaymentOptionsWidget extends StatelessWidget {
             Expanded(
               child: PaymentButton(
                 icon: FontAwesomeIcons.apple,
-                iconColor: Colors.black,
+                iconColor: kPrimaryColor,
                 label: 'Apple Pay',
                 onTap: () {},
               ),

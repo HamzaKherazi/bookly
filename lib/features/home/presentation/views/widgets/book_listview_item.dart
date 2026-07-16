@@ -28,7 +28,7 @@ class BookListViewItem extends StatelessWidget {
           ],
         ),
 
-        height: 135,
+        height: 140,
         child: Row(
           children: [
             AspectRatio(
@@ -56,7 +56,7 @@ class BookListViewItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(
-                      'The Sealed Nectar FJF FOJF OFJ FPFGKP¨GK PFIK F',
+                      'The Sealed Nectar',
                       style: Styles.textStyle18.copyWith(
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w500,
@@ -67,13 +67,36 @@ class BookListViewItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 3),
                   Text(
-                    'Mubarakfuri',
+                    'Mubarakfuri ',
                     style: Styles.textStyle16.copyWith(
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w500,
                     ),
                   ),
+                  const SizedBox(height: 5),
 
+                  // Category
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 2,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 255, 241, 201),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      'Islamic',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: const Color.fromARGB(255, 135, 98, 11),
+                        fontFamily: 'Inter',
+                        letterSpacing: 0.3,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 6),
                   Row(
                     children: [
                       Text(
@@ -84,7 +107,10 @@ class BookListViewItem extends StatelessWidget {
                         ),
                       ),
                       Spacer(),
-                      BookRating(),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: BookRating(),
+                      ),
                     ],
                   ),
                 ],

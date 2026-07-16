@@ -1,6 +1,5 @@
 import 'package:bookly/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SuccessDialog extends StatelessWidget {
   final String orderId;
