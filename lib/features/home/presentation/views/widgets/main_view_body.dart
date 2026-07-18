@@ -2,7 +2,7 @@ import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/features/cart/presentation/views/cart_view.dart';
 import 'package:bookly/features/favorites/favorites_view.dart';
-import 'package:bookly/features/home/presentation/views/library_view.dart';
+import 'package:bookly/features/home/presentation/views/explore_view.dart';
 import 'package:bookly/features/home/presentation/views/widgets/custom_bottom_navigation_bar.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_view.dart';
 import 'package:bookly/features/profile/presentation/views/profile_view.dart';
@@ -53,8 +53,8 @@ class _MainViewBodyState extends State<MainViewBody> {
             showLabel: false,
             showShadow: true,
             shadowElevation: 12,
-            bottomBarHeight: 70,
-            kBottomRadius: 32,
+            bottomBarHeight: 60,
+            kBottomRadius: 24,
             kIconSize: 24,
 
             bottomBarItems: [
@@ -99,7 +99,7 @@ class _MainViewBodyState extends State<MainViewBody> {
             ],
 
             onTap: (index) {
-               if (index == 3) {
+              if (index == 3) {
                 GoRouter.of(context).push(AppRouter.cartView);
                 return;
               }

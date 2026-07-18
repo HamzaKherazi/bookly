@@ -12,7 +12,7 @@ double kHeight = 62.0;
 
 /// notch circle circle radius
 
-const double kCircleRadius = 30.0;
+const double kCircleRadius = 26.0;
 
 /// margin between notch and circle
 
@@ -838,13 +838,11 @@ class _CustomNavigationBottomBarState extends State<CustomNavigationBottomBar>
                               label: widget.bottomBarItems[i].itemLabel,
 
                               onTap: (selectedIndex) {
-                                if(selectedIndex!=3)
-                                {
+                                if (selectedIndex != 3) {
                                   widget.notchBottomBarController.jumpTo(
                                     selectedIndex,
                                   );
                                 }
-                                
 
                                 widget.onTap.call(selectedIndex);
                               },
