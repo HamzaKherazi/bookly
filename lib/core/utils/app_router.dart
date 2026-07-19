@@ -4,13 +4,11 @@ import 'package:bookly/features/home/presentation/views/main_view.dart';
 import 'package:bookly/features/notifications/presentation/views/notifications_view.dart';
 import 'package:bookly/features/order/presentation/views/order_summary_view.dart';
 import 'package:bookly/features/payment/presentation/views/payment_view.dart';
-import 'package:bookly/features/searchBook/presentation/views/search_book_view.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
   static const mainView = '/mainView';
   static const bookDetailsView = '/bookDetailsView';
-  static const searchBookView = '/searchBookView';
   static const loginView = '/loginView';
   static const signupView = '/signupView';
   static const cartView = '/cartView';
@@ -30,10 +28,7 @@ abstract class AppRouter {
       //   builder: (context, state) => const SignupView(),
       // ),
       // GoRoute(path: mainView, builder: (context, state) => const MainView()),
-      GoRoute(
-        path: searchBookView,
-        builder: (context, state) => const SearchBookView(),
-      ),
+     
 
       GoRoute(
         path: bookDetailsView,

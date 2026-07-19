@@ -2,7 +2,7 @@ import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/features/cart/presentation/views/cart_view.dart';
 import 'package:bookly/features/favorites/favorites_view.dart';
-import 'package:bookly/features/home/presentation/views/explore_view.dart';
+import 'package:bookly/features/explore/presentation/views/explore_view.dart';
 import 'package:bookly/features/home/presentation/views/widgets/custom_bottom_navigation_bar.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_view.dart';
 import 'package:bookly/features/profile/presentation/views/profile_view.dart';
