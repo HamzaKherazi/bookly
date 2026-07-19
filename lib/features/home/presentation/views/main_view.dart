@@ -4,7 +4,7 @@ import 'package:bookly/features/home/presentation/views/widgets/main_view_body.d
 import 'package:flutter/material.dart';
 
 class MainView extends StatelessWidget {
-  const MainView({super.key,  this.pageIndex});
+  const MainView({super.key, this.pageIndex});
   final int? pageIndex;
 
   @override
@@ -12,7 +12,10 @@ class MainView extends StatelessWidget {
     return StatusBarWrapper(
       color: kBackgroundColor,
       iconBrightness: Brightness.dark,
-      child: Scaffold(body: SafeArea(child: MainViewBody(initialIndex: pageIndex ?? 0,))),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(child: MainViewBody(initialIndex: pageIndex ?? 0)),
+      ),
     );
   }
 }

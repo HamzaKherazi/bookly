@@ -1,5 +1,8 @@
+import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/favorites/presentation/views/widgets/favorite_icon_button.dart';
+import 'package:bookly/features/home/presentation/views/widgets/book_cover.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -36,7 +39,7 @@ class _FavoriteBookItemState extends State<FavoriteBookItem> {
                     vertical: 0,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: kWhite,
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
@@ -86,40 +89,6 @@ class _FavoriteBookItemState extends State<FavoriteBookItem> {
     setState(() {
       _isVisible = false;
     });
-  }
-}
-
-class BookCover extends StatelessWidget {
-  const BookCover({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        width: 90,
-        height: 130,
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.circular(12),
-          image: const DecorationImage(
-            fit: BoxFit.cover,
-            image: NetworkImage(
-              'https://booksondemand.ma/cdn/shop/files/Atomic.png?v=1727078355&width=1100',
-            ),
-          ),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Colors.transparent, Colors.black.withOpacity(0.1)],
-            ),
-          ),
-        ),
-      ),
-    );
   }
 }
 
@@ -277,50 +246,6 @@ class PriceTag extends StatelessWidget {
           fontWeight: FontWeight.w700,
           color: Colors.white,
         ),
-      ),
-    );
-  }
-}
-
-class FavoriteIconButton extends StatelessWidget {
-  final VoidCallback onRemove;
-
-  const FavoriteIconButton({super.key, required this.onRemove});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        // Scale animation on tap
-        onRemove();
-      },
-      child: TweenAnimationBuilder(
-        tween: Tween<double>(begin: 1.0, end: 1.0),
-        duration: const Duration(milliseconds: 200),
-        builder: (context, double scale, child) {
-          return Transform.scale(
-            scale: scale,
-            child: Container(
-              padding: const EdgeInsets.all(6),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 8,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: const Icon(
-                Icons.favorite_rounded,
-                size: 18,
-                color: Color(0xFFFF4759),
-              ),
-            ),
-          );
-        },
       ),
     );
   }

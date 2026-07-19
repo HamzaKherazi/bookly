@@ -1,4 +1,4 @@
-import 'package:bookly/features/home/presentation/views/widgets/custom_book_image.dart';
+import 'package:bookly/features/home/presentation/views/widgets/book_cover.dart';
 import 'package:flutter/material.dart';
 
 class AlsoLikeBooksListView extends StatelessWidget {
@@ -14,7 +14,7 @@ class AlsoLikeBooksListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.only(right: 16),
-            child: CustomBookImage(),
+            child: BookCover(),
           );
         },
       ),
