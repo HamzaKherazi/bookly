@@ -1,6 +1,5 @@
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/explore/presentation/views/widgets/categories_list.dart';
-import 'package:bookly/features/explore/presentation/views/widgets/explore_book_item.dart';
 import 'package:bookly/features/explore/presentation/views/widgets/explore_books_grid_view.dart';
 import 'package:bookly/features/explore/presentation/views/widgets/search_bar.dart';
 import 'package:flutter/material.dart';

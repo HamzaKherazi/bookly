@@ -8,11 +8,11 @@ class CategoriesList extends StatelessWidget {
   onCategorySelected; // Fixed: Changed from VoidCallback to Function(int)
 
   const CategoriesList({
-    Key? key,
+    super.key,
     required this.categories,
     required this.selectedIndex,
     required this.onCategorySelected, // Fixed: renamed for clarity
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

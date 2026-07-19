@@ -64,19 +64,13 @@ class BookDetailsSection extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        const SizedBox(height: 2),
+        const SizedBox(height: 6),
 
         //Rating and Price
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Transform.translate(
-              offset: const Offset(-16, 0),
-
-              child: const BookRating(
-                mainAxisAlignment: MainAxisAlignment.start,
-              ),
-            ),
+            const BookRating(mainAxisAlignment: MainAxisAlignment.start),
             Text(
               '19.99 \$',
 
@@ -88,7 +82,7 @@ class BookDetailsSection extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 2),
+        const SizedBox(height: 6),
 
         //Description
         Align(
