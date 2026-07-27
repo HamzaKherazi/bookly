@@ -4,6 +4,8 @@ import 'package:bookly/features/home/presentation/views/main_view.dart';
 import 'package:bookly/features/notifications/presentation/views/notifications_view.dart';
 import 'package:bookly/features/order/presentation/views/order_summary_view.dart';
 import 'package:bookly/features/payment/presentation/views/payment_view.dart';
+import 'package:bookly/features/profile/presentation/views/edit_profile_view.dart';
+import 'package:bookly/features/profile/presentation/views/order_history_view.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
@@ -15,6 +17,8 @@ abstract class AppRouter {
   static const notificationsView = '/notificationsView';
   static const orderSummaryView = '/orderSummaryView';
   static const paymentView = '/paymentView';
+  static const editProfileView = '/editProfileView';
+  static const orderHistoryView = '/orderHistoryView';
 
   static final router = GoRouter(
     routes: [
@@ -28,8 +32,6 @@ abstract class AppRouter {
       //   builder: (context, state) => const SignupView(),
       // ),
       // GoRoute(path: mainView, builder: (context, state) => const MainView()),
-     
-
       GoRoute(
         path: bookDetailsView,
         builder: (context, state) => const BookDetailsView(),
@@ -45,8 +47,15 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: paymentView,
-        builder: (context, state) =>
-            const PaymentView(),
+        builder: (context, state) => const PaymentView(),
+      ),
+      GoRoute(
+        path: editProfileView,
+        builder: (context, state) => const EditProfileView(),
+      ),
+      GoRoute(
+        path: orderHistoryView,
+        builder: (context, state) => const OrderHistoryView(),
       ),
     ],
   );

@@ -21,7 +21,7 @@ class Bookly extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: AppRouter.router,
-      theme: ThemeData.dark().copyWith(
+      theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: kBackgroundColor,
         brightness: Brightness.light,
         textTheme: GoogleFonts.montserratTextTheme(ThemeData.light().textTheme),
