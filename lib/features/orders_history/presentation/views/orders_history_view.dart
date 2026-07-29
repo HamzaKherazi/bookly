@@ -1,6 +1,6 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/order_history_view_body.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/order_history_view_body.dart';
 import 'package:flutter/material.dart';
 
 class OrderHistoryView extends StatelessWidget {

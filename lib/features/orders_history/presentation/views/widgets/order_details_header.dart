@@ -1,8 +1,6 @@
-import 'dart:ui' show FontWeight;
-
 import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/order_status.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/order_status_badge.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/order_status.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/order_status_badge.dart';
 import 'package:flutter/material.dart';
 
 class OrderDetailsHeader extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:bookly/features/profile/presentation/views/widgets/summary_row.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/summary_row.dart';
 import 'package:flutter/material.dart';
 
 class OrderSummarySection extends StatelessWidget {

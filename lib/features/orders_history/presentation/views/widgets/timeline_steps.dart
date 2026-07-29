@@ -1,33 +1,44 @@
-import 'package:bookly/features/profile/presentation/views/widgets/order_date_text.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/order_status.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/timeline_steps.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/order_status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-class OrderTimeline extends StatelessWidget {
-  const OrderTimeline({super.key});
+class TimelineSteps extends StatelessWidget {
+  const TimelineSteps({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Order Timeline',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ),
-        ),
-        const SizedBox(height: 12),
-        const OrderDateText(),
-        const SizedBox(height: 12),
-        const TimelineSteps(),
-      ],
+    final statuses = [
+      OrderStatus.pending,
+      OrderStatus.processing,
+      OrderStatus.shipped,
+      OrderStatus.delivered,
+    ];
+
+    final currentStatus = OrderStatus.processing;
+    final currentStatusIndex = statuses.indexOf(currentStatus);
+
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Column(
+        children: statuses.asMap().entries.map((entry) {
+          final index = entry.key;
+          final status = entry.value;
+          final isCompleted = index <= currentStatusIndex;
+          final isCurrent = status == currentStatus;
+          final isLast = index == statuses.length - 1;
+
+          return TimelineStep(
+            status: status,
+            isCompleted: isCompleted,
+            isCurrent: isCurrent,
+            isLast: isLast,
+            currentStatus: currentStatus,
+          );
+        }).toList(),
+      ),
     );
   }
 }
+
 
 class TimelineStep extends StatelessWidget {
   final String status;
@@ -95,7 +106,7 @@ class TimelineStep extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  OrderStatus.getDisplayName(status),
+                  status,
                   style: TextStyle(
                     fontWeight: isCurrent ? FontWeight.w700 : FontWeight.w500,
                     color: isCompleted ? Colors.black : Colors.grey[400],

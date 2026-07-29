@@ -13,9 +13,7 @@ class BookCoverImage extends StatelessWidget {
         color: kPrimaryColor.withOpacity(0.1),
         borderRadius: BorderRadius.circular(8),
         image: const DecorationImage(
-          image: NetworkImage(
-            'https://via.placeholder.com/48x64/7B3F2F/FFFFFF?text=Book',
-          ),
+          image: NetworkImage(ktestBook1),
           fit: BoxFit.cover,
         ),
       ),

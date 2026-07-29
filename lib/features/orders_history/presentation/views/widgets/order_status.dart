@@ -2,7 +2,6 @@
 // ORDER STATUS HELPERS
 // ============================================================
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class OrderStatus {
   static const String pending = 'pending';
@@ -11,23 +10,7 @@ class OrderStatus {
   static const String delivered = 'delivered';
   static const String cancelled = 'cancelled';
 
-  static String getDisplayName(String status) {
-    switch (status) {
-      case pending:
-        return 'Pending';
-      case processing:
-        return 'Processing';
-      case shipped:
-        return 'Shipped';
-      case delivered:
-        return 'Delivered';
-      case cancelled:
-        return 'Cancelled';
-      default:
-        return status;
-    }
-  }
-
+  
   static Color getColor(String status) {
     switch (status) {
       case pending:

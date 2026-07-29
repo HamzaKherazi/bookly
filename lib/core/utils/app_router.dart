@@ -5,7 +5,7 @@ import 'package:bookly/features/notifications/presentation/views/notifications_v
 import 'package:bookly/features/order/presentation/views/order_summary_view.dart';
 import 'package:bookly/features/payment/presentation/views/payment_view.dart';
 import 'package:bookly/features/profile/presentation/views/edit_profile_view.dart';
-import 'package:bookly/features/profile/presentation/views/order_history_view.dart';
+import 'package:bookly/features/orders_history/presentation/views/orders_history_view.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {

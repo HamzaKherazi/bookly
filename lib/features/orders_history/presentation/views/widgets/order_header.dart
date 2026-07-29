@@ -1,7 +1,7 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/order_status.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/order_status_badge.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/order_status.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/order_status_badge.dart';
 import 'package:flutter/widgets.dart';
 
 class OrderHeader extends StatelessWidget {

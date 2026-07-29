@@ -1,4 +1,4 @@
-import 'package:bookly/features/profile/presentation/views/widgets/status_filter_bar_item.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/status_filter_bar_item.dart';
 import 'package:flutter/material.dart';
 
 class StatusFilterBar extends StatefulWidget {
@@ -9,7 +9,7 @@ class StatusFilterBar extends StatefulWidget {
 }
 
 class _StatusFilterBarState extends State<StatusFilterBar> {
-  int _selectedIndex = 0;
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +17,15 @@ class _StatusFilterBarState extends State<StatusFilterBar> {
       height: 40,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: _statuses.length,
+        itemCount: statuses.length,
         separatorBuilder: (context, index) => const SizedBox(width: 10),
         itemBuilder: (context, index) {
-          final status = _statuses[index];
-          final isSelected = index == _selectedIndex;
+          final status = statuses[index];
+          final isSelected = index == selectedIndex;
           return GestureDetector(
             onTap: () {
               setState(() {
-                _selectedIndex = index;
+                selectedIndex = index;
               });
             },
             child: StatusFilterBarItem(label: status, isSelected: isSelected),
@@ -36,7 +36,7 @@ class _StatusFilterBarState extends State<StatusFilterBar> {
   }
 }
 
-const List<String> _statuses = [
+const List<String> statuses = [
   'All',
   'Pending',
   'Processing',

@@ -1,4 +1,4 @@
-import 'package:bookly/features/profile/presentation/views/widgets/info_card.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/info_card.dart';
 import 'package:flutter/material.dart';
 
 class ShippingPaymentInfo extends StatelessWidget {

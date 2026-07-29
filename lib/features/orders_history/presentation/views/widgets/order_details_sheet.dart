@@ -1,10 +1,10 @@
 import 'package:bookly/features/cart/presentation/views/widgets/order_summary_section.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/order_book_item.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/order_details_header.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/order_items_header.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/order_timeline.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/sheet_drag_handle.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/shipping_payment_info.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/order_book_item.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/order_details_header.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/order_items_header.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/order_timeline.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/sheet_drag_handle.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/shipping_payment_info.dart';
 import 'package:flutter/material.dart';
 
 class OrderDetailsSheet extends StatelessWidget {
@@ -38,7 +38,6 @@ class OrderDetailsSheet extends StatelessWidget {
                   OrderBookItem(
                     title: 'The Art of Flutter Development',
                     author: 'John Doe',
-                    format: 'Paperback',
                     price: 24.99,
                     quantity: 1,
                     showFullDetails: true,
@@ -47,7 +46,6 @@ class OrderDetailsSheet extends StatelessWidget {
                   OrderBookItem(
                     title: 'Clean Architecture in Flutter',
                     author: 'Jane Smith',
-                    format: 'Hardcover',
                     price: 29.99,
                     quantity: 1,
                     showFullDetails: true,

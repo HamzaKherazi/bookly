@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SheetDragHandle extends StatelessWidget {
   const SheetDragHandle({super.key});

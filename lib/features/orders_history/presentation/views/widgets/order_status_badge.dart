@@ -1,7 +1,6 @@
 import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/order_status.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/order_status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class OrderStatusBadge extends StatelessWidget {
   final String status;
@@ -22,7 +21,7 @@ class OrderStatusBadge extends StatelessWidget {
           Icon(OrderStatus.getIcon(status), size: 12, color: Colors.white),
           const SizedBox(width: 4),
           Text(
-            OrderStatus.getDisplayName(status),
+            status,
             style: Styles.textStyle14.copyWith(
               fontWeight: FontWeight.w600,
               color: Colors.white,

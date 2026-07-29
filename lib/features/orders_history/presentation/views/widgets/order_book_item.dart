@@ -1,13 +1,12 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/book_cover_image.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/book_price_row.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/book_cover_image.dart';
+import 'package:bookly/features/orders_history/presentation/views/widgets/book_price_row.dart';
 import 'package:flutter/widgets.dart';
 
 class OrderBookItem extends StatelessWidget {
   final String title;
   final String author;
-  final String format;
   final double price;
   final int quantity;
   final bool showFullDetails;
@@ -16,7 +15,6 @@ class OrderBookItem extends StatelessWidget {
     super.key,
     required this.title,
     required this.author,
-    required this.format,
     required this.price,
     required this.quantity,
     this.showFullDetails = false,
@@ -41,7 +39,7 @@ class OrderBookItem extends StatelessWidget {
               ),
               const SizedBox(height: 2),
               Text(
-                'By $author • $format',
+                'By $author',
                 style: Styles.textStyle14.copyWith(color: kTextColor2),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
