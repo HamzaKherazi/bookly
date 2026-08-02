@@ -1,5 +1,7 @@
+import 'package:bookly/constants.dart';
 import 'package:bookly/core/helpers/show_snack_bar.dart';
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/home/presentation/views/widgets/add_review_and_rating.dart';
 import 'package:bookly/features/home/presentation/views/widgets/also_like_books_section.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_details_section.dart';
 import 'package:bookly/features/home/presentation/views/widgets/custom_button_with_icon.dart';
@@ -39,7 +41,6 @@ class BookDetailsViewBody extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     'Reviews',
-
                     style: Styles.textStyle16.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
@@ -50,12 +51,57 @@ class BookDetailsViewBody extends StatelessWidget {
             ),
           ),
 
+          // Display exactly 3 reviews
           SliverList.builder(
-            itemCount: 5,
+            itemCount: 3,
             itemBuilder: (context, index) {
               return ReviewItem();
             },
           ),
+
+          // See more reviews button
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: InkWell(
+                onTap: () {
+                  // Logic will be implemented later
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: BoxDecoration(
+                    color: kPrimaryColor.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: kPrimaryColor.withOpacity(0.3),
+                      width: 1,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'See more reviews',
+                        style: Styles.textStyle16.copyWith(
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: kPrimaryColor,
+                        size: 16,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+          // AddReviewAndRating widget
+          const SliverToBoxAdapter(child: AddReviewAndRatingSection()),
 
           SliverToBoxAdapter(
             child: Column(
