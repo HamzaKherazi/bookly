@@ -12,8 +12,8 @@ class AddReviewAndRatingSection extends StatefulWidget {
 
 class _AddReviewAndRatingSectionState extends State<AddReviewAndRatingSection> {
   final TextEditingController _reviewController = TextEditingController();
-  double _rating = 0;
-  int _selectedStar = 0;
+  double rating = 0;
+  int selectedStar = 0;
 
   @override
   void initState() {
@@ -60,13 +60,13 @@ class _AddReviewAndRatingSectionState extends State<AddReviewAndRatingSection> {
                 return IconButton(
                   onPressed: () {
                     setState(() {
-                      _selectedStar = index + 1;
-                      _rating = _selectedStar.toDouble();
+                      selectedStar = index + 1;
+                      rating = selectedStar.toDouble();
                     });
                   },
                   icon: Icon(
-                    index < _selectedStar ? Icons.star : Icons.star_border,
-                    color: index < _selectedStar
+                    index < selectedStar ? Icons.star : Icons.star_border,
+                    color: index < selectedStar
                         ? Colors.amber
                         : Colors.grey.shade400,
                   ),
@@ -75,11 +75,11 @@ class _AddReviewAndRatingSectionState extends State<AddReviewAndRatingSection> {
                   iconSize: 24,
                 );
               }),
-              if (_selectedStar > 0)
+              if (selectedStar > 0)
                 Padding(
                   padding: const EdgeInsets.only(left: 3),
                   child: Text(
-                    '$_selectedStar/5',
+                    '$selectedStar/5',
                     style: Styles.textStyle14.copyWith(
                       color: Colors.grey.shade600,
                       fontWeight: FontWeight.w500,
@@ -123,7 +123,7 @@ class _AddReviewAndRatingSectionState extends State<AddReviewAndRatingSection> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: _selectedStar == 0 || _reviewController.text.isEmpty
+              onPressed: selectedStar == 0 || _reviewController.text.isEmpty
                   ? null
                   : () {
                       // Submit review logic here
@@ -141,8 +141,8 @@ class _AddReviewAndRatingSectionState extends State<AddReviewAndRatingSection> {
                       // Clear the form
                       _reviewController.clear();
                       setState(() {
-                        _selectedStar = 0;
-                        _rating = 0;
+                        selectedStar = 0;
+                        rating = 0;
                       });
                     },
               style: ElevatedButton.styleFrom(

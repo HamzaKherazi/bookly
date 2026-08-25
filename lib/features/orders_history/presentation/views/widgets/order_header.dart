@@ -16,7 +16,7 @@ class OrderHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Order #BK-2024-001',
+              'Order #142',
               style: Styles.textStyle16.copyWith(fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 2),

@@ -48,14 +48,18 @@ class ProfileMenuSection extends StatelessWidget {
             icon: Icons.bookmark_outline,
             title: 'Book Requests',
             subtitle: 'Request new books',
-            onTap: () {},
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.bookRequestView);
+            },
           ),
           ProfileDivider(),
           ProfileMenuItem(
             icon: Icons.lock_outline,
             title: 'Change Password',
             subtitle: 'Update your password',
-            onTap: () {},
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.changePasswordView);
+            },
           ),
           ProfileDivider(),
           ProfileMenuItem(

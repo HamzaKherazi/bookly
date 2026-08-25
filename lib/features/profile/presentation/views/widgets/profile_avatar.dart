@@ -32,10 +32,35 @@ class ProfileAvatar extends StatelessWidget {
           ),
           child: ClipOval(
             child: Image.network(
-              'https://media.licdn.com/dms/image/v2/D4E03AQH7CysXZr29_A/profile-displayphoto-crop_800_800/B4EZ7Qo_dbJkAM-/0/1781616869558?e=1785974400&v=beta&t=mfWu2wyPVQN4NRdcQPXNE7yIaNIkrU8iSpCtRSYarNQ',
+              ktestProfileImage,
               width: 100,
               height: 100,
               fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return ClipOval(
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    color: kBackgroundColor,
+                    child: const Icon(
+                      Icons.person,
+                      size: 50,
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                );
+              },
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return ClipOval(
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    color: kPrimaryColor,
+                    child: const Center(child: CircularProgressIndicator()),
+                  ),
+                );
+              },
             ),
           ),
         ),

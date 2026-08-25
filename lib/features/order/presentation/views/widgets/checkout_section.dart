@@ -67,7 +67,7 @@ class CheckoutSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Free Delivery',
+                        'Delivery',
                         style: Styles.textStyle16.copyWith(
                           fontWeight: FontWeight.w700,
                           color: Colors.grey.shade900,
@@ -76,7 +76,7 @@ class CheckoutSection extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Est. arrival: 2-4 business days',
+                        'Est. arrival: 2-4 days',
                         style: Styles.textStyle14.copyWith(
                           color: Colors.grey.shade500,
                           fontSize: 12,
@@ -96,7 +96,7 @@ class CheckoutSection extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
-                    'FREE',
+                    '\$3.00',
                     style: TextStyle(
                       color: Colors.green.shade700,
                       fontWeight: FontWeight.w700,
@@ -113,7 +113,7 @@ class CheckoutSection extends StatelessWidget {
           // Price Breakdown - Clean
           _buildPriceRow('Subtotal (10 items)', '\$124.97'),
           const SizedBox(height: 6),
-          _buildPriceRow('Delivery Fee', 'Free', isFree: true),
+          _buildPriceRow('Delivery Fee', '\$3.00'),
           const SizedBox(height: 12),
 
           // Divider
