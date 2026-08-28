@@ -1,10 +1,10 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/profile/presentation/views/widgets/change_password_view_body.dart';
+import 'package:bookly/features/about/presentation/views/widgets/about_view_body.dart';
 import 'package:flutter/material.dart';
 
-class ChangePasswordView extends StatelessWidget {
-  const ChangePasswordView({super.key});
+class AboutView extends StatelessWidget {
+  const AboutView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +12,10 @@ class ChangePasswordView extends StatelessWidget {
       appBar: AppBar(
         foregroundColor: kPrimaryColor,
         backgroundColor: kBackgroundColor,
-        title: Text('Change Password', style: Styles.textStyle22),
+        title: Text('About', style: Styles.textStyle22),
         centerTitle: true,
       ),
-      body: ChangePasswordViewBody(),
+      body: const AboutViewBody(),
     );
   }
 }

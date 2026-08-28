@@ -1,3 +1,4 @@
+import 'package:bookly/features/about/presentation/views/about_view.dart';
 import 'package:bookly/features/book_request/presentation/views/book_request_view.dart';
 import 'package:bookly/features/cart/presentation/views/cart_view.dart';
 import 'package:bookly/features/home/presentation/views/book_details_view.dart';
@@ -23,6 +24,7 @@ abstract class AppRouter {
   static const orderHistoryView = '/orderHistoryView';
   static const bookRequestView = '/bookRequestView';
   static const changePasswordView = '/changePasswordView';
+  static const aboutView = '/aboutView';
 
   static final router = GoRouter(
     routes: [
@@ -69,6 +71,7 @@ abstract class AppRouter {
         path: changePasswordView,
         builder: (context, state) => const ChangePasswordView(),
       ),
+      GoRoute(path: aboutView, builder: (context, state) => const AboutView()),
     ],
   );
 }

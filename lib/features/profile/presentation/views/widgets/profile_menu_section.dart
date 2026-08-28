@@ -66,7 +66,9 @@ class ProfileMenuSection extends StatelessWidget {
             icon: Icons.info_outline,
             title: 'About',
             subtitle: 'App version 1.0.0',
-            onTap: () {},
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.aboutView);
+            },
           ),
         ],
       ),

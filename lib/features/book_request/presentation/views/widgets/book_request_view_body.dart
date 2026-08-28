@@ -169,10 +169,10 @@ class _BookRequestViewBodyState extends State<BookRequestViewBody> {
                                 elevation: 2,
                                 shadowColor: kPrimaryColor.withOpacity(0.3),
                               ),
-                              child: const Text(
+                              child: Text(
                                 'Submit Request',
-                                style: TextStyle(
-                                  fontSize: 18,
+                                style: Styles.textStyle16.copyWith(
+                                  color: Colors.white,
                                   fontWeight: FontWeight.w600,
                                   letterSpacing: 0.5,
                                 ),

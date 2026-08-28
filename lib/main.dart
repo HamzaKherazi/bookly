@@ -3,13 +3,19 @@ import 'package:bookly/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: kBackgroundColor,
       statusBarIconBrightness: Brightness.light,
     ),
+  );
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: 'https://yelxdgrkvucfhgetnblt.supabase.co',
+    publishableKey: 'sb_publishable_VQMu0XU-9aytieNAQJsQJw_wuCOMvlp',
   );
   runApp(const Bookly());
 }
