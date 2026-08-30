@@ -55,7 +55,7 @@ class AboutViewBody extends StatelessWidget {
 }
 
 class _LogoSection extends StatelessWidget {
-  const _LogoSection({super.key});
+  const _LogoSection();
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,7 @@ class _LogoSection extends StatelessWidget {
 }
 
 class _AppInfoSection extends StatelessWidget {
-  const _AppInfoSection({super.key});
+  const _AppInfoSection();
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +88,7 @@ class _AppInfoSection extends StatelessWidget {
 }
 
 class _DescriptionSection extends StatelessWidget {
-  const _DescriptionSection({super.key});
+  const _DescriptionSection();
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +131,7 @@ class _DescriptionSection extends StatelessWidget {
 }
 
 class _FeaturesSection extends StatelessWidget {
-  const _FeaturesSection({super.key});
+  const _FeaturesSection();
 
   @override
   Widget build(BuildContext context) {
@@ -188,7 +188,6 @@ class _FeatureItem extends StatelessWidget {
   final String subtitle;
 
   const _FeatureItem({
-    super.key,
     required this.icon,
     required this.title,
     required this.subtitle,
@@ -235,7 +234,7 @@ class _FeatureItem extends StatelessWidget {
 }
 
 class _StatisticsSection extends StatelessWidget {
-  const _StatisticsSection({super.key});
+  const _StatisticsSection();
 
   @override
   Widget build(BuildContext context) {
@@ -267,7 +266,6 @@ class _StatCard extends StatelessWidget {
   final IconData icon;
 
   const _StatCard({
-    super.key,
     required this.number,
     required this.label,
     required this.icon,
@@ -305,7 +303,7 @@ class _StatCard extends StatelessWidget {
 }
 
 class _SocialSection extends StatelessWidget {
-  const _SocialSection({super.key});
+  const _SocialSection();
 
   @override
   Widget build(BuildContext context) {
@@ -362,7 +360,6 @@ class _SocialButton extends StatelessWidget {
   final String url;
 
   const _SocialButton({
-    super.key,
     required this.icon,
     required this.label,
     required this.url,
@@ -407,7 +404,7 @@ class _SocialButton extends StatelessWidget {
 }
 
 class _FooterSection extends StatelessWidget {
-  const _FooterSection({super.key});
+  const _FooterSection();
 
   @override
   Widget build(BuildContext context) {
