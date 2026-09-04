@@ -20,15 +20,18 @@ class BookPreviewModel {
   });
 
   factory BookPreviewModel.fromJson(Map<String, dynamic> json) {
+    final author = json['authors'];
+    final category = json['categories'];
+
     return BookPreviewModel(
-      bookId: json['book_id'] as int,
-      title: json['title'] as String,
-      imageUrl: json['image_url'] as String?,
-      author: json['author'] as String,
-      category: json['category'] as String,
+      bookId: json['book_id'],
+      title: json['title'],
+      author: '${author['first_name']} ${author['last_name']}',
+      category: category['name'],
       price: (json['price'] as num).toDouble(),
       averageRating: (json['average_rating'] as num).toDouble(),
-      ratingCount: json['rating_count'] as int,
+      ratingCount: json['rating_count'],
+      imageUrl: json['image_url'],
     );
   }
 }

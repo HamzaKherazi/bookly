@@ -2,12 +2,114 @@ import 'package:bookly/core/errors/failures.dart';
 import 'package:bookly/features/explore/data/models/book_preview_model.dart';
 import 'package:bookly/features/explore/data/models/category_model.dart';
 import 'package:dartz/dartz.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-abstract class ExploreRepo {
-  Future<Either<Failure, List<CategoryModel>>> fetchCategories();
-  Future<Either<Failure, List<BookPreviewModel>>> fetchBooks();
-  Future<Either<Failure, List<BookPreviewModel>>> searchBooks(String search);
-  Future<Either<Failure, List<BookPreviewModel>>> searchBooksByCategory(String category);
+class ExploreRepo {
+  final SupabaseClient supabase;
+
+  ExploreRepo(this.supabase);
+
+  Future<Either<Failure, List<CategoryModel>>> getAllCategories() async {
+    try {
+      final data = await supabase
+          .from('categories')
+          .select('category_id, name');
+
+      return right(data.map((json) => CategoryModel.fromJson(json)).toList());
+    } catch (e) {
+      return left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, List<BookPreviewModel>>> getAllBooks() async {
+    try {
+      final data = await supabase.from('books').select('''
+      book_id,
+      title,
+      price,
+      average_rating,
+      rating_count,
+      image_url,
+      authors (
+        first_name,
+        last_name
+      ),
+      categories (
+        name
+      )
+    ''');
+
+      return right(
+        data.map((json) => BookPreviewModel.fromJson(json)).toList(),
+      );
+    } catch (e) {
+      return left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, List<BookPreviewModel>>> searchBooks(
+    String search,
+  ) async {
+    try {
+      final data = await supabase
+          .from('books')
+          .select('''
+          book_id,
+          title,
+          price,
+          average_rating,
+          rating_count,
+          image_url,
+          authors (
+            first_name,
+            last_name
+          ),
+          categories (
+            name
+          )
+        ''')
+          .or(
+            'title.ilike.%$search%,'
+            'authors.first_name.ilike.%$search%,'
+            'authors.last_name.ilike.%$search%',
+          );
+
+      return right(
+        data.map((json) => BookPreviewModel.fromJson(json)).toList(),
+      );
+    } catch (e) {
+      return left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, List<BookPreviewModel>>> searchBooksByCategory(
+    int categoryId,
+  ) async {
+    try {
+      final data = await supabase
+          .from('books')
+          .select('''
+          book_id,
+          title,
+          price,
+          average_rating,
+          rating_count,
+          image_url,
+          authors (
+            first_name,
+            last_name
+          ),
+          categories (
+            name
+          )
+        ''')
+          .eq('category_id', categoryId);
+
+      return right(
+        data.map((json) => BookPreviewModel.fromJson(json)).toList(),
+      );
+    } catch (e) {
+      return left(ServerFailure());
+    }
+  }
 }
-
-
