@@ -13,9 +13,14 @@ class ExploreRepo {
     try {
       final data = await supabase
           .from('categories')
-          .select('category_id, name');
+          .select('category_id, name')
+          .order('name', ascending: true);
+      final categories = [
+        CategoryModel(categoryId: -1, name: 'All'),
+        ...data.map((json) => CategoryModel.fromJson(json)),
+      ];
 
-      return right(data.map((json) => CategoryModel.fromJson(json)).toList());
+      return right(categories);
     } catch (e) {
       return left(SupabaseFailure('Failed to fetch categories'));
     }
@@ -23,7 +28,9 @@ class ExploreRepo {
 
   Future<Either<Failure, List<BookPreviewModel>>> getAllBooks() async {
     try {
-      final data = await supabase.from('books').select('''
+      final data = await supabase
+          .from('books')
+          .select('''
       book_id,
       title,
       price,
@@ -37,7 +44,9 @@ class ExploreRepo {
       categories (
         name
       )
-    ''');
+    ''')
+          .order('language_id', ascending: true)
+          .order('title', ascending: true);
 
       return right(
         data.map((json) => BookPreviewModel.fromJson(json)).toList(),

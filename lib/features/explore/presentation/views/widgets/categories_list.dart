@@ -1,9 +1,6 @@
-import 'package:bookly/core/widgets/custom_error_message.dart';
-import 'package:bookly/core/widgets/custom_loading_indicator.dart';
 import 'package:bookly/features/explore/presentation/view_models/categories_cubit/categories_cubit.dart';
 import 'package:bookly/features/explore/presentation/views/widgets/category_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoriesList extends StatelessWidget {

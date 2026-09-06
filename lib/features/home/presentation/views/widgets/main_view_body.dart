@@ -3,6 +3,7 @@ import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/service_locator.dart';
 import 'package:bookly/features/cart/presentation/views/cart_view.dart';
 import 'package:bookly/features/explore/data/repos/explore_repo.dart';
+import 'package:bookly/features/explore/presentation/view_models/books_cubit/books_cubit.dart';
 import 'package:bookly/features/explore/presentation/view_models/categories_cubit/categories_cubit.dart';
 import 'package:bookly/features/favorites/favorites_view.dart';
 import 'package:bookly/features/explore/presentation/views/explore_view.dart';
@@ -42,14 +43,21 @@ class _MainViewBodyState extends State<MainViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CategoriesCubit(getIt.get<ExploreRepo>()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CategoriesCubit>(
+          create: (context) => CategoriesCubit(getIt.get<ExploreRepo>()),
+        ),
+        BlocProvider<BooksCubit>(
+          create: (context) => BooksCubit(getIt.get<ExploreRepo>()),
+        ),
+      ],
       child: Builder(
         builder: (context) {
           return Stack(
             children: [
               IndexedStack(index: _currentIndex, children: _pages),
-          
+
               Positioned(
                 left: 0,
                 right: 0,
@@ -64,7 +72,7 @@ class _MainViewBodyState extends State<MainViewBody> {
                   bottomBarHeight: 60,
                   kBottomRadius: 24,
                   kIconSize: 24,
-          
+
                   bottomBarItems: [
                     BottomBarItem(
                       inActiveItem: const Icon(
@@ -81,14 +89,20 @@ class _MainViewBodyState extends State<MainViewBody> {
                         Icons.favorite_border,
                         color: Colors.white,
                       ),
-                      activeItem: const Icon(Icons.favorite, color: Colors.white),
+                      activeItem: const Icon(
+                        Icons.favorite,
+                        color: Colors.white,
+                      ),
                     ),
                     BottomBarItem(
                       inActiveItem: const Icon(
                         Icons.menu_book_outlined,
                         color: Colors.white,
                       ),
-                      activeItem: const Icon(Icons.menu_book, color: Colors.white),
+                      activeItem: const Icon(
+                        Icons.menu_book,
+                        color: Colors.white,
+                      ),
                     ),
                     BottomBarItem(
                       inActiveItem: const Icon(
@@ -108,26 +122,29 @@ class _MainViewBodyState extends State<MainViewBody> {
                       activeItem: const Icon(Icons.person, color: Colors.white),
                     ),
                   ],
-          
+
                   onTap: (index) {
                     if (index == 3) {
                       GoRouter.of(context).push(AppRouter.cartView);
                       return;
                     }
                     if (index == 2) {
-                      BlocProvider.of<CategoriesCubit>(context).getAllCategories();
+                      BlocProvider.of<CategoriesCubit>(
+                        context,
+                      ).getAllCategories();
+                      BlocProvider.of<BooksCubit>(context).getAllBooks();
                     }
                     setState(() {
                       _currentIndex = index;
                     });
-          
+
                     _controller.jumpTo(index);
                   },
                 ),
               ),
             ],
           );
-        }
+        },
       ),
     );
   }

@@ -11,15 +11,12 @@ class ExploreViewBody extends StatefulWidget {
   State<ExploreViewBody> createState() => _ExploreViewBodyState();
 }
 
-
 class _ExploreViewBodyState extends State<ExploreViewBody> {
   int _selectedIndex = 0;
 
   @override
-  void initState() {  
+  void initState() {
     super.initState();
-
-   
   }
 
   void _selectCategory(int index) {
@@ -64,6 +61,7 @@ class _ExploreViewBodyState extends State<ExploreViewBody> {
             child: ExploreBooksGridView(),
           ),
         ),
+        const SizedBox(height: 60),
       ],
     );
   }

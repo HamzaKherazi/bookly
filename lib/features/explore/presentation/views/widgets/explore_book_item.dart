@@ -1,12 +1,13 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/explore/data/models/book_preview_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ExploreBookItem extends StatelessWidget {
-  const ExploreBookItem({super.key});
-
+  const ExploreBookItem({super.key, required this.book});
+  final BookPreviewModel book;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -46,7 +47,7 @@ class ExploreBookItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
-                    'Islamic',
+                    book.category,
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
@@ -60,20 +61,20 @@ class ExploreBookItem extends StatelessWidget {
 
                 // Book Title
                 Text(
-                  'The Sealed Nectar',
+                  book.title,
                   style: Styles.textStyle14.copyWith(
                     fontWeight: FontWeight.bold,
                     color: Colors.grey[800],
                     height: 1.1,
                   ),
-                  maxLines: 2,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 2),
 
                 // Author
                 Text(
-                  'by Mubarakfuri',
+                  'by ${book.author}',
                   style: Styles.textStyle14.copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
@@ -95,7 +96,7 @@ class ExploreBookItem extends StatelessWidget {
                     ),
                     const SizedBox(width: 3),
                     Text(
-                      '4.0',
+                      book.averageRating.toStringAsFixed(1),
                       style: Styles.textStyle14.copyWith(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
@@ -103,7 +104,7 @@ class ExploreBookItem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      ' (2100)',
+                      ' (${book.ratingCount})',
                       style: Styles.textStyle14.copyWith(
                         fontSize: 10,
                         fontWeight: FontWeight.w400,
@@ -132,8 +133,11 @@ class ExploreBookItem extends StatelessWidget {
                       offset: const Offset(0, 4),
                     ),
                   ],
-                  image: const DecorationImage(
-                    image: NetworkImage(ktestBook1),
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      book.imageUrl ??
+                          'https://biotrop.org/images/default-book.png',
+                    ),
                     fit: BoxFit.cover,
                   ),
                 ),

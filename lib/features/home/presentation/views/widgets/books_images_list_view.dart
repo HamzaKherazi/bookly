@@ -8,6 +8,7 @@ class BooksImagesListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
         return Padding(
