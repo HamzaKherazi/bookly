@@ -3,6 +3,6 @@ abstract class Failure {
   Failure(this.errMessage);
 }
 
-class ServerFailure extends Failure {
-  ServerFailure(super.errMessage);
+class SupabaseFailure extends Failure {
+  SupabaseFailure(super.errMessage);
 }

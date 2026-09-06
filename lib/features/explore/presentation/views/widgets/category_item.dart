@@ -1,8 +1,9 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/features/explore/data/models/category_model.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
-  final String category;
+  final CategoryModel category;
   final bool isSelected;
   final VoidCallback onTap;
 
@@ -37,7 +38,7 @@ class CategoryItem extends StatelessWidget {
               : null,
         ),
         child: Text(
-          category,
+          category.name,
           style: TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.w500,

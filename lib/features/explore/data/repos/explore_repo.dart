@@ -17,7 +17,7 @@ class ExploreRepo {
 
       return right(data.map((json) => CategoryModel.fromJson(json)).toList());
     } catch (e) {
-      return left(ServerFailure('Failed to fetch categories'));
+      return left(SupabaseFailure('Failed to fetch categories'));
     }
   }
 
@@ -43,7 +43,7 @@ class ExploreRepo {
         data.map((json) => BookPreviewModel.fromJson(json)).toList(),
       );
     } catch (e) {
-      return left(ServerFailure('Failed to fetch books'));
+      return left(SupabaseFailure('Failed to fetch books'));
     }
   }
 
@@ -78,7 +78,7 @@ class ExploreRepo {
         data.map((json) => BookPreviewModel.fromJson(json)).toList(),
       );
     } catch (e) {
-      return left(ServerFailure('Failed to search books'));
+      return left(SupabaseFailure('Failed to search books'));
     }
   }
 
@@ -109,7 +109,7 @@ class ExploreRepo {
         data.map((json) => BookPreviewModel.fromJson(json)).toList(),
       );
     } catch (e) {
-      return left(ServerFailure('Failed to fetch books by category'));
+      return left(SupabaseFailure('Failed to fetch books by category'));
     }
   }
 }
