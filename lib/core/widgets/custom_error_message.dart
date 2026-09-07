@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class CustomErrorMessage extends StatelessWidget {
-  const CustomErrorMessage({Key? key, required this.errMessage}) : super(key: key);
+  const CustomErrorMessage({super.key, required this.errMessage});
 final String errMessage;
   @override
   Widget build(BuildContext context) {

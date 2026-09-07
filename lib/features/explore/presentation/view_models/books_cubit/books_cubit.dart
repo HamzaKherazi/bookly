@@ -9,7 +9,7 @@ class BooksCubit extends Cubit<BooksState> {
   BooksCubit(this.exploreRepo) : super(BooksInitial());
   final ExploreRepo exploreRepo;
 
-Future<void> getAllBooks() async {
+  Future<void> getAllBooks() async {
     emit(BooksLoading());
     var result = await exploreRepo.getAllBooks();
     result.fold(
@@ -19,8 +19,12 @@ Future<void> getAllBooks() async {
   }
 
   Future<void> searchBooks(String search) async {
+    if (search.trim().isEmpty) {
+      getAllBooks();
+      return;
+    }
     emit(BooksLoading());
-    var result = await exploreRepo.searchBooks(search);
+    var result = await exploreRepo.searchBooks(search.trim());
     result.fold(
       (failure) => emit(BooksFailure(failure.errMessage)),
       (books) => emit(BooksSuccess(books)),
@@ -35,5 +39,4 @@ Future<void> getAllBooks() async {
       (books) => emit(BooksSuccess(books)),
     );
   }
-  
 }

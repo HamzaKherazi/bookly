@@ -1,11 +1,15 @@
+import 'dart:async';
+
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/explore/presentation/view_models/books_cubit/books_cubit.dart';
 import 'package:bookly/features/explore/presentation/views/widgets/categories_list.dart';
 import 'package:bookly/features/explore/presentation/views/widgets/explore_books_grid_view.dart';
 import 'package:bookly/features/explore/presentation/views/widgets/search_bar.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ExploreViewBody extends StatefulWidget {
-  const ExploreViewBody({Key? key}) : super(key: key);
+  const ExploreViewBody({super.key});
 
   @override
   State<ExploreViewBody> createState() => _ExploreViewBodyState();
@@ -13,7 +17,7 @@ class ExploreViewBody extends StatefulWidget {
 
 class _ExploreViewBodyState extends State<ExploreViewBody> {
   int _selectedIndex = 0;
-
+  Timer? _debounce;
   @override
   void initState() {
     super.initState();
@@ -41,7 +45,15 @@ class _ExploreViewBodyState extends State<ExploreViewBody> {
         const SizedBox(height: 16),
 
         // Search Bar
-        const SearchBarWithBorder(),
+        SearchBarWithBorder(
+          onChanged: (search) {
+            _debounce?.cancel();
+
+            _debounce = Timer(const Duration(milliseconds: 500), () {
+              BlocProvider.of<BooksCubit>(context).searchBooks(search);
+            });
+          },
+        ),
         const SizedBox(height: 16),
 
         // Categories List
@@ -50,6 +62,15 @@ class _ExploreViewBodyState extends State<ExploreViewBody> {
           child: CategoriesList(
             selectedIndex: _selectedIndex,
             onCategorySelected: _selectCategory,
+            filterByCategory: (categoryId) {
+              if (categoryId == -1) {
+                BlocProvider.of<BooksCubit>(context).getAllBooks();
+                return;
+              }
+              BlocProvider.of<BooksCubit>(
+                context,
+              ).getBooksByCategory(categoryId);
+            },
           ),
         ),
         const SizedBox(height: 20),
@@ -64,5 +85,12 @@ class _ExploreViewBodyState extends State<ExploreViewBody> {
         const SizedBox(height: 60),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _debounce?.cancel();
+    super.dispose();
   }
 }

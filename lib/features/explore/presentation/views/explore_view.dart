@@ -2,7 +2,7 @@ import 'package:bookly/features/explore/presentation/views/widgets/explore_view_
 import 'package:flutter/material.dart';
 
 class ExploreView extends StatelessWidget {
-  const ExploreView({Key? key}) : super(key: key);
+  const ExploreView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,3 @@
-import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/explore/data/models/book_preview_model.dart';
@@ -74,7 +73,7 @@ class ExploreBookItem extends StatelessWidget {
 
                 // Author
                 Text(
-                  'by ${book.author}',
+                  book.author,
                   style: Styles.textStyle14.copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,

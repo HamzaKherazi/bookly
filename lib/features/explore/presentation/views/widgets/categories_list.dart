@@ -5,13 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoriesList extends StatelessWidget {
   final int selectedIndex;
-  final Function(int)
-  onCategorySelected; // Fixed: Changed from VoidCallback to Function(int)
+  final Function(int) onCategorySelected;
+  final Function(int) filterByCategory;
 
   const CategoriesList({
     super.key,
     required this.selectedIndex,
-    required this.onCategorySelected, // Fixed: renamed for clarity
+    required this.onCategorySelected,
+    required this.filterByCategory, // Fixed: renamed for clarity
   });
 
   @override
@@ -29,7 +30,10 @@ class CategoriesList extends StatelessWidget {
                 child: CategoryItem(
                   category: state.categories[index],
                   isSelected: selectedIndex == index,
-                  onTap: () => onCategorySelected(index),
+                  onTap: () {
+                    onCategorySelected(index);
+                    filterByCategory(state.categories[index].categoryId);
+                  },
                 ),
               );
             },

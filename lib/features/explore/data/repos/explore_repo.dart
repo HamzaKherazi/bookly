@@ -60,33 +60,19 @@ class ExploreRepo {
     String search,
   ) async {
     try {
-      final data = await supabase
-          .from('books')
-          .select('''
-          book_id,
-          title,
-          price,
-          average_rating,
-          rating_count,
-          image_url,
-          authors (
-            first_name,
-            last_name
-          ),
-          categories (
-            name
-          )
-        ''')
-          .or(
-            'title.ilike.%$search%,'
-            'authors.first_name.ilike.%$search%,'
-            'authors.last_name.ilike.%$search%',
-          );
-
-      return right(
-        data.map((json) => BookPreviewModel.fromJson(json)).toList(),
+      final data = await supabase.rpc(
+        'search_books',
+        params: {'search_text': search.trim()},
       );
+
+      final books = data
+          .map<BookPreviewModel>((json) => BookPreviewModel.fromJson(json))
+          .toList();
+
+      return right(books);
     } catch (e) {
+      print('SEARCH ERROR: $e');
+
       return left(SupabaseFailure('Failed to search books'));
     }
   }
@@ -112,7 +98,9 @@ class ExploreRepo {
             name
           )
         ''')
-          .eq('category_id', categoryId);
+          .eq('category_id', categoryId)
+          .order('language_id', ascending: true)
+          .order('title', ascending: true);
 
       return right(
         data.map((json) => BookPreviewModel.fromJson(json)).toList(),

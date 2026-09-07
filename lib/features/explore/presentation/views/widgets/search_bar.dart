@@ -1,14 +1,24 @@
 import 'package:bookly/constants.dart';
 import 'package:flutter/material.dart';
 
-class SearchBarWithBorder extends StatelessWidget {
-  const SearchBarWithBorder({super.key});
+class SearchBarWithBorder extends StatefulWidget {
+  const SearchBarWithBorder({super.key, this.onChanged});
+  final void Function(String)? onChanged;
+
+  @override
+  State<SearchBarWithBorder> createState() => _SearchBarWithBorderState();
+}
+
+class _SearchBarWithBorderState extends State<SearchBarWithBorder> {
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: TextField(
+        onChanged: widget.onChanged,
+        controller: _controller,
         decoration: InputDecoration(
           hintText: 'Search for books...',
           hintStyle: TextStyle(
@@ -21,13 +31,14 @@ class SearchBarWithBorder extends StatelessWidget {
             horizontal: 16,
             vertical: 14,
           ),
-          suffixIcon: Container(
-            margin: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: kPrimaryColor,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: const Icon(Icons.tune, color: Colors.white, size: 20),
+          suffixIcon: IconButton(
+            onPressed: () {
+              _controller.clear();
+              widget.onChanged?.call('');
+
+              // widget.onChanged?.call('');
+            },
+            icon: const Icon(Icons.clear, color: kPrimaryColor, size: 20),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
