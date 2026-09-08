@@ -10,6 +10,8 @@ const kEmpty = Color.fromARGB(255, 227, 203, 175);
 const kAnimationDuration = Duration(milliseconds: 250);
 
 const ktestBook1 =
-    'https://d2sofvawe08yqg.cloudfront.net/cleancodeprinciplesandpatterns2ndedition/s_hero2x?1712998004&1712998004';
+    'https://www.neelwafurat.com/images/eg/abookstore/covers/normal/178/178844.jpg';
 const ktestProfileImage =
     'https://img.magnific.com/free-vector/isolated-young-handsome-man-set-different-poses-white-background-illustration_632498-658.jpg';
+
+const kDefaultBookImage = 'assets/images/default_book.jpg';

@@ -1,6 +1,8 @@
+import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/explore/data/models/book_preview_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,7 +13,7 @@ class ExploreBookItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.bookDetailsView);
+        GoRouter.of(context).push('${AppRouter.bookDetailsView}/${book.bookId}');
       },
       child: Container(
         padding: const EdgeInsets.all(12),
@@ -132,14 +134,26 @@ class ExploreBookItem extends StatelessWidget {
                       offset: const Offset(0, 4),
                     ),
                   ],
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      book.imageUrl ??
-                          'https://biotrop.org/images/default-book.png',
-                    ),
-                    fit: BoxFit.cover,
-                  ),
                 ),
+                child: book.imageUrl == null
+                    ? ClipRRect(
+                        borderRadius: BorderRadiusGeometry.circular(12),
+                        child: Image.asset(
+                          kDefaultBookImage,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: CachedNetworkImage(
+                          imageUrl: book.imageUrl!,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) =>
+                              Image.asset(kDefaultBookImage, fit: BoxFit.cover),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error, color: kPrimaryColor),
+                        ),
+                      ),
               ),
             ),
           ],

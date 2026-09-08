@@ -1,7 +1,7 @@
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/features/cart/presentation/views/widgets/order_summary_section.dart';
 import 'package:bookly/features/cart/presentation/views/widgets/total_amount_section.dart';
-import 'package:bookly/features/home/presentation/views/widgets/custom_button_with_icon.dart';
+import 'package:bookly/core/widgets/custom_button_with_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

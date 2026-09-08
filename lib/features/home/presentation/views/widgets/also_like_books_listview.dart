@@ -1,4 +1,4 @@
-import 'package:bookly/features/home/presentation/views/widgets/book_cover.dart';
+import 'package:bookly/core/widgets/book_cover.dart';
 import 'package:flutter/material.dart';
 
 class AlsoLikeBooksListView extends StatelessWidget {

@@ -1,10 +1,11 @@
 import 'package:bookly/constants.dart';
-import 'package:bookly/features/home/presentation/views/widgets/book_details_view_body.dart';
-import 'package:bookly/features/home/presentation/views/widgets/favorite_button.dart';
+import 'package:bookly/features/book_details/presentation/views/widgets/book_details_view_body.dart';
+import 'package:bookly/features/book_details/presentation/views/widgets/favorite_button.dart';
 import 'package:flutter/material.dart';
 
 class BookDetailsView extends StatelessWidget {
-  const BookDetailsView({super.key});
+  const BookDetailsView({super.key, required this.bookId});
+  final int bookId;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class BookDetailsView extends StatelessWidget {
         backgroundColor: kBackgroundColor,
         actions: [FavoriteButton()],
       ),
-      body: BookDetailsViewBody(),
+      body: BookDetailsViewBody(bookId: bookId),
     );
   }
 }

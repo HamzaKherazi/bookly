@@ -82,7 +82,7 @@ class _ExploreViewBodyState extends State<ExploreViewBody> {
             child: ExploreBooksGridView(),
           ),
         ),
-        const SizedBox(height: 60),
+        const SizedBox(height: 70),
       ],
     );
   }

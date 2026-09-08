@@ -21,6 +21,7 @@ class CategoriesList extends StatelessWidget {
       builder: (context, state) {
         if (state is CategoriesSuccess) {
           return ListView.builder(
+            physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             itemCount: state.categories.length,

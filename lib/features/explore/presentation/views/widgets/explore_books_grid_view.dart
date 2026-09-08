@@ -24,6 +24,7 @@ class ExploreBooksGridView extends StatelessWidget {
             );
           }
           return GridView.builder(
+            physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.only(top: 50),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
