@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class BookCover extends StatelessWidget {
-  const BookCover({super.key});
-
+  const BookCover({super.key, required this.imgUrl});
+  final String? imgUrl;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -17,12 +17,16 @@ class BookCover extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         child: AspectRatio(
           aspectRatio: 2.7 / 4,
-          child: CachedNetworkImage(
-            fit: BoxFit.cover,
-            imageUrl: ktestBook1,
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-            placeholder: (context, url) => Image.asset(kDefaultBookImage),
-          ),
+          child: imgUrl == null
+              ? Image.asset(kDefaultBookImage, fit: BoxFit.cover)
+              : CachedNetworkImage(
+                  imageUrl: imgUrl!,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) =>
+                      Image.asset(kDefaultBookImage, fit: BoxFit.cover),
+                  errorWidget: (context, url, error) =>
+                      const Icon(Icons.error, color: kPrimaryColor),
+                ),
         ),
       ),
     );

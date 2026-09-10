@@ -1,3 +1,4 @@
+import 'package:bookly/constants.dart';
 import 'package:bookly/core/widgets/book_cover.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class AlsoLikeBooksListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.only(right: 16),
-            child: BookCover(),
+            child: BookCover(imgUrl: ktestBook1,),
           );
         },
       ),

@@ -1,12 +1,13 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/book_details/data/models/review_model.dart';
 import 'package:bookly/features/book_details/presentation/views/widgets/customer_rating.dart';
 import 'package:bookly/core/widgets/expandable_text.dart';
 import 'package:flutter/material.dart';
 
 class ReviewItem extends StatelessWidget {
-  const ReviewItem({super.key});
-
+  const ReviewItem({super.key, required this.review});
+  final ReviewModel review;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -60,11 +61,12 @@ class ReviewItem extends StatelessWidget {
           ),
 
           /// Review text (aligned naturally under content)
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 60), // aligns with text start
             child: ExpandableText(
               text:
-                  'review xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+                  review.comment ??
+                  'No review comment available for this book.',
             ),
           ),
         ],

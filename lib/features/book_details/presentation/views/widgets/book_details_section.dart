@@ -1,12 +1,14 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/book_details/data/models/book_details_model.dart';
 import 'package:bookly/features/book_details/presentation/views/widgets/book_rating.dart';
 import 'package:bookly/core/widgets/book_cover.dart';
 import 'package:bookly/core/widgets/expandable_text.dart';
 import 'package:flutter/material.dart';
 
 class BookDetailsSection extends StatelessWidget {
-  const BookDetailsSection({super.key});
+  const BookDetailsSection({super.key, required this.bookDetails});
+  final BookDetailsModel bookDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class BookDetailsSection extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * 0.23),
-          child: const BookCover(),
+          child: BookCover(imgUrl: bookDetails.imgUrl),
         ),
         const SizedBox(height: 43),
 
@@ -25,7 +27,7 @@ class BookDetailsSection extends StatelessWidget {
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            'Al-Raheeq Al-Makhtoum',
+            bookDetails.title,
             maxLines: 2,
             style: Styles.textStyle24.copyWith(fontFamily: 'Inter'),
             textAlign: TextAlign.center,
@@ -37,8 +39,7 @@ class BookDetailsSection extends StatelessWidget {
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            'By Al-Mubarakfuri',
-
+            bookDetails.author,
             style: Styles.textStyle18.copyWith(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w600,
@@ -53,8 +54,7 @@ class BookDetailsSection extends StatelessWidget {
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            'Religion',
-
+            bookDetails.category,
             style: Styles.textStyle14.copyWith(
               fontFamily: 'Inter',
 
@@ -70,9 +70,13 @@ class BookDetailsSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const BookRating(mainAxisAlignment: MainAxisAlignment.start),
+            BookRating(
+              avgRating: bookDetails.avgRating,
+              ratingCount: bookDetails.ratingCount,
+              mainAxisAlignment: MainAxisAlignment.start,
+            ),
             Text(
-              '19.99 \$',
+              '${bookDetails.price.toStringAsFixed(2)} \$',
 
               style: Styles.textStyle18.copyWith(
                 fontFamily: 'Inter',
@@ -102,7 +106,8 @@ class BookDetailsSection extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: ExpandableText(
             text:
-                "The Sealed Nectar (Ar-Raheeq Al-Makhtum) by Safi-ur-Rahman al-Mubarakpuri is a well-known and highly respected biography of the Prophet Muhammad ﷺ. It presents a detailed and authentic account of his life, from his noble lineage and early childhood to his prophethood, struggles in Makkah, migration to Madinah, and the establishment of the Muslim community. The book is written in a clear, chronological style and is based on authentic historical sources. It highlights key events such as the revelation of the Qur’an, major battles, treaties, and the moral and spiritual character of the Prophet ﷺ. It won first prize in a worldwide biography competition organized by the Muslim World League, which helped it gain global recognition. Overall, it is considered one of the most comprehensive and accessible seerah (biography of the Prophet ﷺ) books for readers who want to understand Islamic history in depth.",
+                bookDetails.description ??
+                'No description available for this book.',
           ),
         ),
       ],

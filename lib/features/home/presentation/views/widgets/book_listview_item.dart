@@ -109,7 +109,7 @@ class BookListViewItem extends StatelessWidget {
                       Spacer(),
                       Padding(
                         padding: const EdgeInsets.only(right: 8),
-                        child: BookRating(),
+                        child: BookRating(avgRating: 4.8, ratingCount: 100),
                       ),
                     ],
                   ),

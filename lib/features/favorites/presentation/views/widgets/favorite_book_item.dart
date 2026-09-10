@@ -63,7 +63,7 @@ class _FavoriteBookItemState extends State<FavoriteBookItem> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // Book cover with modern styling
-                            const BookCover(),
+                            const BookCover(imgUrl: ktestBook1,),
                             const SizedBox(width: 16),
                             // Book details
                             const Expanded(child: BookDetails()),
