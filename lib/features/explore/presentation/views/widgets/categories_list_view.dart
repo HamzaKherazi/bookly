@@ -3,12 +3,12 @@ import 'package:bookly/features/explore/presentation/views/widgets/category_item
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CategoriesList extends StatelessWidget {
+class CategoriesListView extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onCategorySelected;
   final Function(int) filterByCategory;
 
-  const CategoriesList({
+  const CategoriesListView({
     super.key,
     required this.selectedIndex,
     required this.onCategorySelected,

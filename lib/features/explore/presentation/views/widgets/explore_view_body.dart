@@ -4,7 +4,7 @@ import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/explore/presentation/view_models/books_cubit/books_cubit.dart';
 import 'package:bookly/features/explore/presentation/view_models/categories_cubit/categories_cubit.dart';
-import 'package:bookly/features/explore/presentation/views/widgets/categories_list.dart';
+import 'package:bookly/features/explore/presentation/views/widgets/categories_list_view.dart';
 import 'package:bookly/features/explore/presentation/views/widgets/explore_books_grid_view.dart';
 import 'package:bookly/features/explore/presentation/views/widgets/search_bar.dart';
 import 'package:flutter/foundation.dart';
@@ -63,7 +63,7 @@ class _ExploreViewBodyState extends State<ExploreViewBody> {
         // Categories List
         SizedBox(
           height: 40,
-          child: CategoriesList(
+          child: CategoriesListView(
             selectedIndex: _selectedIndex,
             onCategorySelected: _selectCategory,
             filterByCategory: (categoryId) {
@@ -87,8 +87,10 @@ class _ExploreViewBodyState extends State<ExploreViewBody> {
               color: kPrimaryColor,
               backgroundColor: kWhite,
               onRefresh: () async {
-                BlocProvider.of<BooksCubit>(context).getAllBooks();
-                BlocProvider.of<CategoriesCubit>(context).getAllCategories();
+                Future.wait([
+                  BlocProvider.of<BooksCubit>(context).getAllBooks(),
+                  BlocProvider.of<CategoriesCubit>(context).getAllCategories(),
+                ]);
               },
               child: ExploreBooksGridView(),
             ),
@@ -103,6 +105,5 @@ class _ExploreViewBodyState extends State<ExploreViewBody> {
   void dispose() {
     super.dispose();
     _debounce?.cancel();
-    super.dispose();
   }
 }
