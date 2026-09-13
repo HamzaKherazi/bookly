@@ -1,4 +1,4 @@
-import 'package:bookly/core/errors/failures.dart';
+import 'package:bookly/core/errors/errors.dart';
 import 'package:bookly/features/explore/data/models/book_preview_model.dart';
 import 'package:bookly/features/explore/data/models/category_model.dart';
 import 'package:dartz/dartz.dart';
@@ -9,7 +9,7 @@ class ExploreRepo {
 
   ExploreRepo(this.supabase);
 
-  Future<Either<Failure, List<CategoryModel>>> getAllCategories() async {
+  Future<Either<Error, List<CategoryModel>>> getAllCategories() async {
     try {
       final data = await supabase
           .from('categories')
@@ -22,11 +22,11 @@ class ExploreRepo {
 
       return right(categories);
     } catch (e) {
-      return left(SupabaseFailure('Failed to fetch categories'));
+      return left(SupabaseError('Failed to fetch categories'));
     }
   }
 
-  Future<Either<Failure, List<BookPreviewModel>>> getAllBooks() async {
+  Future<Either<Error, List<BookPreviewModel>>> getAllBooks() async {
     try {
       final data = await supabase
           .from('books')
@@ -52,11 +52,11 @@ class ExploreRepo {
         data.map((json) => BookPreviewModel.fromJson(json)).toList(),
       );
     } catch (e) {
-      return left(SupabaseFailure('Failed to fetch books'));
+      return left(SupabaseError('Failed to fetch books'));
     }
   }
 
-  Future<Either<Failure, List<BookPreviewModel>>> searchBooks(
+  Future<Either<Error, List<BookPreviewModel>>> searchBooks(
     String search,
   ) async {
     try {
@@ -71,13 +71,12 @@ class ExploreRepo {
 
       return right(books);
     } catch (e) {
-      print('SEARCH ERROR: $e');
 
-      return left(SupabaseFailure('Failed to search books'));
+      return left(SupabaseError('Failed to search books'));
     }
   }
 
-  Future<Either<Failure, List<BookPreviewModel>>> searchBooksByCategory(
+  Future<Either<Error, List<BookPreviewModel>>> searchBooksByCategory(
     int categoryId,
   ) async {
     try {
@@ -106,7 +105,7 @@ class ExploreRepo {
         data.map((json) => BookPreviewModel.fromJson(json)).toList(),
       );
     } catch (e) {
-      return left(SupabaseFailure('Failed to fetch books by category'));
+      return left(SupabaseError('Failed to fetch books by category'));
     }
   }
 }

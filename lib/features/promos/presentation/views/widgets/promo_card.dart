@@ -1,24 +1,24 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/features/home/presentation/views/main_view.dart';
-import 'package:bookly/features/promo/presentation/view_models/promo.dart';
+import 'package:bookly/features/promos/data/models/promo_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class PromoCard extends StatelessWidget {
   const PromoCard({super.key, required this.promo});
-  final Promo promo;
+  final PromoModel promo;
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
-        color: promo.color,
+        color: const Color.fromARGB(255, 231, 188, 154),
+
         borderRadius: BorderRadius.circular(24),
 
         // 🌟 Glow shadow effect
         boxShadow: [
           BoxShadow(
-            color: promo.color.withOpacity(0.5),
+            color: const Color.fromARGB(255, 231, 188, 154).withOpacity(0.5),
             blurRadius: 20,
             spreadRadius: 1,
             offset: const Offset(0, 10),
@@ -73,8 +73,15 @@ class PromoCard extends StatelessWidget {
 
             const SizedBox(width: 10),
 
-            // SVG ILLUSTRATION
-            SvgPicture.asset(promo.svgAsset, height: 90),
+            // ILLUSTRATION
+            ClipRRect(
+              borderRadius: BorderRadiusGeometry.circular(12),
+              child: Image.network(
+                promo.imageUrl,
+                height: 90,
+                fit: BoxFit.cover,
+              ),
+            ),
           ],
         ),
       ),

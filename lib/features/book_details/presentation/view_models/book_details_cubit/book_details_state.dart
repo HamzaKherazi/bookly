@@ -10,11 +10,11 @@ final class BookDetailsLoading extends BookDetailsState {}
 final class BookDetailsSuccess extends BookDetailsState {
   final BookDetailsModel bookDetails;
 
-  BookDetailsSuccess(this.bookDetails);
+  BookDetailsSuccess({required this.bookDetails});
 }
 
-final class BookDetailsFailure extends BookDetailsState {
+final class BookDetailsError extends BookDetailsState {
   final String errMessage;
 
-  BookDetailsFailure(this.errMessage);
+  BookDetailsError(this.errMessage);
 }

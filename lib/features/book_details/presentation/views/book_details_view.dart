@@ -1,7 +1,9 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/service_locator.dart';
 import 'package:bookly/features/book_details/data/repos/book_details_repo.dart';
+import 'package:bookly/features/book_details/data/repos/reviews_repo.dart';
 import 'package:bookly/features/book_details/presentation/view_models/book_details_cubit/book_details_cubit.dart';
+import 'package:bookly/features/book_details/presentation/view_models/reviews_cubit/reviews_cubit.dart';
 import 'package:bookly/features/book_details/presentation/views/widgets/book_details_view_body.dart';
 import 'package:bookly/features/book_details/presentation/views/widgets/favorite_button.dart';
 import 'package:flutter/material.dart';
@@ -19,10 +21,18 @@ class BookDetailsView extends StatelessWidget {
         backgroundColor: kBackgroundColor,
         actions: [FavoriteButton()],
       ),
-      body: BlocProvider(
-        create: (_) =>
-            BookDetailsCubit(getIt.get<BookDetailsRepo>())
-              ..getBookDetails(bookId),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) =>
+                BookDetailsCubit(getIt<BookDetailsRepo>())
+                  ..getBookDetails(bookId),
+          ),
+          BlocProvider(
+            create: (_) =>
+                ReviewsCubit(getIt<ReviewsRepo>())..getReviews(bookId),
+          ),
+        ],
         child: BookDetailsViewBody(bookId: bookId),
       ),
     );

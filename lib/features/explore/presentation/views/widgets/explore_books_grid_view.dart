@@ -38,12 +38,13 @@ class ExploreBooksGridView extends StatelessWidget {
               return ExploreBookItem(book: book);
             },
           );
-        } else {
+        } else if (state is BooksLoading) {
           return const Center(child: CustomLoadingIndicator());
         }
+        return SizedBox.shrink();
       },
       listener: (context, state) {
-        if (state is BooksFailure) {
+        if (state is BooksError) {
           showSnackBar(
             context,
             title: state.errMessage,

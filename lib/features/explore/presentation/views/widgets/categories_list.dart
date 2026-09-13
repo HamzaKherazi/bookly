@@ -40,7 +40,7 @@ class CategoriesList extends StatelessWidget {
             },
           );
         } else {
-          return Container();
+          return SizedBox.shrink();
         }
       },
       listener: (context, state) {

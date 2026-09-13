@@ -1,10 +1,11 @@
 import 'dart:async';
-import 'package:bookly/features/promo/data/promo_data.dart';
-import 'package:bookly/features/promo/presentation/views/widgets/promo_card.dart';
+import 'package:bookly/features/promos/data/models/promo_model.dart';
+import 'package:bookly/features/promos/presentation/views/widgets/promo_card.dart';
 import 'package:flutter/material.dart';
 
 class PromoSlider extends StatefulWidget {
-  const PromoSlider({super.key,});
+  const PromoSlider({super.key, required this.promos});
+  final List<PromoModel> promos;
 
   @override
   State<PromoSlider> createState() => _PromoSliderState();
@@ -20,7 +21,7 @@ class _PromoSliderState extends State<PromoSlider> {
     super.initState();
 
     _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
-      if (currentPage < promos.length - 1) {
+      if (currentPage < widget.promos.length - 1) {
         currentPage++;
       } else {
         currentPage = 0;
@@ -47,7 +48,7 @@ class _PromoSliderState extends State<PromoSlider> {
       height: 150,
       child: PageView.builder(
         controller: _controller,
-        itemCount: promos.length,
+        itemCount: widget.promos.length,
         onPageChanged: (index) {
           setState(() => currentPage = index);
         },
@@ -57,7 +58,7 @@ class _PromoSliderState extends State<PromoSlider> {
           return AnimatedScale(
             scale: scale,
             duration: const Duration(milliseconds: 300),
-            child: PromoCard(promo: promos[index],  ),
+            child: PromoCard(promo: widget.promos[index]),
           );
         },
       ),

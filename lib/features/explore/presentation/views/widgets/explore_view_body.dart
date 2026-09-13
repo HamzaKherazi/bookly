@@ -1,10 +1,14 @@
 import 'dart:async';
 
+import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/explore/presentation/view_models/books_cubit/books_cubit.dart';
+import 'package:bookly/features/explore/presentation/view_models/categories_cubit/categories_cubit.dart';
 import 'package:bookly/features/explore/presentation/views/widgets/categories_list.dart';
 import 'package:bookly/features/explore/presentation/views/widgets/explore_books_grid_view.dart';
 import 'package:bookly/features/explore/presentation/views/widgets/search_bar.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -79,7 +83,15 @@ class _ExploreViewBodyState extends State<ExploreViewBody> {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-            child: ExploreBooksGridView(),
+            child: RefreshIndicator(
+              color: kPrimaryColor,
+              backgroundColor: kWhite,
+              onRefresh: () async {
+                BlocProvider.of<BooksCubit>(context).getAllBooks();
+                BlocProvider.of<CategoriesCubit>(context).getAllCategories();
+              },
+              child: ExploreBooksGridView(),
+            ),
           ),
         ),
         const SizedBox(height: 70),

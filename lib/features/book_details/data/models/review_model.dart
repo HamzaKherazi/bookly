@@ -1,10 +1,12 @@
 class ReviewModel {
   final int reviewId;
+  final int bookId;
   final String userName;
   final int rating;
   final String? comment;
   const ReviewModel({
     required this.reviewId,
+    required this.bookId,
     required this.userName,
     required this.rating,
     this.comment,
@@ -12,6 +14,7 @@ class ReviewModel {
   factory ReviewModel.fromJson(Map<String, dynamic> json) {
     return ReviewModel(
       reviewId: (json['review_id'] as num).toInt(),
+      bookId: (json['book_id'] as num).toInt(),
       userName: json['user_name'] as String,
       rating: (json['rating'] as num).toInt(),
       comment: json['comment'] as String?,

@@ -1,30 +1,26 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/core/widgets/custom_loading_indicator.dart';
 import 'package:bookly/features/book_details/data/models/review_model.dart';
 import 'package:bookly/features/book_details/presentation/views/widgets/review_item.dart';
 import 'package:flutter/material.dart';
 
-class ReviewsSection extends StatefulWidget {
-  const ReviewsSection({super.key, required this.reviews});
+class ReviewsSection extends StatelessWidget {
+  const ReviewsSection({
+    super.key,
+    required this.reviews,
+    required this.hasMoreReviews,
+    required this.isLoadingMoreReviews,
+    required this.onSeeMore,
+  });
 
   final List<ReviewModel> reviews;
-
-  @override
-  State<ReviewsSection> createState() => _ReviewsSectionState();
-}
-
-class _ReviewsSectionState extends State<ReviewsSection> {
-  bool _showAllReviews = false;
+  final bool hasMoreReviews;
+  final bool isLoadingMoreReviews;
+  final VoidCallback onSeeMore;
 
   @override
   Widget build(BuildContext context) {
-final reviews = widget.reviews
-        .where((review) => review.comment?.trim().isNotEmpty ?? false)
-        .toList();
-    final reviewsToDisplay = _showAllReviews
-        ? reviews
-        : reviews.take(3).toList();
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -32,7 +28,6 @@ final reviews = widget.reviews
           'Reviews',
           style: Styles.textStyle16.copyWith(fontWeight: FontWeight.w600),
         ),
-
         const SizedBox(height: 8),
 
         // Reviews
@@ -51,21 +46,17 @@ final reviews = widget.reviews
           )
         else
           Column(
-            children: reviewsToDisplay.map((review) {
-              return ReviewItem(review: review);
-            }).toList(),
+            children: reviews
+                .map((review) => ReviewItem(review: review))
+                .toList(),
           ),
 
-        // More / Less button
-        if (reviews.length > 3)
+        // See more
+        if (hasMoreReviews && reviews.isNotEmpty)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: InkWell(
-              onTap: () {
-                setState(() {
-                  _showAllReviews = !_showAllReviews;
-                });
-              },
+              onTap: isLoadingMoreReviews ? null : onSeeMore,
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
@@ -79,23 +70,27 @@ final reviews = widget.reviews
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      _showAllReviews
-                          ? 'Show less reviews'
-                          : 'See more reviews',
-                      style: Styles.textStyle16.copyWith(
-                        color: kPrimaryColor,
-                        fontWeight: FontWeight.w600,
+                    if (isLoadingMoreReviews)
+                      const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CustomLoadingIndicator(),
+                      )
+                    else ...[
+                      Text(
+                        'See more reviews',
+                        style: Styles.textStyle16.copyWith(
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 8),
-                    Icon(
-                      _showAllReviews
-                          ? Icons.keyboard_arrow_up
-                          : Icons.arrow_forward_ios,
-                      color: kPrimaryColor,
-                      size: 16,
-                    ),
+                      const SizedBox(width: 8),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: kPrimaryColor,
+                        size: 16,
+                      ),
+                    ],
                   ],
                 ),
               ),

@@ -1,8 +1,14 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/helpers/show_snack_bar.dart';
+import 'package:bookly/core/utils/service_locator.dart';
+import 'package:bookly/core/widgets/custom_loading_indicator.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_listview_item.dart';
 import 'package:bookly/features/home/presentation/views/widgets/recommended_section.dart';
-import 'package:bookly/features/promo/presentation/views/widgets/promo_slider.dart';
+import 'package:bookly/features/promos/data/repos/promos_repo.dart';
+import 'package:bookly/features/promos/presentation/view_models/promos_cubit/promos_cubit.dart';
+import 'package:bookly/features/promos/presentation/views/widgets/promo_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -15,7 +21,27 @@ class HomeViewBody extends StatelessWidget {
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
-            SliverToBoxAdapter(child: PromoSlider()),
+            SliverToBoxAdapter(
+              child: BlocProvider(
+                create: (context) =>
+                    PromosCubit(getIt.get<PromosRepo>())..getAllPromos(),
+                child: BlocConsumer<PromosCubit, PromosState>(
+                  builder: (context, state) {
+                    if (state is PromosSuccess) {
+                      return PromoSlider(promos: state.promos);
+                    } else if (state is PromosLoading) {
+                      return CustomLoadingIndicator();
+                    }
+                    return const SizedBox.shrink();
+                  },
+                  listener: (context, state) {
+                    if (state is PromosError) {
+                      showSnackBar(context, title: state.errMessage);
+                    }
+                  },
+                ),
+              ),
+            ),
             SliverToBoxAdapter(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,8 +1,7 @@
-import 'package:bookly/constants.dart';
 import 'package:bookly/core/helpers/show_snack_bar.dart';
-import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/core/widgets/custom_loading_indicator.dart';
 import 'package:bookly/features/book_details/presentation/view_models/book_details_cubit/book_details_cubit.dart';
+import 'package:bookly/features/book_details/presentation/view_models/reviews_cubit/reviews_cubit.dart';
 import 'package:bookly/features/book_details/presentation/views/widgets/reviews_section.dart';
 import 'package:bookly/features/book_details/presentation/views/widgets/add_review_and_rating.dart';
 import 'package:bookly/features/home/presentation/views/widgets/also_like_books_section.dart';
@@ -18,11 +17,6 @@ class BookDetailsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<BookDetailsCubit, BookDetailsState>(
-      listener: (context, state) {
-        if (state is BookDetailsFailure) {
-          showSnackBar(context, title: state.errMessage);
-        }
-      },
       builder: (context, state) {
         if (state is BookDetailsSuccess) {
           return Padding(
@@ -55,7 +49,27 @@ class BookDetailsViewBody extends StatelessWidget {
 
                 // Display exactly 3 reviews
                 SliverToBoxAdapter(
-                  child: ReviewsSection(reviews: state.bookDetails.reviews),
+                  child: BlocConsumer<ReviewsCubit, ReviewsState>(
+                    builder: (context, state) {
+                      if (state is ReviewsSuccess) {
+                        return ReviewsSection(
+                          reviews: state.reviews,
+                          hasMoreReviews: state.hasMoreReviews,
+                          isLoadingMoreReviews: state.isLoadingMoreReviews,
+                          onSeeMore: () {
+                            context.read<ReviewsCubit>().getReviews(bookId);
+                          },
+                        );
+                      }
+
+                      return const SizedBox();
+                    },
+                    listener: (context, state) {
+                      if (state is ReviewsError) {
+                        showSnackBar(context, title: state.errMessage);
+                      }
+                    },
+                  ),
                 ),
 
                 // AddReviewAndRating widget
@@ -73,8 +87,15 @@ class BookDetailsViewBody extends StatelessWidget {
               ],
             ),
           );
-        } else {
+        } else if (state is BookDetailsLoading) {
           return const Center(child: CustomLoadingIndicator());
+        }
+
+        return const SizedBox();
+      },
+      listener: (context, state) {
+        if (state is BookDetailsError) {
+          showSnackBar(context, title: state.errMessage);
         }
       },
     );
