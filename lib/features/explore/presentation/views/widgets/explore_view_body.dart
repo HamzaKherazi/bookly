@@ -7,9 +7,7 @@ import 'package:bookly/features/explore/presentation/view_models/categories_cubi
 import 'package:bookly/features/explore/presentation/views/widgets/categories_list_view.dart';
 import 'package:bookly/features/explore/presentation/views/widgets/explore_books_grid_view.dart';
 import 'package:bookly/features/explore/presentation/views/widgets/search_bar.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ExploreViewBody extends StatefulWidget {

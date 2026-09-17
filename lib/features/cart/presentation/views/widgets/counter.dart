@@ -1,16 +1,25 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/cart/presentation/view_models/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Counter extends StatefulWidget {
-  const Counter({super.key});
-
+  const Counter({super.key, required this.cartItemId, required this.quantity});
+  final int cartItemId;
+  final int quantity;
   @override
   State<Counter> createState() => _CounterState();
 }
 
 class _CounterState extends State<Counter> {
-  int counter = 1;
+  late int counter;
+  @override
+  void initState() {
+    super.initState();
+    counter = widget.quantity;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -21,6 +30,9 @@ class _CounterState extends State<Counter> {
             setState(() {
               counter = (counter - 1).clamp(1, 99);
             });
+            BlocProvider.of<CartCubit>(
+              context,
+            ).changeQuantity(widget.cartItemId, counter);
           },
           constraints: const BoxConstraints(),
           padding: EdgeInsets.zero,
@@ -45,6 +57,9 @@ class _CounterState extends State<Counter> {
             setState(() {
               counter = (counter + 1).clamp(1, 99);
             });
+            BlocProvider.of<CartCubit>(
+              context,
+            ).changeQuantity(widget.cartItemId, counter);
           },
           constraints: const BoxConstraints(),
           padding: EdgeInsets.zero,

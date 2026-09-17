@@ -1,9 +1,9 @@
 import 'package:bookly/constants.dart';
-import 'package:bookly/features/home/presentation/views/widgets/books_images_list_view.dart';
+import 'package:bookly/features/home/presentation/views/widgets/new_arrivals_list_view.dart';
 import 'package:flutter/material.dart';
 
-class RecommendedSection extends StatelessWidget {
-  const RecommendedSection({super.key});
+class NewArrivalsSection extends StatelessWidget {
+  const NewArrivalsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class RecommendedSection extends StatelessWidget {
 
       children: [
         Text(
-          'Recommended',
+          'New Arrivals',
           style: TextStyle(
             fontSize: 18,
             fontFamily: 'Inter',
@@ -24,7 +24,7 @@ class RecommendedSection extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.24,
 
-          child: BooksImagesListView(),
+          child: NewArrivalsListView(),
         ),
       ],
     );

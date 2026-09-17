@@ -51,7 +51,7 @@ class OrderDetailsSheet extends StatelessWidget {
                     showFullDetails: true,
                   ),
                   SizedBox(height: 12),
-                  OrderSummarySection(orderId: '#BK-2026-001'),
+                  // OrderSummarySection(),
                   SizedBox(height: 16),
                   ShippingPaymentInfo(),
                   SizedBox(height: 20),

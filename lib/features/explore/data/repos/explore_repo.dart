@@ -1,5 +1,5 @@
 import 'package:bookly/core/errors/errors.dart';
-import 'package:bookly/features/explore/data/models/book_preview_model.dart';
+import 'package:bookly/core/models/book_preview_model.dart';
 import 'package:bookly/features/explore/data/models/category_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

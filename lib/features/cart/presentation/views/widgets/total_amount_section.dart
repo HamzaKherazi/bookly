@@ -3,7 +3,8 @@ import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class TotalAmountSection extends StatelessWidget {
-  const TotalAmountSection({super.key});
+  const TotalAmountSection({super.key, required this.totalAmount});
+  final double totalAmount;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class TotalAmountSection extends StatelessWidget {
             'Total Amount',
             style: Styles.textStyle14.copyWith(
               color: Colors.grey.shade600,
-              fontSize: 12,
+              fontSize: 14,
               fontWeight: FontWeight.w500,
               letterSpacing: 0.3,
             ),
@@ -31,11 +32,11 @@ class TotalAmountSection extends StatelessWidget {
                 ),
                 padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
                 child: Text(
-                  '\$130.96',
+                  '\$ ${totalAmount.toStringAsFixed(2)}',
                   style: Styles.textStyle14.copyWith(
                     fontWeight: FontWeight.w800,
                     color: kPrimaryColor,
-                    fontSize: 22,
+                    fontSize: 18,
                     letterSpacing: -0.5,
                   ),
                 ),

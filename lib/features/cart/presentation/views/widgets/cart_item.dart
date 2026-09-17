@@ -1,12 +1,14 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/cart/data/models/cart_item_model.dart';
 import 'package:bookly/features/cart/presentation/views/widgets/counter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({super.key});
+  const CartItem({super.key, required this.cartItem});
+  final CartItemModel cartItem;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ class CartItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'The Sealed Nectar',
+                    cartItem.book!.title,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: Styles.textStyle16,
@@ -62,7 +64,7 @@ class CartItem extends StatelessWidget {
                   const SizedBox(height: 2),
 
                   Text(
-                    'Mubarakfuri',
+                    cartItem.book!.author,
                     style: Styles.textStyle14.copyWith(
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w500,
@@ -71,7 +73,7 @@ class CartItem extends StatelessWidget {
 
                   const SizedBox(height: 16),
                   Text(
-                    '19.99 \$',
+                    '${cartItem.book!.price} \$',
                     style: Styles.textStyle16.copyWith(
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w500,
@@ -91,7 +93,10 @@ class CartItem extends StatelessWidget {
 
                 SizedBox(height: 10),
 
-                Counter(),
+                Counter(
+                  cartItemId: cartItem.cartItemId,
+                  quantity: cartItem.quantity,
+                ),
               ],
             ),
           ],

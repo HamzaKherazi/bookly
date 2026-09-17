@@ -30,7 +30,7 @@ class ExploreBooksGridView extends StatelessWidget {
               crossAxisCount: 2,
               childAspectRatio: 0.75,
               crossAxisSpacing: 16,
-              mainAxisSpacing: 60,
+              mainAxisSpacing: 65,
             ),
             itemCount: state.books.length,
             itemBuilder: (context, index) {

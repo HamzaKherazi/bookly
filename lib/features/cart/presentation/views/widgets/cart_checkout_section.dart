@@ -1,12 +1,12 @@
 import 'package:bookly/core/utils/app_router.dart';
-import 'package:bookly/features/cart/presentation/views/widgets/order_summary_section.dart';
 import 'package:bookly/features/cart/presentation/views/widgets/total_amount_section.dart';
 import 'package:bookly/core/widgets/custom_button_with_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class CartCheckoutSection extends StatelessWidget {
-  const CartCheckoutSection({super.key});
+  const CartCheckoutSection({super.key, required this.totalAmount});
+  final double totalAmount;
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +31,12 @@ class CartCheckoutSection extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // Order Summary
-          OrderSummarySection(orderId: 'P87Yh'),
-          const SizedBox(height: 14),
           // Total - Responsive
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               // Left side - Total Amount
-              TotalAmountSection(),
+              TotalAmountSection(totalAmount: totalAmount),
               // Right side - Checkout Button
               SizedBox(
                 height: 50,

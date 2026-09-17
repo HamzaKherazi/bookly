@@ -1,5 +1,5 @@
+import 'package:bookly/core/helpers/show_snack_bar.dart';
 import 'package:bookly/core/widgets/custom_button.dart';
-import 'package:bookly/features/payment/presentation/views/helper/show_error_snackbar.dart';
 import 'package:bookly/features/payment/presentation/views/helper/show_success_dialog.dart';
 import 'package:bookly/features/payment/presentation/views/widgets/card_fields_widget.dart';
 import 'package:bookly/features/payment/presentation/views/widgets/divider_widget.dart';
@@ -130,7 +130,7 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
       }
     } catch (e) {
       if (mounted) {
-        showErrorSnackbar(context, e.toString());
+        showSnackBar(context, title: e.toString());
       }
     }
   }

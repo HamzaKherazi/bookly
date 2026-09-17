@@ -2,7 +2,9 @@ import 'package:bookly/constants.dart';
 import 'package:flutter/material.dart';
 
 class HeaderSection extends StatelessWidget {
-  const HeaderSection(String s, {super.key});
+  const HeaderSection({super.key, required this.itemsCount});
+
+  final int itemsCount;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class HeaderSection extends StatelessWidget {
                 ],
               ),
               child: Text(
-                '10 items',
+                '$itemsCount items',
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w700,

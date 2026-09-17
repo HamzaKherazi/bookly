@@ -1,13 +1,15 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/models/book_preview_model.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/book_details/presentation/views/widgets/book_rating.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class BookListViewItem extends StatelessWidget {
-  const BookListViewItem({super.key});
-
+  const BookListViewItem({super.key, required this.book});
+final BookPreviewModel book;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -33,17 +35,22 @@ class BookListViewItem extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: 2.7 / 4,
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: Image.network(
-                      'https://booksondemand.ma/cdn/shop/files/Atomic.png?v=1727078355&width=1100',
-                    ).image,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
+              child: book.imageUrl == null
+                  ? ClipRRect(
+                      borderRadius: BorderRadiusGeometry.circular(12),
+                      child: Image.asset(kDefaultBookImage, fit: BoxFit.cover),
+                    )
+                  : ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: CachedNetworkImage(
+                        imageUrl: book.imageUrl!,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) =>
+                            Image.asset(kDefaultBookImage, fit: BoxFit.cover),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error, color: kPrimaryColor),
+                      ),
+                    ),
             ),
             SizedBox(width: 30),
             Expanded(

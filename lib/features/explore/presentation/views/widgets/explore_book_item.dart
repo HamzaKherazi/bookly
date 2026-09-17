@@ -1,7 +1,7 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/explore/data/models/book_preview_model.dart';
+import 'package:bookly/core/models/book_preview_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -91,25 +91,39 @@ class ExploreBookItem extends StatelessWidget {
 
                 // Rating Row
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(
-                      Icons.star_rounded,
-                      color: Color(0xFFFFC107),
-                      size: 16,
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.star_rounded,
+                          color: Color(0xFFFFC107),
+                          size: 16,
+                        ),
+                        const SizedBox(width: 3),
+                        Text(
+                          book.averageRating.toStringAsFixed(1),
+                          style: Styles.textStyle14.copyWith(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                        Text(
+                          ' (${book.ratingCount})',
+                          style: Styles.textStyle14.copyWith(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.grey[500],
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 3),
+
                     Text(
-                      book.averageRating.toStringAsFixed(1),
+                      '${book.price.toStringAsFixed(2)} \$',
                       style: Styles.textStyle14.copyWith(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey[800],
-                      ),
-                    ),
-                    Text(
-                      ' (${book.ratingCount})',
-                      style: Styles.textStyle14.copyWith(
-                        fontSize: 10,
+                        fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: Colors.grey[500],
                       ),
@@ -121,7 +135,7 @@ class ExploreBookItem extends StatelessWidget {
 
             // Book Cover Image (overlapping from top)
             Positioned(
-              top: -50,
+              top: -55,
               left: 20,
               right: 20,
               child: Container(

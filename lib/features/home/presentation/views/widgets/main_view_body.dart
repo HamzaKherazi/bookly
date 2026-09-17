@@ -1,5 +1,6 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
+import 'package:bookly/core/utils/service_locator.dart';
 import 'package:bookly/features/cart/presentation/views/cart_view.dart';
 import 'package:bookly/features/favorites/favorites_view.dart';
 import 'package:bookly/features/explore/presentation/views/explore_view.dart';
@@ -8,6 +9,7 @@ import 'package:bookly/features/home/presentation/views/widgets/home_view.dart';
 import 'package:bookly/features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MainViewBody extends StatefulWidget {
   const MainViewBody({super.key, this.initialIndex = 0});
@@ -98,9 +100,17 @@ class _MainViewBodyState extends State<MainViewBody> {
               ),
             ],
 
-            onTap: (index) {
+            onTap: (index) async {
               if (index == 3) {
                 GoRouter.of(context).push(AppRouter.cartView);
+                final response = await getIt
+                    .get<SupabaseClient>()
+                    .auth
+                    //REMOVE_BEFORE_PRODUCTION
+                    .signInWithPassword(
+                      email: 'xofeneh877@fidhost.com',
+                      password: '1234',
+                    );
                 return;
               }
 
