@@ -71,7 +71,7 @@ class BookDetailsSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             BookRating(
-              avgRating: bookDetails.avgRating,
+              avgRating: bookDetails.averageRating,
               ratingCount: bookDetails.ratingCount,
               mainAxisAlignment: MainAxisAlignment.start,
             ),

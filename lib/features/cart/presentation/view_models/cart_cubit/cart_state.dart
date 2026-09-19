@@ -16,3 +16,4 @@ final class CartFailure extends CartState {
   final String errMessage;
   CartFailure(this.errMessage);
 }
+

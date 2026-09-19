@@ -1,8 +1,11 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/service_locator.dart';
+import 'package:bookly/features/cart/data/repos/cart_repo.dart';
+import 'package:bookly/features/cart/presentation/view_models/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -27,15 +30,20 @@ class Bookly extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRouter.router,
-      theme: ThemeData.light().copyWith(
-        scaffoldBackgroundColor: kBackgroundColor,
-        brightness: Brightness.light,
-        textTheme: GoogleFonts.montserratTextTheme(ThemeData.light().textTheme),
-      ),
+    return BlocProvider(
+      create: (context) => CartCubit(getIt.get<CartRepo>())..getCart(),
+      child: MaterialApp.router(
+        routerConfig: AppRouter.router,
+        theme: ThemeData.light().copyWith(
+          scaffoldBackgroundColor: kBackgroundColor,
+          brightness: Brightness.light,
+          textTheme: GoogleFonts.montserratTextTheme(
+            ThemeData.light().textTheme,
+          ),
+        ),
 
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }

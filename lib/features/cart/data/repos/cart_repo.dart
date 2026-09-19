@@ -38,6 +38,11 @@ class CartRepo {
           )
         ''')
           .eq('user_id', supabase.auth.currentUser!.id)
+          .order(
+            'cart_item_id',
+            ascending: false,
+            referencedTable: 'cart_items',
+          )
           .maybeSingle();
 
       if (data == null) {
@@ -104,6 +109,7 @@ class CartRepo {
       return Left(SupabaseFailure(e.toString()));
     }
   }
+
   Future<Either<Failure, void>> removeAllItems(int cartId) async {
     try {
       await supabase.from('cart_items').delete().eq('cart_id', cartId);
@@ -129,6 +135,40 @@ class CartRepo {
       );
 
       return const Right(null);
+    } catch (e) {
+      return Left(SupabaseFailure(e.toString()));
+    }
+  }
+
+  Future<Either<Failure, int>> addItemToCart(int bookId) async {
+    try {
+      final userId = supabase.auth.currentUser!.id;
+
+      // 1. Get the authenticated user's cart
+      var cart = await supabase
+          .from('carts')
+          .select('cart_id')
+          .eq('user_id', userId)
+          .maybeSingle();
+      cart =
+          cart ??
+          await supabase
+              .from('carts')
+              .insert({'user_id': userId})
+              .select('cart_id')
+              .single();
+
+      final cartId = cart['cart_id'];
+
+      final insertedItem = await supabase
+          .from('cart_items')
+          .insert({'cart_id': cartId, 'book_id': bookId, 'quantity': 1})
+          .select('cart_item_id')
+          .single();
+
+      final cartItemId = insertedItem['cart_item_id'] as int;
+
+      return Right(cartItemId);
     } catch (e) {
       return Left(SupabaseFailure(e.toString()));
     }

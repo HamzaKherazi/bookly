@@ -3,7 +3,7 @@ class BookDetailsModel {
   final String title;
   final String author;
   final String category;
-  final double avgRating;
+  final double averageRating;
   final int ratingCount;
   final String? description;
   final String? imgUrl;
@@ -13,7 +13,7 @@ class BookDetailsModel {
     required this.title,
     required this.author,
     required this.category,
-    required this.avgRating,
+    required this.averageRating,
     required this.ratingCount,
     this.description,
     this.imgUrl,
@@ -27,7 +27,7 @@ class BookDetailsModel {
           '${json['authors']['first_name']} '
           '${json['authors']['last_name']}',
       category: json['categories']['name'] as String,
-      avgRating: (json['average_rating'] as num).toDouble(),
+      averageRating: (json['average_rating'] as num).toDouble(),
       ratingCount: (json['rating_count'] as num).toInt(),
       description: json['description'] as String?,
       imgUrl: json['image_url'] as String?,
