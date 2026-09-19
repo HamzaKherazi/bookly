@@ -44,7 +44,7 @@ class ExploreBooksGridView extends StatelessWidget {
         return SizedBox.shrink();
       },
       listener: (context, state) {
-        if (state is BooksError) {
+        if (state is BooksFailure) {
           showSnackBar(
             context,
             title: state.errMessage,

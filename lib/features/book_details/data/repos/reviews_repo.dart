@@ -1,4 +1,4 @@
-import 'package:bookly/core/errors/errors.dart';
+import 'package:bookly/core/failures/errors.dart';
 import 'package:bookly/features/book_details/data/models/review_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -7,7 +7,7 @@ class ReviewsRepo {
   final SupabaseClient supabase;
   ReviewsRepo(this.supabase);
 
-  Future<Either<Error, List<ReviewModel>>> getReviews({
+  Future<Either<Failure, List<ReviewModel>>> getReviews({
     required int bookId,
     int offset = 0,
     int limit = 3,
@@ -47,7 +47,7 @@ class ReviewsRepo {
 
       return right(reviews);
     } catch (e) {
-      return left(SupabaseError('Failed to fetch reviews'));
+      return left(SupabaseFailure('Failed to fetch reviews'));
     }
   }
 }

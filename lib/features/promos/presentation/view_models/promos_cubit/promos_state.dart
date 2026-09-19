@@ -13,8 +13,8 @@ final class PromosSuccess extends PromosState {
   PromosSuccess(this.promos);
 }
 
-final class PromosError extends PromosState {
+final class PromosFailure extends PromosState {
   final String errMessage;
 
-  PromosError(this.errMessage);
+  PromosFailure(this.errMessage);
 }

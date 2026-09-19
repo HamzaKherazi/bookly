@@ -20,7 +20,7 @@ class BestSelerListView extends StatelessWidget {
           if (state is BestSellerSuccess) {
             return ListView.builder(
               itemCount: state.bestSellerBooks.length,
-               shrinkWrap: true,
+              shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return Padding(
@@ -36,7 +36,7 @@ class BestSelerListView extends StatelessWidget {
           return SizedBox.shrink();
         },
         listener: (context, state) {
-          if (state is BestSellerError) {
+          if (state is BestSellerFailure) {
             showSnackBar(context, title: state.errMessage);
             print(state.errMessage);
           }

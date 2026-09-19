@@ -1,4 +1,4 @@
-import 'package:bookly/core/errors/errors.dart';
+import 'package:bookly/core/failures/errors.dart';
 import 'package:bookly/core/models/book_preview_model.dart';
 import 'package:bookly/features/home/data/models/book_cover_model.dart';
 import 'package:dartz/dartz.dart';
@@ -9,7 +9,7 @@ class HomeRepo {
 
   HomeRepo(this.supabase);
 
-  Future<Either<Error, List<BookCoverModel>>> getNewArrivals() async {
+  Future<Either<Failure, List<BookCoverModel>>> getNewArrivals() async {
     try {
       final data = await supabase
           .from('books')
@@ -22,11 +22,11 @@ class HomeRepo {
 
       return right(data.map((json) => BookCoverModel.fromJson(json)).toList());
     } catch (e) {
-      return left(SupabaseError('Failed to fetch books'));
+      return left(SupabaseFailure('Failed to fetch books'));
     }
   }
 
-  Future<Either<Error, List<BookPreviewModel>>> getBestSellergBooks() async {
+  Future<Either<Failure, List<BookPreviewModel>>> getBestSellergBooks() async {
     try {
       final data = await supabase.rpc(
         'get_best_seller_books',
@@ -38,9 +38,7 @@ class HomeRepo {
 
       return Right(books);
     } catch (e) {
-      return Left(SupabaseError(e.toString()));
+      return Left(SupabaseFailure(e.toString()));
     }
   }
-
-  
 }

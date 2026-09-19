@@ -14,7 +14,7 @@ class BestSellerCubit extends Cubit<BestSellerState> {
     var result = await homeRepo.getBestSellergBooks();
     result.fold(
       (error) {
-        emit(BestSellerError(error.errMessage));
+        emit(BestSellerFailure(error.errMessage));
       },
       (books) {
         emit(BestSellerSuccess(books));

@@ -19,8 +19,8 @@ final class ReviewsSuccess extends ReviewsState {
   });
 }
 
-final class ReviewsError extends ReviewsState {
+final class ReviewsFailure extends ReviewsState {
   final String errMessage;
 
-  ReviewsError(this.errMessage);
+  ReviewsFailure(this.errMessage);
 }

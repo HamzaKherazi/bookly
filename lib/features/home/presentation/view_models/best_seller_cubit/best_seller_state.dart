@@ -13,8 +13,8 @@ final class BestSellerSuccess extends BestSellerState {
   BestSellerSuccess(this.bestSellerBooks);
 }
 
-final class BestSellerError extends BestSellerState {
+final class BestSellerFailure extends BestSellerState {
   final String errMessage;
 
-  BestSellerError(this.errMessage);
+  BestSellerFailure(this.errMessage);
 }

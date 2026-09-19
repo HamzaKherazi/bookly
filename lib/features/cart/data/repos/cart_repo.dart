@@ -1,4 +1,4 @@
-import 'package:bookly/core/errors/errors.dart';
+import 'package:bookly/core/failures/errors.dart';
 import 'package:bookly/features/cart/data/models/cart_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -7,7 +7,7 @@ class CartRepo {
   final SupabaseClient supabase;
 
   CartRepo(this.supabase);
-  Future<Either<Error, CartModel?>> getCart() async {
+  Future<Either<Failure, CartModel?>> getCart() async {
     try {
       final data = await supabase
           .from('carts')
@@ -63,7 +63,74 @@ class CartRepo {
 
       return Right(CartModel.fromJson(cartJson));
     } catch (e) {
-      return Left(SupabaseError(e.toString()));
+      return Left(SupabaseFailure(e.toString()));
+    }
+  }
+
+  Future<Either<Failure, bool>> updateQuantity(
+    int cartItemId,
+    int quantity,
+  ) async {
+    try {
+      final userId = supabase.auth.currentUser!.id;
+
+      // 1. Get the authenticated user's cart
+      final cart = await supabase
+          .from('carts')
+          .select('cart_id')
+          .eq('user_id', userId)
+          .single();
+
+      final cartId = cart['cart_id'];
+
+      // 2. Update only the item belonging to this cart
+      await supabase
+          .from('cart_items')
+          .update({'quantity': quantity})
+          .eq('cart_item_id', cartItemId)
+          .eq('cart_id', cartId);
+
+      return Right(true);
+    } catch (e) {
+      return Left(SupabaseFailure(e.toString()));
+    }
+  }
+
+  Future<Either<Failure, void>> removeItem(int cartItemId) async {
+    try {
+      await supabase.from('cart_items').delete().eq('cart_item_id', cartItemId);
+      return Right(null);
+    } catch (e) {
+      return Left(SupabaseFailure(e.toString()));
+    }
+  }
+  Future<Either<Failure, void>> removeAllItems(int cartId) async {
+    try {
+      await supabase.from('cart_items').delete().eq('cart_id', cartId);
+      return Right(null);
+    } catch (e) {
+      return Left(SupabaseFailure(e.toString()));
+    }
+  }
+
+  Future<Either<Failure, void>> saveCart(CartModel cart) async {
+    try {
+      final items = cart.items.map((item) {
+        return {
+          'cart_item_id': item.cartItemId,
+          'book_id': item.bookId,
+          'quantity': item.quantity,
+        };
+      }).toList();
+
+      await supabase.rpc(
+        'save_cart',
+        params: {'p_cart_id': cart.cartId, 'p_items': items},
+      );
+
+      return const Right(null);
+    } catch (e) {
+      return Left(SupabaseFailure(e.toString()));
     }
   }
 }

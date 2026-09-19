@@ -44,7 +44,7 @@ class ReviewsCubit extends Cubit<ReviewsState> {
     result.fold(
       (error) {
         _isLoadingMore = false;
-        emit(ReviewsError(error.errMessage));
+        emit(ReviewsFailure(error.errMessage));
       },
       (newReviews) {
         _reviews.addAll(newReviews);

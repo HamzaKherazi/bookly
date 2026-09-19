@@ -40,7 +40,7 @@ class NewArrivalsListView extends StatelessWidget {
           return const SizedBox.shrink();
         },
         listener: (context, state) {
-          if (state is NewArrivalsError) {
+          if (state is NewArrivalsFailure) {
             showSnackBar(context, title: state.errMessage);
           }
         },

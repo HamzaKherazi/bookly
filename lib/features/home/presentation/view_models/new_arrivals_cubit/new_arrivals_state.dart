@@ -13,8 +13,8 @@ final class NewArrivalsSuccess extends NewArrivalsState {
   NewArrivalsSuccess(this.newArrivals);
 }
 
-final class NewArrivalsError extends NewArrivalsState {
+final class NewArrivalsFailure extends NewArrivalsState {
   final String errMessage;
 
-  NewArrivalsError(this.errMessage);
+  NewArrivalsFailure(this.errMessage);
 }

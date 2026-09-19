@@ -12,7 +12,7 @@ final class CartSuccess extends CartState {
   CartSuccess(this.cart);
 }
 
-final class CartError extends CartState {
+final class CartFailure extends CartState {
   final String errMessage;
-  CartError(this.errMessage);
+  CartFailure(this.errMessage);
 }

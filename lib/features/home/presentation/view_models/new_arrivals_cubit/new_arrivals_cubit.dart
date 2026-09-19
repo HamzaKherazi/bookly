@@ -14,7 +14,7 @@ class NewArrivalsCubit extends Cubit<NewArrivalsState> {
     var result = await homeRepo.getNewArrivals();
     result.fold(
       (error) {
-        emit(NewArrivalsError(error.errMessage));
+        emit(NewArrivalsFailure(error.errMessage));
       },
       (newArrivals) {
         emit(NewArrivalsSuccess(newArrivals));

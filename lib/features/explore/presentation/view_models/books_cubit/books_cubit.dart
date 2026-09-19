@@ -13,7 +13,7 @@ class BooksCubit extends Cubit<BooksState> {
     emit(BooksLoading());
     var result = await exploreRepo.getAllBooks();
     result.fold(
-      (failure) => emit(BooksError(failure.errMessage)),
+      (failure) => emit(BooksFailure(failure.errMessage)),
       (books) => emit(BooksSuccess(books)),
     );
   }
@@ -26,7 +26,7 @@ class BooksCubit extends Cubit<BooksState> {
     emit(BooksLoading());
     var result = await exploreRepo.searchBooks(search.trim());
     result.fold(
-      (failure) => emit(BooksError(failure.errMessage)),
+      (failure) => emit(BooksFailure(failure.errMessage)),
       (books) => emit(BooksSuccess(books)),
     );
   }
@@ -35,7 +35,7 @@ class BooksCubit extends Cubit<BooksState> {
     emit(BooksLoading());
     var result = await exploreRepo.searchBooksByCategory(categoryId);
     result.fold(
-      (failure) => emit(BooksError(failure.errMessage)),
+      (failure) => emit(BooksFailure(failure.errMessage)),
       (books) => emit(BooksSuccess(books)),
     );
   }

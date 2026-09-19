@@ -14,7 +14,7 @@ class PromosCubit extends Cubit<PromosState> {
     var result = await promosRepo.getAllPromos();
     result.fold(
       (error) {
-        emit(PromosError(error.errMessage));
+        emit(PromosFailure(error.errMessage));
       },
       (promos) {
         emit(PromosSuccess(promos));

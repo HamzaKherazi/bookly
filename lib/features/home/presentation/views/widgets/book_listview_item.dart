@@ -9,12 +9,14 @@ import 'package:go_router/go_router.dart';
 
 class BookListViewItem extends StatelessWidget {
   const BookListViewItem({super.key, required this.book});
-final BookPreviewModel book;
+  final BookPreviewModel book;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.bookDetailsView);
+        GoRouter.of(
+          context,
+        ).push('${AppRouter.bookDetailsView}/${book.bookId}');
       },
       child: Container(
         decoration: BoxDecoration(

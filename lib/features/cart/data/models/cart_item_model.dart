@@ -25,11 +25,11 @@ class CartItemModel {
 
   CartItemModel copyWith({int? quantity}) {
     return CartItemModel(
-      cartItemId: this.cartItemId,
-      cartId: this.cartId,
-      bookId: this.bookId,
+      cartItemId: cartItemId,
+      cartId: cartId,
+      bookId: bookId,
       quantity: quantity ?? this.quantity,
-      book: this.book,
+      book: book,
     );
   }
 }

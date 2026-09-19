@@ -1,4 +1,4 @@
-import 'package:bookly/core/errors/errors.dart';
+import 'package:bookly/core/failures/errors.dart';
 import 'package:bookly/features/book_details/data/models/book_details_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -8,7 +8,7 @@ class BookDetailsRepo {
 
   BookDetailsRepo(this.supabase);
 
-  Future<Either<Error, BookDetailsModel>> getBookDetails(int bookId) async {
+  Future<Either<Failure, BookDetailsModel>> getBookDetails(int bookId) async {
     try {
       final data = await supabase
           .from('books')
@@ -33,7 +33,7 @@ class BookDetailsRepo {
       final book = BookDetailsModel.fromJson(data);
       return right(book);
     } catch (e) {
-      return left(SupabaseError('Failed to fetch book details'));
+      return left(SupabaseFailure('Failed to fetch book details'));
     }
   }
 }

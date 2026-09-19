@@ -13,23 +13,22 @@ class PromosSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-                create: (context) =>
-                    PromosCubit(getIt.get<PromosRepo>())..getAllPromos(),
-                child: BlocConsumer<PromosCubit, PromosState>(
-                  builder: (context, state) {
-                    if (state is PromosSuccess) {
-                      return PromoSlider(promos: state.promos);
-                    } else if (state is PromosLoading) {
-                      return CustomLoadingIndicator();
-                    }
-                    return const SizedBox.shrink();
-                  },
-                  listener: (context, state) {
-                    if (state is PromosError) {
-                      showSnackBar(context, title: state.errMessage);
-                    }
-                  },
-                ),
-              );
+      create: (context) => PromosCubit(getIt.get<PromosRepo>())..getAllPromos(),
+      child: BlocConsumer<PromosCubit, PromosState>(
+        builder: (context, state) {
+          if (state is PromosSuccess) {
+            return PromoSlider(promos: state.promos);
+          } else if (state is PromosLoading) {
+            return CustomLoadingIndicator();
+          }
+          return const SizedBox.shrink();
+        },
+        listener: (context, state) {
+          if (state is PromosFailure) {
+            showSnackBar(context, title: state.errMessage);
+          }
+        },
+      ),
+    );
   }
 }

@@ -42,7 +42,7 @@ abstract class AppRouter {
         path: '$bookDetailsView/:bookId',
         builder: (context, state) {
           final bookId = int.parse(state.pathParameters['bookId']!);
-
+          
           return BookDetailsView(bookId: bookId);
         },
       ),

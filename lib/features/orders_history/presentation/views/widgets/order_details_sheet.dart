@@ -1,4 +1,3 @@
-import 'package:bookly/features/cart/presentation/views/widgets/order_summary_section.dart';
 import 'package:bookly/features/orders_history/presentation/views/widgets/order_book_item.dart';
 import 'package:bookly/features/orders_history/presentation/views/widgets/order_details_header.dart';
 import 'package:bookly/features/orders_history/presentation/views/widgets/order_items_header.dart';

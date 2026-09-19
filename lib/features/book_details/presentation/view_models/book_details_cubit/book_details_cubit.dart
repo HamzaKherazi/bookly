@@ -12,9 +12,10 @@ class BookDetailsCubit extends Cubit<BookDetailsState> {
   Future<void> getBookDetails(int bookId) async {
     emit(BookDetailsLoading());
     var result = await bookDetailsRepo.getBookDetails(bookId);
-    result.fold((error) => emit(BookDetailsError(error.errMessage)), (
+    result.fold((error) => emit(BookDetailsFailure(error.errMessage)), (
       bookDetails,
     ) {
       emit(BookDetailsSuccess(bookDetails: bookDetails));
     });
-  }}
+  }
+}

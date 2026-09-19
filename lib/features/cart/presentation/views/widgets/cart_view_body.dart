@@ -1,4 +1,5 @@
 import 'package:bookly/core/helpers/show_snack_bar.dart';
+import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/core/widgets/custom_loading_indicator.dart';
 import 'package:bookly/features/cart/presentation/view_models/cart_cubit/cart_cubit.dart';
 import 'package:bookly/features/cart/presentation/views/helper/get_total_amount.dart';
@@ -20,7 +21,7 @@ class _CartViewBodyState extends State<CartViewBody> {
   Widget build(BuildContext context) {
     return BlocConsumer<CartCubit, CartState>(
       listener: (context, state) {
-        if (state is CartError) {
+        if (state is CartFailure) {
           showSnackBar(context, title: state.errMessage);
         }
       },
@@ -29,7 +30,7 @@ class _CartViewBodyState extends State<CartViewBody> {
           return CustomLoadingIndicator();
         }
         if (state is CartSuccess) {
-          if (state.cart == null || state.cart!.items!.isEmpty) {
+          if (state.cart == null || state.cart!.items.isEmpty) {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -54,16 +55,15 @@ class _CartViewBodyState extends State<CartViewBody> {
                   const SizedBox(height: 28),
                   Text(
                     'Your cart is empty',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    style: Styles.textStyle20.copyWith(
                       fontWeight: FontWeight.w700,
                       color: Colors.grey.shade800,
-                      letterSpacing: -0.5,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'Browse our collection and discover amazing books',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    style: Styles.textStyle14.copyWith(
                       color: Colors.grey.shade500,
                       letterSpacing: 0.2,
                     ),
@@ -76,15 +76,12 @@ class _CartViewBodyState extends State<CartViewBody> {
             // ← REMOVED the Padding wrapper
             children: [
               // Modern Header - with padding
-              HeaderSection(itemsCount: state.cart!.items!.length),
+              HeaderSection(itemsCount: state.cart!.items.length),
               // Cart Items List - with padding
-              CartItemsSection(items: state.cart!.items!),
+              CartItemsSection(items: state.cart!.items),
               // Premium Checkout Section - FULL WIDTH (no padding wrapper)
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: CartCheckoutSection(
-                  totalAmount: getTotalAmount(state.cart!.items),
-                ),
+              CartCheckoutSection(
+                totalAmount: getTotalAmount(state.cart!.items),
               ),
             ],
           );

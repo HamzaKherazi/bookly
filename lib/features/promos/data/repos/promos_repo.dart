@@ -1,4 +1,4 @@
-import 'package:bookly/core/errors/errors.dart';
+import 'package:bookly/core/failures/errors.dart';
 import 'package:bookly/features/promos/data/models/promo_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -8,7 +8,7 @@ class PromosRepo {
 
   PromosRepo(this.supabase);
 
-  Future<Either<Error, List<PromoModel>>> getAllPromos() async {
+  Future<Either<Failure, List<PromoModel>>> getAllPromos() async {
     try {
       final data = await supabase
           .from('promos')
@@ -27,7 +27,7 @@ class PromosRepo {
       final promos = data.map((json) => PromoModel.fromJson(json)).toList();
       return right(promos);
     } catch (e) {
-      return left(SupabaseError('Failed to fetch promos'));
+      return left(SupabaseFailure('Failed to fetch promos'));
     }
   }
 }

@@ -13,8 +13,8 @@ final class BookDetailsSuccess extends BookDetailsState {
   BookDetailsSuccess({required this.bookDetails});
 }
 
-final class BookDetailsError extends BookDetailsState {
+final class BookDetailsFailure extends BookDetailsState {
   final String errMessage;
 
-  BookDetailsError(this.errMessage);
+  BookDetailsFailure(this.errMessage);
 }

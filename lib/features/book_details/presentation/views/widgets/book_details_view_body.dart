@@ -65,7 +65,7 @@ class BookDetailsViewBody extends StatelessWidget {
                       return const SizedBox();
                     },
                     listener: (context, state) {
-                      if (state is ReviewsError) {
+                      if (state is ReviewsFailure) {
                         showSnackBar(context, title: state.errMessage);
                       }
                     },
@@ -94,7 +94,7 @@ class BookDetailsViewBody extends StatelessWidget {
         return const SizedBox();
       },
       listener: (context, state) {
-        if (state is BookDetailsError) {
+        if (state is BookDetailsFailure) {
           showSnackBar(context, title: state.errMessage);
         }
       },

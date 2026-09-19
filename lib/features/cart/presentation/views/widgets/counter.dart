@@ -32,7 +32,7 @@ class _CounterState extends State<Counter> {
             });
             BlocProvider.of<CartCubit>(
               context,
-            ).changeQuantity(widget.cartItemId, counter);
+            ).updateQuantity(widget.cartItemId, counter);
           },
           constraints: const BoxConstraints(),
           padding: EdgeInsets.zero,
@@ -59,7 +59,7 @@ class _CounterState extends State<Counter> {
             });
             BlocProvider.of<CartCubit>(
               context,
-            ).changeQuantity(widget.cartItemId, counter);
+            ).updateQuantity(widget.cartItemId, counter);
           },
           constraints: const BoxConstraints(),
           padding: EdgeInsets.zero,
