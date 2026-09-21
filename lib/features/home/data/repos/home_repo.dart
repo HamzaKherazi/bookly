@@ -36,9 +36,9 @@ class HomeRepo {
           .map((json) => BookPreviewModel.fromJson(json))
           .toList();
 
-      return Right(books);
+      return right(books);
     } catch (e) {
-      return Left(SupabaseFailure(e.toString()));
+      return left(SupabaseFailure(e.toString()));
     }
   }
 }

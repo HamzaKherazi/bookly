@@ -1,9 +1,10 @@
-import 'package:bookly/constants.dart';
+import 'package:bookly/core/app_responsive/app_responsive.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/core/models/book_preview_model.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:bookly/core/widgets/book_cover.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class ExploreBookItem extends StatelessWidget {
@@ -18,7 +19,7 @@ class ExploreBookItem extends StatelessWidget {
         ).push('${AppRouter.bookDetailsView}/${book.bookId}');
       },
       child: Container(
-        padding: const EdgeInsets.all(12),
+        padding: EdgeInsets.all(13.h),
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -52,20 +53,22 @@ class ExploreBookItem extends StatelessWidget {
                   child: Text(
                     book.category,
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 11.sp,
                       fontWeight: FontWeight.w600,
                       color: const Color.fromARGB(255, 135, 98, 11),
                       fontFamily: 'Inter',
                       letterSpacing: 0.3,
                     ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                const SizedBox(height: 6),
+                SizedBox(height: AppResponsive.height(context) * 0.012),
 
                 // Book Title
                 Text(
                   book.title,
                   style: Styles.textStyle14.copyWith(
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.grey[800],
                     height: 1.1,
@@ -73,13 +76,13 @@ class ExploreBookItem extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 2),
+                SizedBox(height: 6.h),
 
                 // Author
                 Text(
                   book.author,
                   style: Styles.textStyle14.copyWith(
-                    fontSize: 12,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
                     color: Colors.grey[600],
                     height: 1.2,
@@ -87,7 +90,7 @@ class ExploreBookItem extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 6),
+                SizedBox(height: 6.h),
 
                 // Rating Row
                 Row(
@@ -95,16 +98,16 @@ class ExploreBookItem extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.star_rounded,
                           color: Color(0xFFFFC107),
-                          size: 16,
+                          size: 16.sp,
                         ),
-                        const SizedBox(width: 3),
+                        SizedBox(width: 3.w),
                         Text(
                           book.averageRating.toStringAsFixed(1),
                           style: Styles.textStyle14.copyWith(
-                            fontSize: 12,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w600,
                             color: Colors.grey[800],
                           ),
@@ -112,7 +115,7 @@ class ExploreBookItem extends StatelessWidget {
                         Text(
                           ' (${book.ratingCount})',
                           style: Styles.textStyle14.copyWith(
-                            fontSize: 10,
+                            fontSize: 10.sp,
                             fontWeight: FontWeight.w400,
                             color: Colors.grey[500],
                           ),
@@ -123,7 +126,7 @@ class ExploreBookItem extends StatelessWidget {
                     Text(
                       '${book.price.toStringAsFixed(2)} \$',
                       style: Styles.textStyle14.copyWith(
-                        fontSize: 14,
+                        fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
                         color: Colors.grey[500],
                       ),
@@ -135,41 +138,12 @@ class ExploreBookItem extends StatelessWidget {
 
             // Book Cover Image (overlapping from top)
             Positioned(
-              top: -55,
-              left: 20,
-              right: 20,
-              child: Container(
-                height: 170,
-                width: 120,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.15),
-                      blurRadius: 8,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: book.imageUrl == null
-                    ? ClipRRect(
-                        borderRadius: BorderRadiusGeometry.circular(12),
-                        child: Image.asset(
-                          kDefaultBookImage,
-                          fit: BoxFit.cover,
-                        ),
-                      )
-                    : ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: CachedNetworkImage(
-                          imageUrl: book.imageUrl!,
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) =>
-                              Image.asset(kDefaultBookImage, fit: BoxFit.cover),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error, color: kPrimaryColor),
-                        ),
-                      ),
+              top: -60.h - AppResponsive.height(context) * 0.02,
+              left: 20.w,
+              right: 20.w,
+              child: SizedBox(
+                height: AppResponsive.height(context) * 0.173,
+                child: BookCover(imgUrl: book.imageUrl),
               ),
             ),
           ],

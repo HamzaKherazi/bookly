@@ -1,6 +1,8 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/explore/data/models/category_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoryItem extends StatelessWidget {
   final CategoryModel category;
@@ -39,8 +41,8 @@ class CategoryItem extends StatelessWidget {
         ),
         child: Text(
           category.name,
-          style: TextStyle(
-            fontSize: 13,
+          style: Styles.textStyle14.copyWith(
+            fontSize: 13.sp,
             fontWeight: FontWeight.w500,
             color: isSelected ? Colors.white : Colors.grey[700],
           ),

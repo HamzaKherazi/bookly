@@ -1,8 +1,10 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/app_responsive/app_responsive.dart';
 import 'package:bookly/features/home/presentation/views/widgets/best_seller_list_view.dart';
 import 'package:bookly/features/home/presentation/views/widgets/promos_section.dart';
 import 'package:bookly/features/home/presentation/views/widgets/new_arrivals_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -11,7 +13,7 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.only(left: 16),
+        padding: EdgeInsets.only(left: 16.h),
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
@@ -20,16 +22,16 @@ class HomeViewBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 40),
+                  SizedBox(height: AppResponsive.height(context) * 0.04),
 
                   NewArrivalsSection(),
 
-                  const SizedBox(height: 40),
+                  SizedBox(height: AppResponsive.height(context) * 0.04),
 
                   Text(
                     'Best Seller',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 17.sp,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w600,
                       color: kTextColor1,
@@ -39,8 +41,10 @@ class HomeViewBody extends StatelessWidget {
                 ],
               ),
             ),
-            SliverToBoxAdapter(child: BestSelerListView()),
-            SliverToBoxAdapter(child: SizedBox(height: 70)),
+            SliverToBoxAdapter(child: BestSellerListView()),
+            SliverToBoxAdapter(
+              child: SizedBox(height: AppResponsive.height(context) * 0.11),
+            ),
           ],
         ),
       ),

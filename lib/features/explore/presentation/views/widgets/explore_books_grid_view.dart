@@ -1,4 +1,5 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/app_responsive/app_responsive.dart';
 import 'package:bookly/core/helpers/show_snack_bar.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/core/widgets/custom_loading_indicator.dart';
@@ -6,6 +7,7 @@ import 'package:bookly/features/explore/presentation/view_models/books_cubit/boo
 import 'package:bookly/features/explore/presentation/views/widgets/explore_book_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ExploreBooksGridView extends StatelessWidget {
   const ExploreBooksGridView({super.key});
@@ -25,12 +27,12 @@ class ExploreBooksGridView extends StatelessWidget {
           }
           return GridView.builder(
             physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.only(top: 50),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            padding: EdgeInsets.only(top: AppResponsive.height(context) * 0.08),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 0.75,
               crossAxisSpacing: 16,
-              mainAxisSpacing: 65,
+              mainAxisSpacing: AppResponsive.height(context) * 0.1,
             ),
             itemCount: state.books.length,
             itemBuilder: (context, index) {

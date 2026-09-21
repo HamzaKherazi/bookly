@@ -1,10 +1,12 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/app_responsive/app_responsive.dart';
 import 'package:bookly/core/models/book_preview_model.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/book_details/presentation/views/widgets/book_rating.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class BookListViewItem extends StatelessWidget {
@@ -32,7 +34,8 @@ class BookListViewItem extends StatelessWidget {
           ],
         ),
 
-        height: 140,
+        height: AppResponsive.height(context) * 0.18,
+
         child: Row(
           children: [
             AspectRatio(
@@ -54,7 +57,7 @@ class BookListViewItem extends StatelessWidget {
                       ),
                     ),
             ),
-            SizedBox(width: 30),
+            SizedBox(width: 30.w),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,22 +68,27 @@ class BookListViewItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(
-                      'The Sealed Nectar',
-                      style: Styles.textStyle18.copyWith(
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w500,
+                      book.title,
+                      style: Styles.textStyle14.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[800],
+                        height: 1.1,
                       ),
-                      maxLines: 2,
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   const SizedBox(height: 3),
                   Text(
-                    'Mubarakfuri ',
-                    style: Styles.textStyle16.copyWith(
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w500,
+                    book.author,
+                    style: Styles.textStyle14.copyWith(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey[600],
+                      height: 1.2,
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 5),
 
@@ -95,7 +103,7 @@ class BookListViewItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(4),
                     ),
                     child: Text(
-                      'Islamic',
+                      book.category,
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
@@ -109,7 +117,7 @@ class BookListViewItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '19.99 \$',
+                        '${book.price} \$',
                         style: Styles.textStyle16.copyWith(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w600,
@@ -118,7 +126,10 @@ class BookListViewItem extends StatelessWidget {
                       Spacer(),
                       Padding(
                         padding: const EdgeInsets.only(right: 8),
-                        child: BookRating(avgRating: 4.8, ratingCount: 100),
+                        child: BookRating(
+                          avgRating: book.averageRating,
+                          ratingCount: book.ratingCount,
+                        ),
                       ),
                     ],
                   ),

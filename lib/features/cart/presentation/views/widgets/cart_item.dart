@@ -1,4 +1,5 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/app_responsive/app_responsive.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/cart/data/models/cart_item_model.dart';
@@ -7,6 +8,7 @@ import 'package:bookly/features/cart/presentation/views/widgets/counter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class CartItem extends StatelessWidget {
@@ -35,7 +37,7 @@ class CartItem extends StatelessWidget {
           ],
         ),
 
-        height: 135,
+        height: AppResponsive.height(context) * 0.16,
 
         child: Row(
           children: [
@@ -68,25 +70,27 @@ class CartItem extends StatelessWidget {
                 children: [
                   Text(
                     cartItem.book!.title,
-                    maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: Styles.textStyle16,
+                    style: Styles.textStyle16.copyWith(fontSize: 13.sp),
                   ),
 
-                  const SizedBox(height: 2),
+                  SizedBox(height: 2.h),
 
                   Text(
                     cartItem.book!.author,
                     style: Styles.textStyle14.copyWith(
+                      overflow: TextOverflow.ellipsis,
+                      fontSize: 12.sp,
                       fontFamily: 'Inter',
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
 
-                  const SizedBox(height: 16),
+                  SizedBox(height: 6.h),
                   Text(
                     '${cartItem.book!.price.toStringAsFixed(2)} \$',
-                    style: Styles.textStyle16.copyWith(
+                    style: Styles.textStyle14.copyWith(
+                      fontSize: 13.sp,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w500,
                     ),
@@ -104,10 +108,10 @@ class CartItem extends StatelessWidget {
                       context,
                     ).removeItem(cartItem.cartItemId);
                   },
-                  icon: Icon(Icons.close, size: 20, color: Colors.black54),
+                  icon: Icon(Icons.close, size: 20.sp, color: Colors.black54),
                 ),
 
-                SizedBox(height: 10),
+                SizedBox(height: 10.h),
 
                 Counter(
                   cartItemId: cartItem.cartItemId,

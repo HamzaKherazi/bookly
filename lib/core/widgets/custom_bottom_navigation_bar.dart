@@ -2,40 +2,33 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-/// margin
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-double kMargin = 14.0;
+/// margin
+double kMargin = 14.0.w;
 
 /// bottom bar height
+double kHeight = 62.0.h;
 
-double kHeight = 62.0;
-
-/// notch circle circle radius
-
-const double kCircleRadius = 26.0;
+/// notch circle radius
+double kCircleRadius = 26.0.r;
 
 /// margin between notch and circle
-
-const double kCircleMargin = 8.0;
+double kCircleMargin = 8.0.w;
 
 /// top radius
-
-double kTopRadius = 10.0;
+double kTopRadius = 10.0.r;
 
 /// top margin
-
-const double kTopMargin = 10.0;
+double kTopMargin = 10.0.h;
 
 /// bottom radius
-
-double kBottomRadius = 28.0;
+double kBottomRadius = 28.0.r;
 
 /// bottom bar item size
-
-const double kIconSize = 24.0;
+double kIconSize = 24.0.sp;
 
 /// Pi value
-
 const double kPi = 3.1415926535897932;
 
 class BottomBarActiveItem extends StatelessWidget {
@@ -204,7 +197,7 @@ class BottomBarInActiveItem extends StatelessWidget {
         color: Colors.transparent,
 
         child: SizedBox.fromSize(
-          size: const Size(kCircleRadius * 2, kCircleRadius * 2),
+          size: Size(kCircleRadius * 2, kCircleRadius * 2),
 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -360,9 +353,9 @@ class BottomBarPainter extends CustomPainter {
         radius: Radius.circular(kTopRadius),
       )
       ..relativeArcToPoint(
-        const Offset((kCircleRadius + kCircleMargin) * 2, 0.0),
+        Offset((kCircleRadius + kCircleMargin) * 2, 0.0),
 
-        radius: const Radius.circular(kCircleRadius + kCircleMargin),
+        radius: Radius.circular(kCircleRadius + kCircleMargin),
 
         clockwise: false,
       )
@@ -589,7 +582,7 @@ class CustomNavigationBottomBar extends StatefulWidget {
 
     this.removeMargins = false,
 
-    this.bottomBarHeight = 62.0,
+    this.bottomBarHeight = 62,
 
     this.elevation = 5.0,
 
@@ -647,25 +640,29 @@ class _CustomNavigationBottomBarState extends State<CustomNavigationBottomBar>
       duration: Duration(milliseconds: widget.durationInMilliSeconds),
     );
 
-    kHeight = (widget.bottomBarHeight >= kBottomNavigationBarHeight)
-        ? widget.removeMargins
-              ? widget.bottomBarHeight + 10.0
-              : widget.bottomBarHeight
-        : widget.removeMargins
-        ? kHeight + 10
-        : kHeight;
-
-    kTopRadius = widget.showTopRadius ? kTopRadius : 0;
-
-    kBottomRadius = widget.showBottomRadius ? kBottomRadius : 0;
-
-    kMargin = widget.removeMargins ? 0 : 14.0;
+    // Update these with responsive values
+    kHeight = widget.bottomBarHeight;
+    kTopRadius = widget.showTopRadius ? 10.0.r : 0;
+    kBottomRadius = widget.showBottomRadius ? widget.kBottomRadius : 0;
+    kMargin = widget.removeMargins ? 0 : 14.0.w;
 
     widget.notchBottomBarController.addListener(() {
       _animationController.reset();
-
       _animationController.forward();
     });
+  }
+
+  @override
+  void didUpdateWidget(CustomNavigationBottomBar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.bottomBarHeight != widget.bottomBarHeight) {
+      kHeight = widget.bottomBarHeight;
+    }
+
+    kTopRadius = widget.showTopRadius ? 10.0.r : 0;
+    kBottomRadius = widget.showBottomRadius ? widget.kBottomRadius : 0;
+    kMargin = widget.removeMargins ? 0 : 14.0.w;
   }
 
   @override

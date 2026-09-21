@@ -7,8 +7,8 @@ import 'package:bookly/features/home/presentation/views/widgets/book_listview_it
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BestSelerListView extends StatelessWidget {
-  const BestSelerListView({super.key});
+class BestSellerListView extends StatelessWidget {
+  const BestSellerListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,6 @@ class BestSelerListView extends StatelessWidget {
         listener: (context, state) {
           if (state is BestSellerFailure) {
             showSnackBar(context, title: state.errMessage);
-            print(state.errMessage);
           }
         },
       ),

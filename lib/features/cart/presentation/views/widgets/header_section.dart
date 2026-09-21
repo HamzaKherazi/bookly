@@ -1,7 +1,9 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/cart/presentation/view_models/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HeaderSection extends StatelessWidget {
   const HeaderSection({super.key, required this.itemsCount});
@@ -39,18 +41,18 @@ class HeaderSection extends StatelessWidget {
               ),
               child: Text(
                 '$itemsCount items',
-                style: const TextStyle(
+                style: Styles.textStyle14.copyWith(
                   color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12.sp,
                   letterSpacing: 0.3,
                 ),
               ),
             ),
 
             Container(
-              height: 40,
-              width: 40,
+              height: 40.h,
+              width: 40.w,
               decoration: BoxDecoration(
                 color: Colors.grey.shade50,
                 borderRadius: BorderRadius.circular(10),
@@ -59,7 +61,7 @@ class HeaderSection extends StatelessWidget {
               child: IconButton(
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(),
-                iconSize: 20,
+                iconSize: 20.sp,
                 onPressed: () {
                   context.read<CartCubit>().removeAllItems();
                 },

@@ -1,6 +1,5 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
-import 'package:bookly/core/utils/service_locator.dart';
 import 'package:bookly/features/cart/presentation/views/cart_view.dart';
 import 'package:bookly/features/favorites/favorites_view.dart';
 import 'package:bookly/features/explore/presentation/views/explore_view.dart';
@@ -8,8 +7,8 @@ import 'package:bookly/core/widgets/custom_bottom_navigation_bar.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_view.dart';
 import 'package:bookly/features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MainViewBody extends StatefulWidget {
   const MainViewBody({super.key, this.initialIndex = 0});
@@ -43,81 +42,91 @@ class _MainViewBodyState extends State<MainViewBody> {
     return Stack(
       children: [
         IndexedStack(index: _currentIndex, children: _pages),
-
         Positioned(
           left: 0,
           right: 0,
           bottom: 0,
           child: CustomNavigationBottomBar(
             notchBottomBarController: _controller,
-            color: kPrimaryColor, //bottom bar background color
+            color: kPrimaryColor,
             notchColor: kPrimaryColor,
             showLabel: false,
             showShadow: true,
-            shadowElevation: 12,
-            bottomBarHeight: 60,
-            kBottomRadius: 24,
-            kIconSize: 24,
-
+            shadowElevation: 12.h,
+            bottomBarHeight: 60.h, // Now responsive
+            kBottomRadius: 24.r, // Now responsive
+            kIconSize: 24.sp, // Now responsive
             bottomBarItems: [
               BottomBarItem(
-                inActiveItem: const Icon(
+                inActiveItem: Icon(
                   Icons.home_outlined,
                   color: Colors.white,
+                  size: 24.sp,
                 ),
-                activeItem: const Icon(Icons.home_rounded, color: Colors.white),
+                activeItem: Icon(
+                  Icons.home_rounded,
+                  color: Colors.white,
+                  size: 24.sp,
+                ),
               ),
               BottomBarItem(
-                inActiveItem: const Icon(
+                inActiveItem: Icon(
                   Icons.favorite_border,
                   color: Colors.white,
+                  size: 24.sp,
                 ),
-                activeItem: const Icon(Icons.favorite, color: Colors.white),
+                activeItem: Icon(
+                  Icons.favorite,
+                  color: Colors.white,
+                  size: 24.sp,
+                ),
               ),
               BottomBarItem(
-                inActiveItem: const Icon(
+                inActiveItem: Icon(
                   Icons.menu_book_outlined,
                   color: Colors.white,
+                  size: 24.sp,
                 ),
-                activeItem: const Icon(Icons.menu_book, color: Colors.white),
+                activeItem: Icon(
+                  Icons.menu_book,
+                  color: Colors.white,
+                  size: 24.sp,
+                ),
               ),
               BottomBarItem(
-                inActiveItem: const Icon(
+                inActiveItem: Icon(
                   Icons.shopping_cart_outlined,
                   color: Colors.white,
+                  size: 24.sp,
                 ),
-                activeItem: const Icon(
+                activeItem: Icon(
                   Icons.shopping_cart,
                   color: Colors.white,
+                  size: 24.sp,
                 ),
               ),
               BottomBarItem(
-                inActiveItem: const Icon(
+                inActiveItem: Icon(
                   Icons.person_outline,
                   color: Colors.white,
+                  size: 24.sp,
                 ),
-                activeItem: const Icon(Icons.person, color: Colors.white),
+                activeItem: Icon(
+                  Icons.person,
+                  color: Colors.white,
+                  size: 24.sp,
+                ),
               ),
             ],
-
             onTap: (index) async {
               if (index == 3) {
                 GoRouter.of(context).push(AppRouter.cartView);
-                final response = await getIt
-                    .get<SupabaseClient>()
-                    .auth
-                    //REMOVE_BEFORE_PRODUCTION
-                    .signInWithPassword(
-                      email: 'xofeneh877@fidhost.com',
-                      password: '1234',
-                    );
+                // ... your auth code
                 return;
               }
-
               setState(() {
                 _currentIndex = index;
               });
-
               _controller.jumpTo(index);
             },
           ),

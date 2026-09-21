@@ -1,6 +1,7 @@
 import 'package:bookly/core/helpers/show_snack_bar.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddReviewAndRatingSection extends StatefulWidget {
   const AddReviewAndRatingSection({super.key});
@@ -45,7 +46,10 @@ class _AddReviewAndRatingSectionState extends State<AddReviewAndRatingSection> {
         children: [
           Text(
             'Add Your Review',
-            style: Styles.textStyle16.copyWith(fontWeight: FontWeight.w600),
+            style: Styles.textStyle16.copyWith(
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           const SizedBox(height: 12),
 
@@ -54,33 +58,38 @@ class _AddReviewAndRatingSectionState extends State<AddReviewAndRatingSection> {
             children: [
               Text(
                 'Rating: ',
-                style: Styles.textStyle14.copyWith(color: Colors.grey.shade700),
+                style: Styles.textStyle14.copyWith(
+                  fontSize: 13.sp,
+                  color: Colors.grey.shade700,
+                ),
               ),
               ...List.generate(5, (index) {
-                return IconButton(
-                  onPressed: () {
+                return GestureDetector(
+                  onTap: () {
                     setState(() {
                       selectedStar = index + 1;
                       rating = selectedStar.toDouble();
                     });
                   },
-                  icon: Icon(
-                    index < selectedStar ? Icons.star : Icons.star_border,
-                    color: index < selectedStar
-                        ? Colors.amber
-                        : Colors.grey.shade400,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 4.w),
+                    child: Icon(
+                      index < selectedStar ? Icons.star : Icons.star_border,
+                      color: index < selectedStar
+                          ? Colors.amber
+                          : Colors.grey.shade400,
+                      size: 24.sp,
+                    ),
                   ),
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(),
-                  iconSize: 24,
                 );
               }),
               if (selectedStar > 0)
                 Padding(
-                  padding: const EdgeInsets.only(left: 3),
+                  padding: const EdgeInsets.only(left: 8),
                   child: Text(
                     '$selectedStar/5',
                     style: Styles.textStyle14.copyWith(
+                      fontSize: 13.sp,
                       color: Colors.grey.shade600,
                       fontWeight: FontWeight.w500,
                     ),
@@ -88,18 +97,21 @@ class _AddReviewAndRatingSectionState extends State<AddReviewAndRatingSection> {
                 ),
             ],
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12.h),
 
           // Review Text Field
           TextField(
+            style: Styles.textStyle14,
             controller: _reviewController,
             maxLines: 3,
             maxLength: 500,
             decoration: InputDecoration(
               hintText: 'Write your review here...',
               hintStyle: Styles.textStyle14.copyWith(
+                fontSize: 13.sp,
                 color: Colors.grey.shade400,
               ),
+
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
                 borderSide: BorderSide(color: Colors.grey.shade300),
@@ -117,7 +129,7 @@ class _AddReviewAndRatingSectionState extends State<AddReviewAndRatingSection> {
               contentPadding: const EdgeInsets.all(12),
             ),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12.h),
 
           // Submit Button
           SizedBox(
@@ -158,6 +170,7 @@ class _AddReviewAndRatingSectionState extends State<AddReviewAndRatingSection> {
               child: Text(
                 'Submit Review',
                 style: Styles.textStyle16.copyWith(
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w600,
                   color: Colors.white,
                 ),

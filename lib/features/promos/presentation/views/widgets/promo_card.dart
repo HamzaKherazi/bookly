@@ -2,6 +2,7 @@ import 'package:bookly/constants.dart';
 import 'package:bookly/features/home/presentation/views/main_view.dart';
 import 'package:bookly/features/promos/data/models/promo_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PromoCard extends StatelessWidget {
   const PromoCard({super.key, required this.promo});
@@ -9,7 +10,7 @@ class PromoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10),
+      margin: EdgeInsets.symmetric(horizontal: 10.w),
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 231, 188, 154),
 
@@ -26,7 +27,7 @@ class PromoCard extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 8.h),
         child: Row(
           children: [
             // TEXT
@@ -37,14 +38,14 @@ class PromoCard extends StatelessWidget {
                 children: [
                   Text(
                     promo.title,
-                    style: const TextStyle(
-                      fontSize: 18,
+                    style: TextStyle(
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Inter',
                       color: kTextColor1,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 12.h),
 
                   ElevatedButton(
                     onPressed: () {
@@ -64,21 +65,19 @@ class PromoCard extends StatelessWidget {
                     ),
                     child: Text(
                       promo.buttonText,
-                      style: TextStyle(fontFamily: 'Inter', fontSize: 14),
+                      style: TextStyle(fontFamily: 'Inter', fontSize: 13.sp),
                     ),
                   ),
                 ],
               ),
             ),
 
-            const SizedBox(width: 10),
-
             // ILLUSTRATION
             ClipRRect(
               borderRadius: BorderRadiusGeometry.circular(12),
               child: Image.network(
                 promo.imageUrl,
-                height: 90,
+                height: 90.h,
                 fit: BoxFit.cover,
               ),
             ),

@@ -15,7 +15,7 @@ class AlsoLikeBooksListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.only(right: 16),
-            child: BookCoverButton(imgUrl: ktestBook1, bookId: 1,),
+            child: BookCoverButton(imgUrl: ktestBook1, bookId: 1),
           );
         },
       ),

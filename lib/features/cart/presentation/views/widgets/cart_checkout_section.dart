@@ -5,6 +5,7 @@ import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/cart/presentation/view_models/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class CartCheckoutSection extends StatelessWidget {
@@ -53,7 +54,7 @@ class CartCheckoutSection extends StatelessWidget {
                       'Order total',
                       style: Styles.textStyle14.copyWith(
                         color: Colors.grey.shade600,
-                        fontSize: 12,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.w500,
                         letterSpacing: 0.6,
                       ),
@@ -61,16 +62,16 @@ class CartCheckoutSection extends StatelessWidget {
                     const SizedBox(height: 16),
                     Text(
                       '\$ ${totalAmount.toStringAsFixed(2)}',
-                      style: Styles.textStyle14.copyWith(
+                      style: Styles.textStyle20.copyWith(
                         fontWeight: FontWeight.w700,
                         color: kPrimaryColor,
-                        fontSize: 32,
+                        fontSize: 20.sp,
                         letterSpacing: -0.8,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 24),
+                 SizedBox(height: 24.h),
 
                 // Checkout Button
                 SizedBox(
@@ -87,7 +88,7 @@ class CartCheckoutSection extends StatelessWidget {
                     icon: Icons.arrow_forward_rounded,
                   ),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16.h),
               ],
             ),
           ),

@@ -1,12 +1,14 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButtonWithIcon extends StatelessWidget {
   const CustomButtonWithIcon({
     super.key,
     required this.onPressed,
-    required this.title, required this.icon,
+    required this.title,
+    required this.icon,
   });
 
   final void Function()? onPressed;
@@ -36,12 +38,13 @@ class CustomButtonWithIcon extends StatelessWidget {
             Text(
               title,
               style: Styles.textStyle18.copyWith(
+                fontSize: 15.sp,
                 color: kWhite,
                 letterSpacing: .5,
               ),
             ),
-            SizedBox(width: 30),
-            Icon(icon, size: 24, color: kWhite),
+            SizedBox(width: 30.w),
+            Icon(icon, size: 24.sp, color: kWhite),
           ],
         ),
       ),

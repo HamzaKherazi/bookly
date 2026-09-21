@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/app_responsive/app_responsive.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/explore/presentation/view_models/books_cubit/books_cubit.dart';
 import 'package:bookly/features/explore/presentation/view_models/categories_cubit/categories_cubit.dart';
@@ -9,6 +10,7 @@ import 'package:bookly/features/explore/presentation/views/widgets/explore_books
 import 'package:bookly/features/explore/presentation/views/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ExploreViewBody extends StatefulWidget {
   const ExploreViewBody({super.key});
@@ -37,14 +39,17 @@ class _ExploreViewBodyState extends State<ExploreViewBody> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Header Title
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Align(
             alignment: Alignment.center,
-            child: Text('Explore', style: Styles.textStyle22),
+            child: Text(
+              'Explore',
+              style: Styles.textStyle22.copyWith(color: kPrimaryColor),
+            ),
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: AppResponsive.height(context) * 0.02),
 
         // Search Bar
         SearchBarWithBorder(
@@ -56,11 +61,11 @@ class _ExploreViewBodyState extends State<ExploreViewBody> {
             });
           },
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: AppResponsive.height(context) * 0.02),
 
         // Categories List
         SizedBox(
-          height: 40,
+          height: 40.h,
           child: CategoriesListView(
             selectedIndex: _selectedIndex,
             onCategorySelected: _selectCategory,
@@ -75,7 +80,7 @@ class _ExploreViewBodyState extends State<ExploreViewBody> {
             },
           ),
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: AppResponsive.height(context) * 0.02),
 
         // Books Grid
         Expanded(
@@ -94,7 +99,7 @@ class _ExploreViewBodyState extends State<ExploreViewBody> {
             ),
           ),
         ),
-        const SizedBox(height: 70),
+        SizedBox(height: 70.h),
       ],
     );
   }

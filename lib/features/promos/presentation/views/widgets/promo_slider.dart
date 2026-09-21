@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:bookly/features/promos/data/models/promo_model.dart';
 import 'package:bookly/features/promos/presentation/views/widgets/promo_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PromoSlider extends StatefulWidget {
   const PromoSlider({super.key, required this.promos});
@@ -45,7 +46,7 @@ class _PromoSliderState extends State<PromoSlider> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150,
+      height: 130.h,
       child: PageView.builder(
         controller: _controller,
         itemCount: widget.promos.length,

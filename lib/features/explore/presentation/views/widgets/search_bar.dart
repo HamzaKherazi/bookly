@@ -1,5 +1,7 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SearchBarWithBorder extends StatefulWidget {
   const SearchBarWithBorder({super.key, this.onChanged});
@@ -15,21 +17,21 @@ class _SearchBarWithBorderState extends State<SearchBarWithBorder> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 17.h),
       child: TextField(
         onChanged: widget.onChanged,
         controller: _controller,
         decoration: InputDecoration(
           hintText: 'Search for books...',
-          hintStyle: TextStyle(
+          hintStyle: Styles.textStyle14.copyWith(
             color: Colors.grey[400],
-            fontSize: 14,
+            fontSize: 14.sp,
             fontWeight: FontWeight.w400,
           ),
-          prefixIcon: Icon(Icons.search, color: Colors.grey[400], size: 22),
-          contentPadding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 14,
+          prefixIcon: Icon(Icons.search, color: Colors.grey[400], size: 22.sp),
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 16.h,
+            vertical: 14.h,
           ),
           suffixIcon: IconButton(
             onPressed: () {

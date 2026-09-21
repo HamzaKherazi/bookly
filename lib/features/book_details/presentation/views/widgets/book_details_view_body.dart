@@ -8,7 +8,6 @@ import 'package:bookly/features/book_details/presentation/views/helpers/checkBoo
 import 'package:bookly/features/book_details/presentation/views/widgets/reviews_section.dart';
 import 'package:bookly/features/book_details/presentation/views/widgets/add_review_and_rating.dart';
 import 'package:bookly/features/cart/presentation/view_models/cart_cubit/cart_cubit.dart';
-import 'package:bookly/features/favorites/presentation/views/widgets/favorite_book_item.dart';
 import 'package:bookly/features/home/presentation/views/widgets/also_like_books_section.dart';
 import 'package:bookly/features/book_details/presentation/views/widgets/book_details_section.dart';
 import 'package:bookly/core/widgets/custom_button_with_icon.dart';
