@@ -39,12 +39,14 @@ class CategoryItem extends StatelessWidget {
                 ]
               : null,
         ),
-        child: Text(
-          category.name,
-          style: Styles.textStyle14.copyWith(
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w500,
-            color: isSelected ? Colors.white : Colors.grey[700],
+        child: Center(
+          child: Text(
+            category.name,
+            style: Styles.textStyle14.copyWith(
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w500,
+              color: isSelected ? Colors.white : Colors.grey[700],
+            ),
           ),
         ),
       ),

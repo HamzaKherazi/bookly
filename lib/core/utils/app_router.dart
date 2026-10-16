@@ -1,5 +1,6 @@
 import 'package:bookly/features/about/presentation/views/about_view.dart';
 import 'package:bookly/features/book_request/presentation/views/book_request_view.dart';
+import 'package:bookly/features/cart/data/models/cart_item_model.dart';
 import 'package:bookly/features/cart/presentation/views/cart_view.dart';
 import 'package:bookly/features/book_details/presentation/views/book_details_view.dart';
 import 'package:bookly/features/home/presentation/views/main_view.dart';
@@ -39,11 +40,9 @@ abstract class AppRouter {
       // ),
       // GoRoute(path: mainView, builder: (context, state) => const MainView()),
       GoRoute(
-        path: '$bookDetailsView/:bookId',
+        path: bookDetailsView,
         builder: (context, state) {
-          final bookId = int.parse(state.pathParameters['bookId']!);
-          
-          return BookDetailsView(bookId: bookId);
+          return BookDetailsView(bookId: state.extra as int);
         },
       ),
       GoRoute(path: cartView, builder: (context, state) => const CartView()),
@@ -53,7 +52,13 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: orderSummaryView,
-        builder: (context, state) => const OrderSummaryView(),
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return OrderSummaryView(
+            items: data['items'] as List<CartItemModel>,
+            totalAmount: data['totalAmount'] as double,
+          );
+        },
       ),
       GoRoute(
         path: paymentView,

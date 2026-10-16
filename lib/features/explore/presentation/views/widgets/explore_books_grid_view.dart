@@ -7,7 +7,6 @@ import 'package:bookly/features/explore/presentation/view_models/books_cubit/boo
 import 'package:bookly/features/explore/presentation/views/widgets/explore_book_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ExploreBooksGridView extends StatelessWidget {
   const ExploreBooksGridView({super.key});

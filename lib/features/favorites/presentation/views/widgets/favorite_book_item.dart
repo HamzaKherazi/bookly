@@ -1,10 +1,8 @@
 import 'package:bookly/constants.dart';
-import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/core/widgets/book_cover.dart';
 import 'package:bookly/features/favorites/presentation/views/widgets/favorite_icon_button.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class FavoriteBookItem extends StatefulWidget {
   const FavoriteBookItem({super.key});
@@ -30,7 +28,6 @@ class _FavoriteBookItemState extends State<FavoriteBookItem> {
         child: _isVisible
             ? GestureDetector(
                 onTap: () {
-                  GoRouter.of(context).push(AppRouter.bookDetailsView);
                 },
                 child: Container(
                   height: 160,

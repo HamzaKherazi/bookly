@@ -44,7 +44,6 @@ class CartRepo {
             referencedTable: 'cart_items',
           )
           .maybeSingle();
-
       if (data == null) {
         return right(null);
       }

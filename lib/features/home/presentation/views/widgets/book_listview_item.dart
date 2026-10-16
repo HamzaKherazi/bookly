@@ -18,7 +18,7 @@ class BookListViewItem extends StatelessWidget {
       onTap: () {
         GoRouter.of(
           context,
-        ).push('${AppRouter.bookDetailsView}/${book.bookId}');
+        ).push(AppRouter.bookDetailsView, extra: book.bookId);
       },
       child: Container(
         decoration: BoxDecoration(

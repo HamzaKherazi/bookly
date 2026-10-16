@@ -19,9 +19,8 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(
-          context,
-        ).push('${AppRouter.bookDetailsView}/${cartItem.book!.bookId}');
+        GoRouter.of(context).push(AppRouter.bookDetailsView, extra: cartItem.book!.bookId);
+        
       },
       child: Container(
         decoration: BoxDecoration(

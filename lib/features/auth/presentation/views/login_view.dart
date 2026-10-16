@@ -17,7 +17,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return StatusBarWrapper(
       color: kPrimaryColor,
-      
+
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
@@ -26,7 +26,7 @@ class LoginView extends StatelessWidget {
               children: [
                 // Header
                 LogoSection(),
-      
+
                 // Card
                 Padding(
                   padding: const EdgeInsets.only(
@@ -51,11 +51,11 @@ class LoginView extends StatelessWidget {
                     child: Column(
                       children: [
                         const SizedBox(height: 16),
-      
+
                         LoginInputSection(),
-      
+
                         const SizedBox(height: 12),
-      
+
                         //Login Button
                         CustomButton(
                           title: 'Log in',
@@ -63,16 +63,16 @@ class LoginView extends StatelessWidget {
                             GoRouter.of(context).push(AppRouter.mainView);
                           },
                         ),
-      
+
                         const SizedBox(height: 24),
-      
+
                         OrDivider(),
-      
+
                         const SizedBox(height: 24),
-      
+
                         // Social Buttons
                         SocialMediaSection(),
-      
+
                         const SizedBox(height: 24),
                         AuthRedirectSection(
                           questionText: "Don't have an account?",

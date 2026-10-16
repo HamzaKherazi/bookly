@@ -82,6 +82,7 @@ class _CartViewBodyState extends State<CartViewBody> {
               // Premium Checkout Section - FULL WIDTH (no padding wrapper)
               CartCheckoutSection(
                 totalAmount: getTotalAmount(state.cart!.items),
+                items: state.cart!.items,
               ),
             ],
           );

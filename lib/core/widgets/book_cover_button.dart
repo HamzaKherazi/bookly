@@ -16,7 +16,7 @@ class BookCoverButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push('${AppRouter.bookDetailsView}/$bookId');
+        GoRouter.of(context).push(AppRouter.bookDetailsView, extra: bookId);
       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),

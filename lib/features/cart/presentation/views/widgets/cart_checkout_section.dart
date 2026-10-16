@@ -2,6 +2,7 @@ import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/widgets/custom_button_with_icon.dart';
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/cart/data/models/cart_item_model.dart';
 import 'package:bookly/features/cart/presentation/view_models/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,8 +10,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class CartCheckoutSection extends StatelessWidget {
-  const CartCheckoutSection({super.key, required this.totalAmount});
+  const CartCheckoutSection({
+    super.key,
+    required this.totalAmount,
+    required this.items,
+  });
   final double totalAmount;
+  final List<CartItemModel> items;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +77,7 @@ class CartCheckoutSection extends StatelessWidget {
                     ),
                   ],
                 ),
-                 SizedBox(height: 24.h),
+                SizedBox(height: 24.h),
 
                 // Checkout Button
                 SizedBox(
@@ -81,7 +87,10 @@ class CartCheckoutSection extends StatelessWidget {
                     onPressed: () async {
                       await BlocProvider.of<CartCubit>(context).saveCart();
                       if (context.mounted) {
-                        context.push(AppRouter.orderSummaryView);
+                        context.push(
+                          AppRouter.orderSummaryView,
+                          extra: {'items': items, 'totalAmount': totalAmount},
+                        );
                       }
                     },
                     title: 'Checkout',

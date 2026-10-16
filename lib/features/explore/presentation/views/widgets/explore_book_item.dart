@@ -14,9 +14,10 @@ class ExploreBookItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        
         GoRouter.of(
           context,
-        ).push('${AppRouter.bookDetailsView}/${book.bookId}');
+        ).push(AppRouter.bookDetailsView, extra: book.bookId);
       },
       child: Container(
         padding: EdgeInsets.all(13.h),
