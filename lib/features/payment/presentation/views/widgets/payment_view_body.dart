@@ -1,5 +1,6 @@
 import 'package:bookly/core/helpers/show_snack_bar.dart';
 import 'package:bookly/core/widgets/custom_button.dart';
+import 'package:bookly/features/payment/data/models/city_model.dart';
 import 'package:bookly/features/payment/presentation/views/helper/show_success_dialog.dart';
 import 'package:bookly/features/payment/presentation/views/widgets/card_fields_widget.dart';
 import 'package:bookly/features/payment/presentation/views/widgets/divider_widget.dart';
@@ -30,17 +31,16 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
   // Controllers
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _streetController = TextEditingController();
-  final TextEditingController _cityController = TextEditingController();
   final TextEditingController _zipController = TextEditingController();
   final TextEditingController _cardController = TextEditingController();
   final TextEditingController _expiryController = TextEditingController();
   final TextEditingController _cvvController = TextEditingController();
+  CityModel? _selectedCity;
 
   @override
   void dispose() {
     _nameController.dispose();
     _streetController.dispose();
-    _cityController.dispose();
     _zipController.dispose();
     _cardController.dispose();
     _expiryController.dispose();
@@ -71,8 +71,10 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
             ShippingFieldsWidget(
               nameController: _nameController,
               streetController: _streetController,
-              cityController: _cityController,
               zipController: _zipController,
+              selectedCity: _selectedCity,
+              onCityChanged: (city) => setState(() => _selectedCity = city),
+              
             ),
             const SizedBox(height: 24),
 

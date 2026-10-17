@@ -102,7 +102,7 @@ class OrderSummarySection extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  deliveryPrice.toStringAsFixed(2),
+                  deliveryPrice == 0 ? '-' : deliveryPrice.toStringAsFixed(2),
                   style: Styles.textStyle14.copyWith(
                     color: kTextColor1,
                     fontWeight: FontWeight.w500,
