@@ -172,4 +172,30 @@ class CartRepo {
       return Left(SupabaseFailure(e.toString()));
     }
   }
+
+  Future<Either<Failure, void>> deleteCart() async {
+    try {
+      final userId = supabase.auth.currentUser!.id;
+
+      // 1. Get the authenticated user's cart
+      final cart = await supabase
+          .from('carts')
+          .select('cart_id')
+          .eq('user_id', userId)
+          .maybeSingle();
+
+      if (cart != null) {
+        final cartId = cart['cart_id'];
+        // 2. Delete all items in the cart
+        await supabase.from('cart_items').delete().eq('cart_id', cartId);
+
+        // 3. Delete the cart
+        await supabase.from('carts').delete().eq('cart_id', cartId);
+      }
+
+      return const Right(null);
+    } catch (e) {
+      return Left(SupabaseFailure(e.toString()));
+    }
+  }
 }

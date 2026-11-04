@@ -1,3 +1,4 @@
+import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 void showSnackBar(
@@ -18,9 +19,9 @@ void showSnackBar(
           Expanded(
             child: Text(
               title,
-              style: const TextStyle(
+              style: Styles.textStyle14.copyWith(
                 color: Colors.white,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),

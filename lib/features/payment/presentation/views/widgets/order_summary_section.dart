@@ -1,22 +1,17 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/cart/presentation/view_models/cart_cubit/cart_cubit.dart';
+import 'package:bookly/features/cart/presentation/views/helper/get_total_amount.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OrderSummarySection extends StatelessWidget {
-  final String orderId;
   final double deliveryPrice;
 
-  const OrderSummarySection({
-    super.key,
-    required this.orderId,
-    this.deliveryPrice = 0,
-  });
+  const OrderSummarySection({super.key, this.deliveryPrice = 0});
 
   @override
   Widget build(BuildContext context) {
-    final subTotal = 1000.0; // Example subtotal, replace with actual value
-    final grandTotal = subTotal + deliveryPrice;
-
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -44,24 +39,6 @@ class OrderSummarySection extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 4,
-                ),
-                decoration: BoxDecoration(
-                  color: kPrimaryColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  '#$orderId',
-                  style: Styles.textStyle14.copyWith(
-                    color: kPrimaryColor,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
             ],
           ),
           const SizedBox(height: 16),
@@ -78,12 +55,18 @@ class OrderSummarySection extends StatelessWidget {
                     color: kTextColor1.withOpacity(0.6),
                   ),
                 ),
-                Text(
-                  subTotal.toStringAsFixed(2),
-                  style: Styles.textStyle14.copyWith(
-                    color: kTextColor1,
-                    fontWeight: FontWeight.w500,
-                  ),
+                BlocBuilder<CartCubit, CartState>(
+                  builder: (context, state) {
+                    return Text(
+                      state is CartSuccess
+                          ? getTotalAmount(state.cart!.items).toStringAsFixed(2)
+                          : '0.00',
+                      style: Styles.textStyle14.copyWith(
+                        color: kTextColor1,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -125,12 +108,18 @@ class OrderSummarySection extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
-                grandTotal.toStringAsFixed(2),
-                style: Styles.textStyle20.copyWith(
-                  color: kPrimaryColor,
-                  fontWeight: FontWeight.bold,
-                ),
+              BlocBuilder<CartCubit, CartState>(
+                builder: (context, state) {
+                  return Text(
+                    state is CartSuccess
+                        ? getTotalAmount(state.cart!.items).toStringAsFixed(2)
+                        : '0.00',
+                    style: Styles.textStyle20.copyWith(
+                      color: kPrimaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
+                },
               ),
             ],
           ),

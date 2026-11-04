@@ -1,12 +1,14 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/cart/presentation/view_models/cart_cubit/cart_cubit.dart';
+import 'package:bookly/features/cart/presentation/views/helper/get_total_amount.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class CheckoutSection extends StatelessWidget {
-  const CheckoutSection({super.key, required this.totalPrice});
-  final double totalPrice;
+  const CheckoutSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,14 +63,20 @@ class CheckoutSection extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 2),
-                    Text(
-                      '\$ ${totalPrice.toStringAsFixed(2)}',
-                      style: Styles.textStyle24.copyWith(
-                        fontWeight: FontWeight.w800,
-                        color: kPrimaryColor,
-                        fontSize: 26,
-                        height: 1,
-                      ),
+                    BlocBuilder<CartCubit, CartState>(
+                      builder: (context, state) {
+                        return Text(
+                          state is CartSuccess
+                              ? '\$ ${getTotalAmount(state.cart!.items).toStringAsFixed(2)}'
+                              : '\$0.00',
+                          style: Styles.textStyle24.copyWith(
+                            fontWeight: FontWeight.w800,
+                            color: kPrimaryColor,
+                            fontSize: 26,
+                            height: 1,
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),

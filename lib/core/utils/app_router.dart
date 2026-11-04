@@ -1,6 +1,8 @@
 import 'package:bookly/features/about/presentation/views/about_view.dart';
+import 'package:bookly/features/auth/presentation/views/login_view.dart';
+import 'package:bookly/features/auth/presentation/views/signup_view.dart';
 import 'package:bookly/features/book_request/presentation/views/book_request_view.dart';
-import 'package:bookly/features/cart/data/models/cart_item_model.dart';
+import 'package:bookly/features/cart/data/models/cart_model.dart';
 import 'package:bookly/features/cart/presentation/views/cart_view.dart';
 import 'package:bookly/features/book_details/presentation/views/book_details_view.dart';
 import 'package:bookly/features/home/presentation/views/main_view.dart';
@@ -10,6 +12,7 @@ import 'package:bookly/features/payment/presentation/views/payment_view.dart';
 import 'package:bookly/features/profile/presentation/views/change_password_view.dart';
 import 'package:bookly/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:bookly/features/orders_history/presentation/views/orders_history_view.dart';
+import 'package:bookly/features/splash/presentation/views/splash_view.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
@@ -30,15 +33,17 @@ abstract class AppRouter {
   static final router = GoRouter(
     routes: [
       // Just for testing, delete it after, then activate other comments
-      GoRoute(path: '/', builder: (context, state) => const MainView()),
-
-      // GoRoute(path: '/', builder: (context, state) => const SplashView()),
-      // GoRoute(path: loginView, builder: (context, state) => const LoginView()),
-      // GoRoute(
-      //   path: signupView,
-      //   builder: (context, state) => const SignupView(),
-      // ),
-      // GoRoute(path: mainView, builder: (context, state) => const MainView()),
+      // GoRoute(path: '/', builder: (context, state) => const MainView()),
+      GoRoute(path: '/', builder: (context, state) => const SplashView()),
+      GoRoute(path: loginView, builder: (context, state) => const LoginView()),
+      GoRoute(
+        path: signupView,
+        builder: (context, state) => const SignupView(),
+      ),
+      GoRoute(
+        path: mainView,
+        builder: (context, state) => MainView(pageIndex: state.extra as int?),
+      ),
       GoRoute(
         path: bookDetailsView,
         builder: (context, state) {
@@ -53,17 +58,14 @@ abstract class AppRouter {
       GoRoute(
         path: orderSummaryView,
         builder: (context, state) {
-          final data = state.extra as Map<String, dynamic>;
+          final extra = state.extra as Map<String, dynamic>;
           return OrderSummaryView(
-            items: data['items'] as List<CartItemModel>,
-            totalAmount: data['totalAmount'] as double,
+            cart: extra['cart'] as CartModel,
+            totalAmount: extra['totalPrice'] as double,
           );
         },
       ),
-      GoRoute(
-        path: paymentView,
-        builder: (context, state) => const PaymentView(),
-      ),
+      GoRoute(path: paymentView, builder: (context, state) => PaymentView()),
       GoRoute(
         path: editProfileView,
         builder: (context, state) => const EditProfileView(),

@@ -1,8 +1,11 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/utils/app_router.dart';
+import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SuccessDialog extends StatelessWidget {
-  final String orderId;
+  final int orderId;
 
   const SuccessDialog({super.key, required this.orderId});
 
@@ -28,18 +31,18 @@ class SuccessDialog extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'Payment Successful!',
-              style: TextStyle(
+              style: Styles.textStyle20.copyWith(
                 color: kTextColor1,
-                fontSize: 20,
+
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               'Order #$orderId confirmed',
-              style: TextStyle(
+              style: Styles.textStyle14.copyWith(
                 color: kTextColor1.withOpacity(0.6),
                 fontSize: 14,
               ),
@@ -51,6 +54,7 @@ class SuccessDialog extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                   Navigator.pop(context, true);
+                  GoRouter.of(context).push(AppRouter.mainView, extra: 2);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kPrimaryColor,
@@ -60,9 +64,13 @@ class SuccessDialog extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: const Text(
+                child: Text(
                   'Done',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  style: Styles.textStyle16.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    letterSpacing: 1,
+                  ),
                 ),
               ),
             ),

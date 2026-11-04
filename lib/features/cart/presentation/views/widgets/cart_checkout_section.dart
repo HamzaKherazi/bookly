@@ -2,7 +2,7 @@ import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/widgets/custom_button_with_icon.dart';
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/cart/data/models/cart_item_model.dart';
+import 'package:bookly/features/cart/data/models/cart_model.dart';
 import 'package:bookly/features/cart/presentation/view_models/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,10 +13,10 @@ class CartCheckoutSection extends StatelessWidget {
   const CartCheckoutSection({
     super.key,
     required this.totalAmount,
-    required this.items,
+    required this.cart,
   });
   final double totalAmount;
-  final List<CartItemModel> items;
+  final CartModel cart;
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class CartCheckoutSection extends StatelessWidget {
                       if (context.mounted) {
                         context.push(
                           AppRouter.orderSummaryView,
-                          extra: {'items': items, 'totalAmount': totalAmount},
+                          extra: {'cart': cart, 'totalPrice': totalAmount},
                         );
                       }
                     },

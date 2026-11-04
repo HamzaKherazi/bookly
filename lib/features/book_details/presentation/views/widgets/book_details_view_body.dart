@@ -49,10 +49,11 @@ class BookDetailsViewBody extends StatelessWidget {
                           return CustomButtonWithIcon(
                             onPressed: () async {
                               if (state is CartSuccess) {
-                                if (checkBookExistsInCart(
-                                  state.cart!.items,
-                                  bookId,
-                                )) {
+                                if (state.cart != null &&
+                                    checkBookExistsInCart(
+                                      state.cart!.items,
+                                      bookId,
+                                    )) {
                                   showSnackBar(
                                     context,
                                     title: 'Book already in cart',
@@ -85,7 +86,7 @@ class BookDetailsViewBody extends StatelessWidget {
                                   title: 'Added succesfully to cart',
                                   icon: Icons.check_circle_outline,
                                 );
-                              }
+                                                            }
                             },
                             title: 'Add to cart',
                             icon: Icons.shopping_cart,

@@ -13,7 +13,7 @@ class CitiesRepo {
       final data = await supabase
           .from('cities')
           .select('city_id, name, shipping_cost')
-          .order('name');
+          .order('name', ascending: true);
       final cities = (data as List).map((city) {
         return CityModel.fromJson(city);
       }).toList();

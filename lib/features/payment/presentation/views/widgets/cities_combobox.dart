@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CitiesCombobox extends StatelessWidget {
   final CityModel? selectedCity;
-  final ValueChanged<CityModel?> onChanged;
+    final ValueChanged<CityModel?> onChanged;
   final String label;
   final String hint;
   final IconData icon;

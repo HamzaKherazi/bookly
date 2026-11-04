@@ -14,7 +14,6 @@ class ExploreBookItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        
         GoRouter.of(
           context,
         ).push(AppRouter.bookDetailsView, extra: book.bookId);
@@ -139,7 +138,7 @@ class ExploreBookItem extends StatelessWidget {
 
             // Book Cover Image (overlapping from top)
             Positioned(
-              top: -60.h - AppResponsive.height(context) * 0.02,
+              top: -50.h - AppResponsive.height(context) * 0.02,
               left: 20.w,
               right: 20.w,
               child: SizedBox(

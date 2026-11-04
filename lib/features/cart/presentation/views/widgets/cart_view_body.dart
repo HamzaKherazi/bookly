@@ -1,3 +1,4 @@
+import 'package:bookly/constants.dart';
 import 'package:bookly/core/helpers/show_snack_bar.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/core/widgets/custom_loading_indicator.dart';
@@ -48,7 +49,7 @@ class _CartViewBodyState extends State<CartViewBody> {
                     ),
                     child: Icon(
                       Icons.shopping_bag_outlined,
-                      color: Colors.grey.shade400,
+                      color: kPrimaryColor,
                       size: MediaQuery.of(context).size.width * .4,
                     ),
                   ),
@@ -57,14 +58,14 @@ class _CartViewBodyState extends State<CartViewBody> {
                     'Your cart is empty',
                     style: Styles.textStyle20.copyWith(
                       fontWeight: FontWeight.w700,
-                      color: Colors.grey.shade800,
+                      color: kPrimaryColor,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'Browse our collection and discover amazing books',
                     style: Styles.textStyle14.copyWith(
-                      color: Colors.grey.shade500,
+                      color: kPrimaryColor.withOpacity(0.6),
                       letterSpacing: 0.2,
                     ),
                   ),
@@ -81,8 +82,8 @@ class _CartViewBodyState extends State<CartViewBody> {
               CartItemsSection(items: state.cart!.items),
               // Premium Checkout Section - FULL WIDTH (no padding wrapper)
               CartCheckoutSection(
+                cart: state.cart!,
                 totalAmount: getTotalAmount(state.cart!.items),
-                items: state.cart!.items,
               ),
             ],
           );

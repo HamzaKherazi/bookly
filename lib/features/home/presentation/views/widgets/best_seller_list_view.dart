@@ -1,5 +1,6 @@
 import 'package:bookly/core/helpers/show_snack_bar.dart';
 import 'package:bookly/core/utils/service_locator.dart';
+import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/core/widgets/custom_loading_indicator.dart';
 import 'package:bookly/features/home/data/repos/home_repo.dart';
 import 'package:bookly/features/home/presentation/view_models/best_seller_cubit/best_seller_cubit.dart';
@@ -18,6 +19,14 @@ class BestSellerListView extends StatelessWidget {
       child: BlocConsumer<BestSellerCubit, BestSellerState>(
         builder: (context, state) {
           if (state is BestSellerSuccess) {
+            if (state.bestSellerBooks.isEmpty) {
+              return Center(
+                child: Text(
+                  'No best sellers available',
+                  style: Styles.textStyle14,
+                ),
+              );
+            }
             return ListView.builder(
               itemCount: state.bestSellerBooks.length,
               shrinkWrap: true,

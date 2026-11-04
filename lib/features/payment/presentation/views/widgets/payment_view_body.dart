@@ -1,25 +1,25 @@
 import 'package:bookly/core/helpers/show_snack_bar.dart';
+import 'package:bookly/core/utils/service_locator.dart';
 import 'package:bookly/core/widgets/custom_button.dart';
+import 'package:bookly/features/cart/data/repos/cart_repo.dart';
+import 'package:bookly/features/cart/presentation/view_models/cart_cubit/cart_cubit.dart';
+import 'package:bookly/features/cart/presentation/views/helper/get_total_amount.dart';
+import 'package:bookly/features/order/data/models/create_order_model.dart';
+import 'package:bookly/features/order/presentation/view_models/order_cubit/order_cubit.dart';
 import 'package:bookly/features/payment/data/models/city_model.dart';
 import 'package:bookly/features/payment/presentation/views/helper/show_success_dialog.dart';
 import 'package:bookly/features/payment/presentation/views/widgets/card_fields_widget.dart';
 import 'package:bookly/features/payment/presentation/views/widgets/divider_widget.dart';
 import 'package:bookly/features/payment/presentation/views/widgets/header_section.dart';
 import 'package:bookly/features/payment/presentation/views/widgets/order_summary_section.dart';
+import 'package:bookly/features/payment/presentation/views/widgets/payment_options_section.dart';
 import 'package:bookly/features/payment/presentation/views/widgets/shipping_fields_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:bookly/constants.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PaymentViewBody extends StatefulWidget {
-  final double totalAmount;
-  final String orderId;
-
-  const PaymentViewBody({
-    super.key,
-    this.totalAmount = 1000,
-    this.orderId = 'P87Yh',
-  });
+class PaymentViewBody extends StatefulWidget {  
+  const PaymentViewBody({super.key});
 
   @override
   State<PaymentViewBody> createState() => _PaymentViewBodyState();
@@ -58,7 +58,11 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Order Summary
-            OrderSummarySection(orderId: widget.orderId),
+            OrderSummarySection(
+              deliveryPrice: _selectedCity == null
+                  ? 0
+                  : _selectedCity!.shippingCost,
+            ),
             const SizedBox(height: 24),
 
             // Divider
@@ -74,7 +78,6 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
               zipController: _zipController,
               selectedCity: _selectedCity,
               onCityChanged: (city) => setState(() => _selectedCity = city),
-              
             ),
             const SizedBox(height: 24),
 
@@ -86,7 +89,7 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
             const HeaderSection('💳 Payment Method'),
             const SizedBox(height: 24),
 
-            PaymentOptionsWidget(),
+            PaymentOptionsSection(),
             const SizedBox(height: 24),
             CardFieldsWidget(
               cardController: _cardController,
@@ -96,9 +99,35 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
             const SizedBox(height: 30),
 
             // Pay Button
-            CustomButton(
-              onPressed: _processPayment,
-              title: 'Pay \$${_calculateTotal().toStringAsFixed(2)}',
+            BlocBuilder<CartCubit, CartState>(
+              builder: (context, state) {
+                return BlocListener<OrderCubit, OrderState>(
+                  listener: (context, state) {
+                    if (state is OrderCreated) {
+                      showSuccessDialog(context, orderId: state.orderId);
+                    } else if (state is OrderFailure) {
+                      showSnackBar(context, title: state.errMessage);
+                    }
+                  },
+                  child: CustomButton(
+                    onPressed: () async {
+                      await processPayment(
+                        context,
+                        formKey: _formKey,
+                        order: CreateOrderModel(
+                          cityId: _selectedCity!.cityId,
+                          deliveryFees: _selectedCity!.shippingCost,
+                          shippingAddress: _streetController.text,
+                          paymentMethodId: 1,
+                          items: state is CartSuccess ? state.cart!.items : [],
+                        ),
+                      );
+                    },
+                    title:
+                        'Pay \$${_calculateTotal(deliveryPrice: _selectedCity == null ? 0 : _selectedCity!.shippingCost, totalAmount: state is CartSuccess ? getTotalAmount(state.cart!.items) : 0).toStringAsFixed(2)}',
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 12),
 
@@ -116,139 +145,30 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
     );
   }
 
-  double _calculateTotal() {
-    const delivery = 0.1;
-    return widget.totalAmount + delivery;
+  double _calculateTotal({
+    required double deliveryPrice,
+    required double totalAmount,
+  }) {
+    return totalAmount + deliveryPrice;
   }
 
-  void _processPayment() async {
-    if (!_formKey.currentState!.validate()) return;
+  Future<void> processPayment(
+    BuildContext context, {
+    required GlobalKey<FormState> formKey,
+    required CreateOrderModel order,
+  }) async {
+    if (!formKey.currentState!.validate()) return;
 
     try {
-      await Future.delayed(const Duration(seconds: 2));
+      await BlocProvider.of<OrderCubit>(context).createOrder(order);
 
-      if (mounted) {
-        showSuccessDialog(context);
-      }
+      CartRepo cartRepo = getIt.get<CartRepo>(); 
+      await cartRepo.deleteCart();
+      if (mounted) {}
     } catch (e) {
       if (mounted) {
         showSnackBar(context, title: e.toString());
       }
     }
-  }
-}
-
-class PaymentOptionsWidget extends StatelessWidget {
-  const PaymentOptionsWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: PaymentButton(
-                icon: FontAwesomeIcons.paypal,
-                iconColor: kPrimaryColor,
-                label: 'PayPal',
-                onTap: () {},
-              ),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: PaymentButton(
-                icon: FontAwesomeIcons.google,
-                iconColor: kPrimaryColor,
-                label: 'Google Pay',
-                onTap: () {},
-              ),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: PaymentButton(
-                icon: FontAwesomeIcons.apple,
-                iconColor: kPrimaryColor,
-                label: 'Apple Pay',
-                onTap: () {},
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 20),
-        const OrDivider(),
-      ],
-    );
-  }
-}
-
-class PaymentButton extends StatelessWidget {
-  const PaymentButton({
-    super.key,
-    required this.icon,
-    required this.iconColor,
-    required this.label,
-    required this.onTap,
-  });
-
-  final IconData icon;
-  final Color iconColor;
-  final String label;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(8),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(8),
-        onTap: onTap,
-        child: Container(
-          height: 48,
-          decoration: BoxDecoration(
-            border: Border.all(color: const Color(0xFFE0E0E0)),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FaIcon(icon, size: 18, color: iconColor),
-              const SizedBox(width: 6),
-              Flexible(
-                child: Text(
-                  label,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black87,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class OrDivider extends StatelessWidget {
-  const OrDivider({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: const [
-        Expanded(child: Divider(thickness: 1, color: Color(0xFFE0E0E0))),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12),
-          child: Text('Or', style: TextStyle(color: Colors.grey, fontSize: 14)),
-        ),
-        Expanded(child: Divider(thickness: 1, color: Color(0xFFE0E0E0))),
-      ],
-    );
   }
 }

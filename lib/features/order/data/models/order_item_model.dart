@@ -2,6 +2,7 @@ import 'package:bookly/core/models/book_preview_model.dart';
 
 class OrderItemModel {
   final int orderItemId;
+  final int orderId;
   final int bookId;
   final BookPreviewModel book;
   final int quantity;
@@ -9,6 +10,7 @@ class OrderItemModel {
 
   OrderItemModel({
     required this.orderItemId,
+    required this.orderId,
     required this.bookId,
     required this.book,
     required this.quantity,
@@ -21,5 +23,6 @@ class OrderItemModel {
     book: BookPreviewModel.fromJson(json['books']),
     quantity: json['quantity'] as int,
     unitPrice: json['unit_price'] as double,
+    orderId: json['order_id'] as int,
   );
 }

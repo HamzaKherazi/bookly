@@ -18,3 +18,9 @@ class OrderFailure extends OrderState {
 
   OrderFailure(this.errMessage);
 }
+
+class OrderCreated extends OrderState {
+  final int orderId;
+
+  OrderCreated(this.orderId);
+}

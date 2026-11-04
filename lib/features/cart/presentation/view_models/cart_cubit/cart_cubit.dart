@@ -79,10 +79,11 @@ class CartCubit extends Cubit<CartState> {
   }
 
   Future<void> addItemToCart(BookPreviewModel book) async {
-
-    final cartState = state as CartSuccess;
-
     final result = await cartRepo.addItemToCart(book.bookId);
+    if (state is! CartSuccess) {
+      await getCart();
+    }
+    final cartState = state as CartSuccess;
 
     result.fold((failure) => emit(CartFailure(failure.errMessage)), (
       newCartItemId,
