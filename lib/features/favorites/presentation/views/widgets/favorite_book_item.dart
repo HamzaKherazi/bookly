@@ -78,7 +78,6 @@ class _FavoriteBookItemState extends State<FavoriteBookItem>
               );
             },
             child: Container(
-              height: AppResponsive.height(context) * 0.175,
               decoration: BoxDecoration(
                 color: kWhite,
                 borderRadius: BorderRadius.circular(16),
@@ -102,7 +101,12 @@ class _FavoriteBookItemState extends State<FavoriteBookItem>
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        BookCover(imgUrl: widget.bookPreviewModel.imageUrl),
+                        SizedBox(
+                          width: AppResponsive.width(context) * 0.22,
+                          child: BookCover(
+                            imgUrl: widget.bookPreviewModel.imageUrl,
+                          ),
+                        ),
                         const SizedBox(width: 16),
                         Expanded(
                           child: BookDetails(
@@ -139,10 +143,10 @@ class BookDetails extends StatelessWidget {
       children: [
         // Book title
         BookTitle(title: bookPreviewModel.title),
-        const SizedBox(height: 4),
+        SizedBox(height: AppResponsive.height(context) * 0.0018),
         // Author name with icon
         AuthorInfo(author: bookPreviewModel.author),
-        const SizedBox(height: 8),
+        SizedBox(height: AppResponsive.height(context) * 0.01),
         // Rating and genre chips
         Row(
           children: [
@@ -156,7 +160,7 @@ class BookDetails extends StatelessWidget {
             CategoryChip(category: bookPreviewModel.category),
           ],
         ),
-        const SizedBox(height: 14),
+        SizedBox(height: AppResponsive.height(context) * 0.01),
         // Price and action buttons
         PriceTag(price: bookPreviewModel.price),
       ],
@@ -172,7 +176,7 @@ class BookTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: Styles.textStyle18.copyWith(
+      style: Styles.textStyle16.copyWith(
         fontWeight: FontWeight.w700,
         color: const Color(0xFF1A1A2E),
         height: 1.3,
@@ -196,10 +200,9 @@ class AuthorInfo extends StatelessWidget {
         const SizedBox(width: 4),
         Text(
           author,
-          style: TextStyle(
+          style: Styles.textStyle14.copyWith(
             fontSize: 14,
             color: Colors.grey[600],
-            fontWeight: FontWeight.w500,
           ),
         ),
       ],
@@ -225,7 +228,7 @@ class RatingChip extends StatelessWidget {
           const SizedBox(width: 2),
           Text(
             bookRating.avgRating.toStringAsFixed(2),
-            style: TextStyle(
+            style: Styles.textStyle14.copyWith(
               fontSize: 12,
               fontWeight: FontWeight.w600,
               color: Colors.grey[800],
@@ -233,7 +236,10 @@ class RatingChip extends StatelessWidget {
           ),
           Text(
             ' (${bookRating.ratingCount})',
-            style: TextStyle(fontSize: 11, color: Colors.grey[500]),
+            style: Styles.textStyle14.copyWith(
+              fontSize: 11,
+              color: Colors.grey[500],
+            ),
           ),
         ],
       ),
@@ -256,9 +262,8 @@ class CategoryChip extends StatelessWidget {
       ),
       child: Text(
         category,
-        style: TextStyle(
+        style: Styles.textStyle14.copyWith(
           fontSize: 11,
-          fontWeight: FontWeight.w500,
           color: Colors.blue[700],
         ),
       ),
@@ -273,14 +278,17 @@ class PriceTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 209, 252, 215),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
         '\$${price.toStringAsFixed(2)}',
-        style: Styles.textStyle14.copyWith(fontSize: 12, color: Colors.black),
+        style: Styles.textStyle14.copyWith(
+          fontSize: 11,
+          color: const Color.fromARGB(255, 8, 74, 49),
+        ),
       ),
     );
   }

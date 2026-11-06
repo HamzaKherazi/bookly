@@ -142,7 +142,7 @@ class ExploreBookItem extends StatelessWidget {
               left: 20.w,
               right: 20.w,
               child: SizedBox(
-                height: AppResponsive.height(context) * 0.173,
+                height: AppResponsive.height(context) * 0.19,
                 child: BookCover(imgUrl: book.imageUrl),
               ),
             ),

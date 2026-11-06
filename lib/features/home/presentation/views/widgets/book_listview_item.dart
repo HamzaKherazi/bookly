@@ -34,7 +34,7 @@ class BookListViewItem extends StatelessWidget {
           ],
         ),
 
-        height: AppResponsive.height(context) * 0.18,
+        height: AppResponsive.height(context) * 0.16,
 
         child: Row(
           children: [

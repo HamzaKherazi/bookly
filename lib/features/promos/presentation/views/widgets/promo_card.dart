@@ -12,7 +12,7 @@ class PromoCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10.w),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 231, 188, 154),
+        color: const Color.fromARGB(255, 230, 210, 196),
 
         borderRadius: BorderRadius.circular(24),
 

@@ -24,7 +24,7 @@ class NewArrivalsSection extends StatelessWidget {
         ),
         SizedBox(height: AppResponsive.height(context) * 0.02),
         SizedBox(
-          height: AppResponsive.height(context) * 0.24,
+          height: AppResponsive.height(context) * 0.2,
 
           child: NewArrivalsListView(),
         ),
