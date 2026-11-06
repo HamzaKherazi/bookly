@@ -1,6 +1,11 @@
+import 'package:bookly/core/utils/service_locator.dart';
 import 'package:bookly/features/about/presentation/views/about_view.dart';
 import 'package:bookly/features/auth/presentation/views/login_view.dart';
 import 'package:bookly/features/auth/presentation/views/signup_view.dart';
+import 'package:bookly/features/book_details/data/repos/book_details_repo.dart';
+import 'package:bookly/features/book_details/data/repos/reviews_repo.dart';
+import 'package:bookly/features/book_details/presentation/view_models/book_details_cubit/book_details_cubit.dart';
+import 'package:bookly/features/book_details/presentation/view_models/reviews_cubit/reviews_cubit.dart';
 import 'package:bookly/features/book_request/presentation/views/book_request_view.dart';
 import 'package:bookly/features/cart/data/models/cart_model.dart';
 import 'package:bookly/features/cart/presentation/views/cart_view.dart';
@@ -13,6 +18,7 @@ import 'package:bookly/features/profile/presentation/views/change_password_view.
 import 'package:bookly/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:bookly/features/orders_history/presentation/views/orders_history_view.dart';
 import 'package:bookly/features/splash/presentation/views/splash_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
@@ -47,7 +53,20 @@ abstract class AppRouter {
       GoRoute(
         path: bookDetailsView,
         builder: (context, state) {
-          return BookDetailsView(bookId: state.extra as int);
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (_) =>
+                    BookDetailsCubit(getIt<BookDetailsRepo>())
+                      ..getBookDetails(state.extra as int),
+              ),
+              BlocProvider(
+                create: (_) =>
+                    ReviewsCubit(getIt<ReviewsRepo>())
+                      ..getReviews(state.extra as int),
+              ),
+            ],
+            child: BookDetailsView(bookId: state.extra as int));
         },
       ),
       GoRoute(path: cartView, builder: (context, state) => const CartView()),

@@ -12,7 +12,7 @@ void showSnackBar(
       backgroundColor: backgroundColor,
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

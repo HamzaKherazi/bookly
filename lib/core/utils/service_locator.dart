@@ -2,6 +2,7 @@ import 'package:bookly/features/book_details/data/repos/book_details_repo.dart';
 import 'package:bookly/features/book_details/data/repos/reviews_repo.dart';
 import 'package:bookly/features/cart/data/repos/cart_repo.dart';
 import 'package:bookly/features/explore/data/repos/explore_repo.dart';
+import 'package:bookly/features/favorites/data/repos/favorites_repo.dart';
 import 'package:bookly/features/home/data/repos/home_repo.dart';
 import 'package:bookly/features/order/data/repos/order_repo.dart';
 import 'package:bookly/features/payment/data/repos/city_repo.dart';
@@ -23,4 +24,7 @@ void setupDependencies() {
   getIt.registerSingleton<CartRepo>(CartRepo(getIt<SupabaseClient>()));
   getIt.registerSingleton<OrderRepo>(OrderRepo(getIt<SupabaseClient>()));
   getIt.registerSingleton<CitiesRepo>(CitiesRepo(getIt<SupabaseClient>()));
+  getIt.registerSingleton<FavoritesRepo>(
+    FavoritesRepo(getIt<SupabaseClient>()),
+  );
 }

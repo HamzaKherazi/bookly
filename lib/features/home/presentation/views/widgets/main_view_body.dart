@@ -2,7 +2,8 @@ import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/features/cart/presentation/view_models/cart_cubit/cart_cubit.dart';
 import 'package:bookly/features/cart/presentation/views/cart_view.dart';
-import 'package:bookly/features/favorites/favorites_view.dart';
+import 'package:bookly/features/favorites/presentation/view_models/cubit/favorites_cubit.dart';
+import 'package:bookly/features/favorites/presentation/views/favorites_view.dart';
 import 'package:bookly/features/explore/presentation/views/explore_view.dart';
 import 'package:bookly/core/widgets/custom_bottom_navigation_bar.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_view.dart';
@@ -121,11 +122,14 @@ class _MainViewBodyState extends State<MainViewBody> {
               ),
             ],
             onTap: (index) async {
-              if (index == 3) {
+              if (index == 1 && _currentIndex != index) {
+                BlocProvider.of<FavoritesCubit>(context).getFavorites();
+              } else if (index == 3) {
                 GoRouter.of(context).push(AppRouter.cartView);
                 BlocProvider.of<CartCubit>(context).getCart();
                 return;
               }
+
               setState(() {
                 _currentIndex = index;
               });
