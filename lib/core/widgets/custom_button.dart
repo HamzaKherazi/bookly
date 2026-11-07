@@ -1,4 +1,5 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/app_responsive/app_responsive.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 56,
+      height: AppResponsive.height(context) * 0.07,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
@@ -35,9 +36,10 @@ class CustomButton extends StatelessWidget {
         ),
         child: Text(
           title,
-          style: Styles.textStyle18.copyWith(
+          style: Styles.textStyle16.copyWith(
             color: foregroundColor ?? Colors.white,
             letterSpacing: .5,
+            
           ),
         ),
       ),

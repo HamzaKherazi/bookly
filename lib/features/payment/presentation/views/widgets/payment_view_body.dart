@@ -18,7 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:bookly/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PaymentViewBody extends StatefulWidget {  
+class PaymentViewBody extends StatefulWidget {
   const PaymentViewBody({super.key});
 
   @override
@@ -162,7 +162,7 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
     try {
       await BlocProvider.of<OrderCubit>(context).createOrder(order);
 
-      CartRepo cartRepo = getIt.get<CartRepo>(); 
+      CartRepo cartRepo = getIt.get<CartRepo>();
       await cartRepo.deleteCart();
       if (mounted) {}
     } catch (e) {

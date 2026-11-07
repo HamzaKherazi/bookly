@@ -1,5 +1,6 @@
 import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PaymentOptionButton extends StatelessWidget {
@@ -38,7 +39,11 @@ class PaymentOptionButton extends StatelessWidget {
               Flexible(
                 child: Text(
                   label,
-                  style: Styles.textStyle14.copyWith(color: Colors.black87),
+                  style: Styles.textStyle14.copyWith(
+                    fontSize: 12.sp,
+                    color: Colors.black87,
+                    fontWeight: FontWeight.w500,
+                  ),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),

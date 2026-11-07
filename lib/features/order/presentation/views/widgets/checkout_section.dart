@@ -5,6 +5,7 @@ import 'package:bookly/features/cart/presentation/view_models/cart_cubit/cart_cu
 import 'package:bookly/features/cart/presentation/views/helper/get_total_amount.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class CheckoutSection extends StatelessWidget {
@@ -59,7 +60,7 @@ class CheckoutSection extends StatelessWidget {
                         color: Colors.grey.shade500,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 0.5,
-                        fontSize: 12,
+                        fontSize: 13.sp,
                       ),
                     ),
                     const SizedBox(height: 2),
@@ -69,10 +70,10 @@ class CheckoutSection extends StatelessWidget {
                           state is CartSuccess
                               ? '\$ ${getTotalAmount(state.cart!.items).toStringAsFixed(2)}'
                               : '\$0.00',
-                          style: Styles.textStyle24.copyWith(
+                          style: Styles.textStyle22.copyWith(
                             fontWeight: FontWeight.w800,
                             color: kPrimaryColor,
-                            fontSize: 26,
+                            fontSize: 22.sp,
                             height: 1,
                           ),
                         );
@@ -108,7 +109,7 @@ class CheckoutSection extends StatelessWidget {
                           'Place Order',
                           style: Styles.textStyle16.copyWith(
                             fontWeight: FontWeight.w700,
-                            fontSize: 15,
+                            fontSize: 15.sp,
                             letterSpacing: 0.5,
                             color: Colors.white,
                           ),

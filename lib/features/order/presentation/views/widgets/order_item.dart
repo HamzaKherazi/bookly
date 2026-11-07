@@ -1,8 +1,11 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/app_responsive/app_responsive.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/cart/data/models/cart_item_model.dart';
+import 'package:bookly/features/cart/presentation/views/widgets/cart_item.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OrderItem extends StatelessWidget {
   const OrderItem({super.key, required this.cartItemModel});
@@ -24,7 +27,7 @@ class OrderItem extends StatelessWidget {
         ],
       ),
 
-      height: 135,
+      height: AppResponsive.height(context) * 0.14,
 
       child: Row(
         children: [
@@ -55,30 +58,22 @@ class OrderItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  cartItemModel.book!.title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: Styles.textStyle18,
-                ),
-
-                const SizedBox(height: 2),
-
-                Text(cartItemModel.book!.author, style: Styles.textStyle16),
-
-                const SizedBox(height: 16),
+                BookTitle(title: cartItemModel.book!.title),
+                const SizedBox(height: 4),
+                AuthorInfo(author: cartItemModel.book!.author),
+                const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      '${cartItemModel.book!.price} \$',
-                      style: Styles.textStyle18,
-                    ),
+                    PriceTag(price: cartItemModel.book!.price),
                     Padding(
                       padding: const EdgeInsets.only(right: 24),
                       child: Text(
                         cartItemModel.quantity.toString(),
-                        style: Styles.textStyle16,
+                        style: Styles.textStyle16.copyWith(
+                          fontSize: 16.sp,
+                          color: kPrimaryColor,
+                        ),
                       ),
                     ),
                   ],

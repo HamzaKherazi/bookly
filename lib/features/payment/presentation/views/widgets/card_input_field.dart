@@ -30,7 +30,7 @@ class CardInputField extends StatelessWidget {
       obscureText: obscureText,
       keyboardType: keyboardType,
       inputFormatters: inputFormatters,
-      style: const TextStyle(color: kTextColor1),
+      style: Styles.textStyle14.copyWith(color: kTextColor1),
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,

@@ -1,6 +1,7 @@
-
 import 'package:bookly/constants.dart';
+import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ShippingInputField extends StatelessWidget {
   final TextEditingController controller;
@@ -31,9 +32,9 @@ class ShippingInputField extends StatelessWidget {
           children: [
             Text(
               label,
-              style: TextStyle(
+              style: Styles.textStyle14.copyWith(
                 color: Colors.grey.shade700,
-                fontSize: 14,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -52,8 +53,10 @@ class ShippingInputField extends StatelessWidget {
           controller: controller,
           keyboardType: keyboardType,
           onChanged: onChanged,
+          style: Styles.textStyle14,
           decoration: InputDecoration(
             hintText: hint,
+
             prefixIcon: Icon(
               icon,
               color: kPrimaryColor.withOpacity(0.6),
@@ -81,12 +84,15 @@ class ShippingInputField extends StatelessWidget {
             ),
             filled: true,
             fillColor: Colors.grey.shade50,
-            hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14),
+            hintStyle: Styles.textStyle14.copyWith(
+              color: Colors.grey.shade400,
+              fontSize: 14.sp,
+            ),
             errorText: errorText,
             errorStyle: TextStyle(color: Colors.red.shade700, fontSize: 12),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 16,
-              vertical: 14,
+              vertical: 10,
             ),
           ),
           validator: (value) {

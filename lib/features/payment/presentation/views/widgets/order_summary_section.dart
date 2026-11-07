@@ -103,7 +103,7 @@ class OrderSummarySection extends StatelessWidget {
             children: [
               Text(
                 'Total',
-                style: Styles.textStyle18.copyWith(
+                style: Styles.textStyle16.copyWith(
                   color: kTextColor1,
                   fontWeight: FontWeight.bold,
                 ),
@@ -114,7 +114,7 @@ class OrderSummarySection extends StatelessWidget {
                     state is CartSuccess
                         ? getTotalAmount(state.cart!.items).toStringAsFixed(2)
                         : '0.00',
-                    style: Styles.textStyle20.copyWith(
+                    style: Styles.textStyle18.copyWith(
                       color: kPrimaryColor,
                       fontWeight: FontWeight.bold,
                     ),

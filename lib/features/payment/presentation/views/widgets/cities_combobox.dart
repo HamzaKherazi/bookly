@@ -1,14 +1,16 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/service_locator.dart';
+import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/payment/data/models/city_model.dart';
 import 'package:bookly/features/payment/data/repos/city_repo.dart';
 import 'package:bookly/features/payment/presentation/view_models/cities_cubit/cities_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CitiesCombobox extends StatelessWidget {
   final CityModel? selectedCity;
-    final ValueChanged<CityModel?> onChanged;
+  final ValueChanged<CityModel?> onChanged;
   final String label;
   final String hint;
   final IconData icon;
@@ -39,9 +41,9 @@ class CitiesCombobox extends StatelessWidget {
           children: [
             Text(
               label,
-              style: TextStyle(
+              style: Styles.textStyle14.copyWith(
                 color: Colors.grey.shade700,
-                fontSize: 14,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -64,6 +66,7 @@ class CitiesCombobox extends StatelessWidget {
                 return DropdownButtonFormField<CityModel>(
                   // Rebuild the field if the selection is changed from outside.
                   key: ValueKey(selectedCity?.cityId),
+                  style: Styles.textStyle14,
                   initialValue: selectedCity,
                   isExpanded: true,
                   icon: Icon(
@@ -74,7 +77,10 @@ class CitiesCombobox extends StatelessWidget {
                   dropdownColor: Colors.white,
                   hint: Text(
                     hint,
-                    style: TextStyle(color: Colors.grey.shade400, fontSize: 14),
+                    style: Styles.textStyle14.copyWith(
+                      color: Colors.grey.shade400,
+                      fontSize: 14.sp,
+                    ),
                   ),
                   items: state.cities
                       .map(
