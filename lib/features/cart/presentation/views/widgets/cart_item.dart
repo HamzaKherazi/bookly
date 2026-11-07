@@ -118,40 +118,17 @@ class AuthorInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.person, size: 12, color: Colors.grey[600]),
+        Icon(Icons.person, size: 13, color: Colors.grey[600]),
         const SizedBox(width: 4),
         Text(
           author,
           style: Styles.textStyle14.copyWith(
             fontSize: 12,
-            color: Colors.grey[600],
+            fontWeight: FontWeight.w500,
+            color: kTextColor1,
           ),
         ),
       ],
-    );
-  }
-}
-
-class CategoryChip extends StatelessWidget {
-  final String category;
-
-  const CategoryChip({super.key, required this.category});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: const Color(0xFFE3F2FD),
-        borderRadius: BorderRadius.circular(6),
-      ),
-      child: Text(
-        category,
-        style: Styles.textStyle14.copyWith(
-          fontSize: 11,
-          color: Colors.blue[700],
-        ),
-      ),
     );
   }
 }
@@ -165,14 +142,15 @@ class PriceTag extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 209, 252, 215),
+        color: const Color.fromARGB(255, 255, 243, 211),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
         '\$${price.toStringAsFixed(2)}',
         style: Styles.textStyle14.copyWith(
           fontSize: 11,
-          color: const Color.fromARGB(255, 8, 74, 49),
+          fontWeight: FontWeight.w500,
+          color: kPrimaryColor,
         ),
       ),
     );

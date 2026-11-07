@@ -1,10 +1,14 @@
 // profile_view_body.dart
+import 'package:bookly/core/utils/service_locator.dart';
+import 'package:bookly/features/profile/data/repos/stats_repo.dart';
+import 'package:bookly/features/profile/presentation/view_models/stats_cubit/stats_cubit.dart';
 import 'package:bookly/features/profile/presentation/views/widgets/profile_avatar.dart';
 import 'package:bookly/features/profile/presentation/views/widgets/profile_header.dart';
 import 'package:bookly/features/profile/presentation/views/widgets/profile_menu_section.dart';
 import 'package:bookly/features/profile/presentation/views/widgets/profile_stats.dart';
 import 'package:bookly/features/profile/presentation/views/widgets/sign_out_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
@@ -19,7 +23,7 @@ class ProfileViewBody extends StatelessWidget {
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(
-              children: const [
+              children: [
                 SizedBox(height: 12),
 
                 ProfileAvatar(
@@ -27,10 +31,9 @@ class ProfileViewBody extends StatelessWidget {
                   email: 'hamza.kherazi@email.com',
                 ),
                 SizedBox(height: 28),
-                ProfileStats(
-                  booksOrdered: 48,
-                  totalSpent: 620.50,
-                  memberSince: '2024',
+                BlocProvider(
+                  create: (context) => StatsCubit(getIt.get<StatsRepo>())..getStats(),
+                  child: ProfileStats(),
                 ),
                 SizedBox(height: 32),
                 ProfileMenuSection(),

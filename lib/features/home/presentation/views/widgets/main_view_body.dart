@@ -25,26 +25,43 @@ class _MainViewBodyState extends State<MainViewBody> {
   late int _currentIndex;
   late final NotchBottomBarController _controller;
 
-  final List<Widget> _pages = [
-    const HomeView(),
-    const FavoritesView(),
-    const ExploreView(),
-    const CartView(),
-    const ProfileView(),
-  ];
+  late final List<Widget?> _pages = [const HomeView(), null, null, null, null];
 
   @override
   void initState() {
     super.initState();
     _currentIndex = widget.initialIndex;
     _controller = NotchBottomBarController(index: widget.initialIndex);
+    _pages[_currentIndex] ??= _buildPage(_currentIndex);
+  }
+
+  Widget _buildPage(int index) {
+    switch (index) {
+      case 0:
+        return const HomeView();
+      case 1:
+        return const FavoritesView();
+      case 2:
+        return const ExploreView();
+      case 3:
+        return const CartView();
+      case 4:
+        return const ProfileView();
+      default:
+        return const SizedBox.shrink();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        IndexedStack(index: _currentIndex, children: _pages),
+        IndexedStack(
+          index: _currentIndex,
+          children: _pages
+              .map((page) => page ?? const SizedBox.shrink())
+              .toList(),
+        ),
         Positioned(
           left: 0,
           right: 0,
@@ -123,12 +140,14 @@ class _MainViewBodyState extends State<MainViewBody> {
             ],
             onTap: (index) async {
               if (index == 1 && _currentIndex != index) {
-                BlocProvider.of<FavoritesCubit>(context).getFavorites();
+                await BlocProvider.of<FavoritesCubit>(context).getFavorites();
               } else if (index == 3) {
                 GoRouter.of(context).push(AppRouter.cartView);
-                BlocProvider.of<CartCubit>(context).getCart();
+                await BlocProvider.of<CartCubit>(context).getCart();
                 return;
               }
+
+              _pages[index] ??= _buildPage(index);
 
               setState(() {
                 _currentIndex = index;

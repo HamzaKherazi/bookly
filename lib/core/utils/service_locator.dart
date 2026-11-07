@@ -6,6 +6,7 @@ import 'package:bookly/features/favorites/data/repos/favorites_repo.dart';
 import 'package:bookly/features/home/data/repos/home_repo.dart';
 import 'package:bookly/features/order/data/repos/order_repo.dart';
 import 'package:bookly/features/payment/data/repos/city_repo.dart';
+import 'package:bookly/features/profile/data/repos/stats_repo.dart';
 import 'package:bookly/features/promos/data/repos/promos_repo.dart';
 import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -27,4 +28,5 @@ void setupDependencies() {
   getIt.registerSingleton<FavoritesRepo>(
     FavoritesRepo(getIt<SupabaseClient>()),
   );
+  getIt.registerSingleton<StatsRepo>(StatsRepo(getIt<SupabaseClient>()));
 }
