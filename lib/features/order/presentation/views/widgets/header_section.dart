@@ -25,28 +25,28 @@ class HeaderSection extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 14),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Review Order',
-                style: Styles.textStyle18.copyWith(
-                  color: Colors.grey.shade800,
-                  fontSize: 17.sp,
-                  fontWeight: FontWeight.w600,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Review Order',
+                  style: Styles.textStyle18.copyWith(
+                    color: Colors.grey.shade800,
+                    fontSize: 17.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),
-              Text(
-                'Please verify your items before placing order',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: Styles.textStyle14.copyWith(
-                  color: Colors.grey.shade500,
-                  fontSize: 13.sp,
-                  fontWeight: FontWeight.w400,
+                Text(
+                  'Please verify your items before placing order',
+                  style: Styles.textStyle14.copyWith(
+                    color: Colors.grey.shade500,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

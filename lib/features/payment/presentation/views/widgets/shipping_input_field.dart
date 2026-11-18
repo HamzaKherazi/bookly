@@ -56,7 +56,10 @@ class ShippingInputField extends StatelessWidget {
           style: Styles.textStyle14,
           decoration: InputDecoration(
             hintText: hint,
-
+            errorStyle: Styles.textStyle14.copyWith(
+              color: const Color.fromARGB(255, 238, 46, 32),
+              fontSize: 12.sp,
+            ),
             prefixIcon: Icon(
               icon,
               color: kPrimaryColor.withOpacity(0.6),
@@ -89,7 +92,7 @@ class ShippingInputField extends StatelessWidget {
               fontSize: 14.sp,
             ),
             errorText: errorText,
-            errorStyle: TextStyle(color: Colors.red.shade700, fontSize: 12),
+
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 10,

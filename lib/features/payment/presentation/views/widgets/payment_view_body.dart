@@ -110,10 +110,12 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
                     }
                   },
                   child: CustomButton(
+                   
                     onPressed: () async {
+                          if (!_formKey.currentState!.validate()) return;
+
                       await processPayment(
                         context,
-                        formKey: _formKey,
                         order: CreateOrderModel(
                           cityId: _selectedCity!.cityId,
                           deliveryFees: _selectedCity!.shippingCost,
@@ -154,11 +156,8 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
 
   Future<void> processPayment(
     BuildContext context, {
-    required GlobalKey<FormState> formKey,
     required CreateOrderModel order,
   }) async {
-    if (!formKey.currentState!.validate()) return;
-
     try {
       await BlocProvider.of<OrderCubit>(context).createOrder(order);
 

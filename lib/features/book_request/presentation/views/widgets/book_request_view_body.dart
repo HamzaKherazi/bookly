@@ -1,6 +1,16 @@
-import 'package:bookly/constants.dart';
-import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/core/helpers/show_dialog.dart';
+import 'package:bookly/core/helpers/show_snack_bar.dart';
+import 'package:bookly/core/utils/service_locator.dart';
+import 'package:bookly/core/widgets/custom_button.dart';
+import 'package:bookly/core/widgets/custom_loading_indicator.dart';
+import 'package:bookly/features/book_request/data/repos/request_repo.dart';
+import 'package:bookly/features/book_request/presentation/view_models/request_cubit/request_cubit.dart';
+import 'package:bookly/features/book_request/presentation/views/functions/submit_request.dart';
+import 'package:bookly/features/book_request/presentation/views/widgets/custom_text_form_field.dart';
+import 'package:bookly/features/book_request/presentation/views/widgets/info_container.dart';
+import 'package:bookly/features/book_request/presentation/views/widgets/request_header.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BookRequestViewBody extends StatefulWidget {
   const BookRequestViewBody({super.key});
@@ -21,24 +31,6 @@ class _BookRequestViewBodyState extends State<BookRequestViewBody> {
     super.dispose();
   }
 
-  void _submitRequest() {
-    if (_formKey.currentState!.validate()) {
-      final bookTitle = _titleController.text.trim();
-      final bookAuthor = _authorController.text.trim();
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Request submitted: "$bookTitle" by $bookAuthor'),
-          backgroundColor: Colors.green[700],
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
-
-      _titleController.clear();
-      _authorController.clear();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -53,21 +45,7 @@ class _BookRequestViewBodyState extends State<BookRequestViewBody> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Header
-                    Text(
-                      'Request a Book',
-                      style: Styles.textStyle24.copyWith(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: -0.5,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Fill in the details below to submit your book request',
-                      style: Styles.textStyle16.copyWith(
-                        color: Colors.grey[600],
-                      ),
-                    ),
+                    const RequestHeader(),
                     const SizedBox(height: 32),
 
                     // Form
@@ -76,106 +54,73 @@ class _BookRequestViewBodyState extends State<BookRequestViewBody> {
                       child: Column(
                         children: [
                           // Book Title Field
-                          TextFormField(
+                          CustomTextFormField(
                             controller: _titleController,
-                            decoration: InputDecoration(
-                              labelText: 'Book Title',
-                              hintText: 'e.g., The Great Gatsby',
-                              prefixIcon: const Icon(Icons.book_outlined),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: BorderSide(
-                                  color: Colors.grey[300]!,
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: BorderSide(
-                                  color: Colors.grey[300]!,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: const BorderSide(
-                                  color: kPrimaryColor,
-                                  width: 2,
-                                ),
-                              ),
-                              filled: true,
-                              fillColor: Colors.grey[50],
-                            ),
-                            validator: (value) {
-                              if (value == null || value.trim().isEmpty) {
-                                return 'Please enter a book title';
-                              }
-                              return null;
-                            },
-                            textInputAction: TextInputAction.next,
+                            label: 'Book Title',
+                            hint: 'e.g., The Great Gatsby',
+                            icon: Icons.book_outlined,
                           ),
                           const SizedBox(height: 20),
 
                           // Author Field
-                          TextFormField(
+                          CustomTextFormField(
                             controller: _authorController,
-                            decoration: InputDecoration(
-                              labelText: 'Author',
-                              hintText: 'e.g., F. Scott Fitzgerald',
-                              prefixIcon: const Icon(Icons.person_outline),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: BorderSide(
-                                  color: Colors.grey[300]!,
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: BorderSide(
-                                  color: Colors.grey[300]!,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: const BorderSide(
-                                  color: kPrimaryColor,
-                                  width: 2,
-                                ),
-                              ),
-                              filled: true,
-                              fillColor: Colors.grey[50],
-                            ),
-                            validator: (value) {
-                              if (value == null || value.trim().isEmpty) {
-                                return 'Please enter the author\'s name';
-                              }
-                              return null;
-                            },
+                            label: 'Author',
+                            hint: 'e.g., F. Scott Fitzgerald',
+                            icon: Icons.person_outline,
                             textInputAction: TextInputAction.done,
-                            onFieldSubmitted: (_) => _submitRequest(),
                           ),
                           const SizedBox(height: 32),
 
                           // Submit Button
                           SizedBox(
-                            width: double.infinity,
-                            height: 56,
-                            child: ElevatedButton(
-                              onPressed: _submitRequest,
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: kPrimaryColor,
-                                foregroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                elevation: 2,
-                                shadowColor: kPrimaryColor.withOpacity(0.3),
-                              ),
-                              child: Text(
-                                'Submit Request',
-                                style: Styles.textStyle16.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: 0.5,
-                                ),
+                            height: 50,
+                            child: BlocProvider(
+                              create: (context) =>
+                                  RequestCubit(getIt.get<RequestRepo>()),
+                              child: BlocConsumer<RequestCubit, RequestState>(
+                                listener: (context, state) {
+                                  if (state is RequestSuccess) {
+                                    showCustomDialog(
+                                      context,
+                                      title: 'Book Request',
+                                      message:
+                                          'Request submitted successfully!',
+                                    );
+                                  } else if (state is RequestFailure) {
+                                    showSnackBar(
+                                      context,
+                                      title: 'Failed to submit request',
+                                      backgroundColor: const Color.fromARGB(
+                                        255,
+                                        177,
+                                        2,
+                                        2,
+                                      ),
+                                    );
+                                  }
+                                },
+                                builder: (context, state) {
+                                  if (state is RequestLoading) {
+                                    return const Center(
+                                      child: CustomLoadingIndicator(),
+                                    );
+                                  }
+                                  return CustomButton(
+                                    onPressed: () {
+                                      if (!_formKey.currentState!.validate()) {
+                                        return;
+                                      }
+                                      submitRequest(
+                                        context: context,
+                                        formKey: _formKey,
+                                        titleController: _titleController,
+                                        authorController: _authorController,
+                                      );
+                                    },
+                                    title: 'Submit Request',
+                                  );
+                                },
                               ),
                             ),
                           ),
@@ -187,36 +132,7 @@ class _BookRequestViewBodyState extends State<BookRequestViewBody> {
                     const Spacer(),
 
                     // Info container - now sticky at bottom!
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16),
-                      child: Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[50],
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.grey[200]!),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.info_outline,
-                              color: Colors.grey[600],
-                              size: 20,
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Text(
-                                'Our team will review your request and get back to you within 24 hours',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.grey[600],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    InfoContainer(),
                   ],
                 ),
               ),

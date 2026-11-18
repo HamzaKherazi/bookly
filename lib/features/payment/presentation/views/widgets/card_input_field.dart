@@ -2,6 +2,7 @@ import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CardInputField extends StatelessWidget {
   final TextEditingController controller;
@@ -36,6 +37,10 @@ class CardInputField extends StatelessWidget {
         hintText: hint,
         hintStyle: Styles.textStyle14.copyWith(
           color: kTextColor1.withOpacity(0.3),
+        ),
+        errorStyle: Styles.textStyle14.copyWith(
+          color: const Color.fromARGB(255, 238, 46, 32),
+          fontSize: 12.sp,
         ),
         labelStyle: Styles.textStyle14.copyWith(
           color: kTextColor1.withOpacity(0.6),
